@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 03:00:45 by mfunakos          #+#    #+#             */
-/*   Updated: 2024/06/09 15:55:04 by mfunakos         ###   ########.fr       */
+/*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
+/*   Updated: 2025/04/30 20:33:16 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/cub3d.h"
 
-int	ft_isascii(int c)
+
+int	main(int argc, char *argv[])
 {
-	if (c >= 0 && c <= 127)
-		return (1);
+	int		fd;
+	char	*line;
+	(void)argc;
+
+	printf("コンパイルできた〜〜〜\n");
+
+	fd = open(argv[1], O_RDONLY);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		printf("%s", line);
+		line = get_next_line(fd);
+	}
+	close(fd);
 	return (0);
 }
