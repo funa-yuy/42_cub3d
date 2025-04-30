@@ -55,3 +55,4 @@ dkms.conf
 .vscode
 cub3d
 mfunakos
+*.DS_Store
