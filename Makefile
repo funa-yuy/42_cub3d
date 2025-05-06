@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/07 00:01:41 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/07 00:15:41 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ HEADER_DIR = include
 HEADER = $(HEADER_DIR)/cub3d.h
 
 # ここに追加していく
-SRC_FILES = main.c \
-			init_map_data.c
+SRC_FILES = main.c
 
 # ---------- Libft & GNL ---------- #
 

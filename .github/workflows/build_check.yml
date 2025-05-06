@@ -11,18 +11,21 @@ on:
 jobs:
   build:
 
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+	# The type of runner that the job will run on
+	runs-on: ubuntu-latest
 
-    # Install compiler and build tools needed for compilation
-    steps:
-      - name: install-build-essential
-        run: sudo apt-get update && sudo apt-get -y install build-essential
+	# Install compiler and build tools needed for compilation
+	steps:
+	- name: install-build-essential
+	  run: sudo apt-get update && sudo apt-get -y install build-essential
 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: checkout
-        uses: actions/checkout@v3
+	- name: install-X11
+	  run: sudo apt-get -y install libx11-dev libxext-dev x11proto-core-dev
 
-      # Compile the project using the make command
-      - name: build
-        run: make all
+	# Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+	- name: checkout
+	  uses: actions/checkout@v3
+
+	# Compile the project using the make command
+	- name: build
+	  run: make all
