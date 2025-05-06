@@ -25,4 +25,4 @@ jobs:
 
       # Compile the project using the make command
       - name: build
-        run: make -C my_cub3d/ all
+        run: make all
