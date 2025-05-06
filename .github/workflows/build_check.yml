@@ -18,7 +18,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get -y install build-essential
 
       - name: install-X11
-        run: sudo apt-get -y install libx11-dev libxext-dev x11proto-core-dev
+        run: sudo apt-get -y install libbsd-dev libxkbfile-dev libxrandr-dev zlib1g-dev
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout
