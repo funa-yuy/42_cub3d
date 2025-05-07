@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/07 12:34:20 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/05/07 13:09:27 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ HEADER = $(HEADER_DIR)/cub3d.h
 
 # ここに追加していく
 SRC_FILES = main.c \
-			init_map_data.c \
-			main_minilibx.c
+			# main_minilibx.c
 
 # ---------- Libft & GNL ---------- #
 
