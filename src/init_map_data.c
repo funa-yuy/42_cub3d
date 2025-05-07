@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_map_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/05/07 13:23:47 by miyuu            ###   ########.fr       */
+/*   Created: 2025/05/06 19:42:50 by miyuu             #+#    #+#             */
+/*   Updated: 2025/05/07 18:03:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char *argv[])
+void	init_map_data(t_data **data, char *file)
 {
-	t_data	*m_data;
+	int		fd;
+	char	*line;
+	(void) data;
 
-	printf("コンパイルできた〜〜〜\n");
-	if (argc != 2)
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		write(STDERR_FILENO, "Invalid number of arguments.\n", ft_strlen("Invalid number of arguments.\n"));
-		return (1);
+		printf("%s", line);
+		line = get_next_line(fd);
 	}
-	m_data = NULL;
-	init_map_data(&m_data, argv[1]);
-	return (0);
+	close(fd);
 }
