@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/05/07 13:08:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/04/30 20:33:16 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+
 int	main(int argc, char *argv[])
 {
-	(void) argv;
+	int		fd;
+	char	*line;
+	(void)argc;
+
 	printf("コンパイルできた〜〜〜\n");
-	if (argc != 2)
+
+	fd = open(argv[1], O_RDONLY);
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		write(STDERR_FILENO, "Invalid number of arguments.\n", ft_strlen("Invalid number of arguments.\n"));
-		return (1);
+		printf("%s", line);
+		line = get_next_line(fd);
 	}
+	close(fd);
 	return (0);
 }
