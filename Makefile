@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/07 17:17:06 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/07 18:51:43 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ HEADER = $(HEADER_DIR)/cub3d.h
 
 # ここに追加していく
 SRC_FILES = main.c \
-			init_map_data.c
+			init_map_data.c \
+			ft_strcmp.c \
+			ft_strncmp.c
 
 # ---------- Libft & GNL ---------- #
 
@@ -28,14 +30,13 @@ LIBFT_DIR = lib/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 GNL_DIR = lib/get_next_line
-GNL_DIR = lib/get_next_line
 GNL_FILES = get_next_line.c \
 			get_next_line_utils.c
 
 # ---------- Compile  ---------- #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g #todo: デバック用に-gを追加
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES)) \
 		$(addprefix $(GNL_DIR)/, $(GNL_FILES))
@@ -85,7 +86,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT)
 
 $(OBJ_DIR)/%.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -I$(HEADER_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(HEADER_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 # minilibxのダウンロード & 展開 & コンパイル
 # 1. minilibxが存在しない場合のみダウンロード
