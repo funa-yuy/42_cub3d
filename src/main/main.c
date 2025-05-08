@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/05/08 10:13:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/08 11:19:36 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	main(int argc, char *argv[])
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		exit(ERR_SYSCALL);
-	init_data(&data, argv[1]);
+	init_lst_data(&data, argv[1]);
 	return (0);
 }
