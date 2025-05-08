@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/07 18:51:43 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/08 10:01:33 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,17 @@ OBJ_DIR = bin
 HEADER_DIR = include
 HEADER = $(HEADER_DIR)/cub3d.h
 
-# ここに追加していく
-SRC_FILES = main.c \
-			init_map_data.c \
-			ft_strcmp.c \
-			ft_strncmp.c
+# ------ Source Files ------- #
+MAIN_SRCS = main/main.c \
+			main/init_map_data.c
+
+DEBUG_SRCS = debug/debug_print_data.c
+
+UTILS_SRCS =
+
+SRC_FILES = $(MAIN_SRCS) \
+			$(DEBUG_SRCS) \
+			$(UTILS_SRCS)
 
 # ---------- Libft & GNL ---------- #
 
@@ -36,12 +42,17 @@ GNL_FILES = get_next_line.c \
 # ---------- Compile  ---------- #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g #todo: デバック用に-gを追加
+#todo: デバック: -gを最後に消す
+CFLAGS = \
+	-Wall -Wextra -Werror -g \
+	-I$(HEADER_DIR) \
+	-I$(MLX_DIR) \
+	-I$(GNL_DIR) \
+	-I$(LIBFT_DIR)
 
-SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES)) \
-		$(addprefix $(GNL_DIR)/, $(GNL_FILES))
-VPATH = $(SRC_DIR) $(GNL_DIR)
-OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(notdir $(SRC)))
+SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
+		$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
 
 # ---------- minilibx  ---------- #
 # 使用しているOSを自動判定して、ダウンロードするminilibxを割り当てる
@@ -85,8 +96,13 @@ $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT)
 
-$(OBJ_DIR)/%.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -I$(HEADER_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -I$(LIBFT_DIR) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(GNL_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # minilibxのダウンロード & 展開 & コンパイル
 # 1. minilibxが存在しない場合のみダウンロード

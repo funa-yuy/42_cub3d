@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 18:35:35 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/07 18:35:57 by miyuu            ###   ########.fr       */
+/*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
+/*   Updated: 2025/05/08 10:13:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	main(int argc, char *argv[])
 {
-	while (*s1 || *s2)
+	t_data	*data;
+
+	printf("コンパイルできた〜〜〜\n");
+	if (argc != 2)
 	{
-		if (*s1 != *s2)
-			return ((unsigned char)*s1 - (unsigned char)*s2);
-		s1++;
-		s2++;
+		write(STDERR_FILENO, "Invalid number of arguments.\n", ft_strlen("Invalid number of arguments.\n"));
+		return (1);
 	}
+	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
+		exit(ERR_SYSCALL);
+	init_data(&data, argv[1]);
 	return (0);
 }
