@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/08 10:01:33 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/08 11:07:36 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,14 @@ HEADER = $(HEADER_DIR)/cub3d.h
 MAIN_SRCS = main/main.c \
 			main/init_map_data.c
 
-DEBUG_SRCS = debug/debug_print_data.c
-
 UTILS_SRCS =
 
+#debugディレクトリは最終的に削除する
+DEBUG_SRCS = debug/debug_print_data.c
+
 SRC_FILES = $(MAIN_SRCS) \
-			$(DEBUG_SRCS) \
-			$(UTILS_SRCS)
+			$(UTILS_SRCS) \
+			$(DEBUG_SRCS)
 
 # ---------- Libft & GNL ---------- #
 

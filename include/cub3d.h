@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/08 10:55:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/08 11:08:11 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ typedef struct s_data
 /* main */
 void	init_data(t_data **data, char *file);
 
-/* dedug */
-void	debug_print_data(t_data *data);
-
 /* utils */
+
+/* dedug 最終的には削除する*/
+void	debug_print_data(t_data *data);
 
 #endif
