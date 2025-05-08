@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/08 11:19:53 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/08 14:54:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@
 // ------------------------------------------------
 // struct
 // ------------------------------------------------
+typedef struct s_strlst
+{
+	char				*str;
+	struct s_strlst		*next;
+	struct s_strlst		*prev;
+}				t_strlst;
+
+typedef struct s_parse_tmp
+{
+	char	*no_path;
+	char	*so_path;
+	char	*we_path;
+	char	*ea_path;
+	char	*f_rgb;
+	char	*c_rgb;
+	char	**map_lines; // 最後に map だけ残っていた行をまとめる（ここで一旦char **に）
+}	t_parse_tmp;
+
 typedef struct s_pos
 {
 	int	y;
@@ -77,12 +95,18 @@ typedef struct s_data
 // function
 // ------------------------------------------------
 /* main */
-void	init_data(t_data **data, char *file);
+t_data		*init_cubdata(char *file);
+
+/* init */
+t_strlst	*init_lst_data(char *file);
 
 /* utils */
-void	init_lst_data(t_data **data, char *file);
+void		str_lstadd_back(t_strlst **lst, t_strlst *new);
+t_strlst	*str_lstnew(char *str);
+size_t		str_lstsize(t_strlst *lst);
 
 /* dedug 最終的には削除する*/
-void	debug_print_data(t_data *data);
+void		debug_print_data(t_data *data);
+void		debug_print_strlst(t_strlst *lst);
 
 #endif
