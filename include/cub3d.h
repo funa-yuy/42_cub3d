@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/08 14:54:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/08 16:50:04 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_data		*init_cubdata(char *file);
 
 /* init */
 t_strlst	*init_lst_data(char *file);
-
+t_strlst	*normalize_cubdata(char *file);
 /* utils */
 void		str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst	*str_lstnew(char *str);

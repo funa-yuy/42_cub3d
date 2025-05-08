@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/08 14:54:24 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/08 16:50:27 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ MAIN_SRCS = main/main.c
 
 UTILS_SRCS = utils/ft_str_lst.c
 
-INIT_SRCS = init/init_cubdata.c
+INIT_SRCS = init/init_cubdata.c \
+			init/normalize_cubdata.c
 
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
