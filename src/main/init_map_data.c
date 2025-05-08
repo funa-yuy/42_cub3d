@@ -6,54 +6,17 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 19:42:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/08 10:14:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/08 10:53:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	print_list(t_strlst *lst)
-// {
-// 	while (lst)
-// 	{
-// 		printf("%s", lst->str);
-// 		lst = lst->next;
-// 	}
-// }
-
-// void	init_data(t_data **data, char *file)
-// {
-// 	t_strlst	*lines_list = NULL;
-// 	t_strlst	*new;
-// 	size_t		line_count;
-
-// 	fd = open(file, O_RDONLY);
-// 	if (fd < 0)
-// 		exit(ERR_SYSCALL);
-// 	line = get_next_line(fd);
-// 	while (line != NULL)
-// 	{
-// 		new = str_lstnew(line);
-// 		if (!new)
-// 			exit(ERR_SYSCALL);
-// 		str_lstadd_back(lines_list, new);
-// 		free(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	line_count = str_lstsize(lines_list);
-// 	debug_print_data(line_list);
-// }
 
 void	fill_map_data(t_data **data, char *line, int y)
 {
 	(*data)->map[y] = ft_strdup(line);
 }
 
-/*
- * Function:init_data
- * ----------------------------
- * ss
- */
 void	init_data(t_data **data, char *file)
 {
 	int		fd;
