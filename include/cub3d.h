@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/09 13:34:50 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/09 17:28:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,9 @@ t_data		*init_cubdata(char *file);
 /* init */
 t_strlst	*init_lst_data(char *file);
 t_strlst	*normalize_cubdata(char *file);
+t_parse_tmp	*tokenize_lines(const t_strlst *lines);
+
+
 /* utils */
 void		str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst	*str_lstnew(char *str);
@@ -109,5 +112,6 @@ size_t		str_lstsize(const t_strlst *lst);
 /* dedug 最終的には削除する*/
 void		debug_print_data(t_data *data);
 void		debug_print_strlst(t_strlst *lst);
+void		debug_print_parse_tmp(const t_parse_tmp *p);
 
 #endif
