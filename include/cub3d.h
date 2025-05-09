@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/08 16:50:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:34:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // macro
 // ------------------------------------------------
 # define ERR_SYSCALL 1
+# define ERR_FILE 1
 # define EMPTY	'0'
 # define WALL	'1'
 # define POS_NORTH	'N'
@@ -103,7 +104,7 @@ t_strlst	*normalize_cubdata(char *file);
 /* utils */
 void		str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst	*str_lstnew(char *str);
-size_t		str_lstsize(t_strlst *lst);
+size_t		str_lstsize(const t_strlst *lst);
 
 /* dedug 最終的には削除する*/
 void		debug_print_data(t_data *data);

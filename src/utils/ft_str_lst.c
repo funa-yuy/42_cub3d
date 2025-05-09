@@ -6,13 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 04:25:10 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/08 13:37:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:34:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-size_t	str_lstsize(t_strlst *lst)
+size_t	str_lstsize(const t_strlst *lst)
 {
 	int	count;
 

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:48:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/08 16:51:38 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/09 13:09:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ t_strlst	*init_lst_data(char *file)
 t_strlst	*normalize_cubdata(char *file)
 {
 	t_strlst	*lines_list;
-	size_t		line_count;
 
 	lines_list = init_lst_data(file);
-	line_count = str_lstsize(lines_list);
-	(void)line_count;
 	return (lines_list);
 }
