@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/09 15:53:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/09 16:23:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,9 @@ void	fill_map_lines(t_parse_tmp *p, const t_strlst *lines)
 		exit(ERR_FILE);
 	}
 	map_height = str_lstsize(lines);
-	p->map_lines = (char **)malloc(sizeof(char *) * (map_height + 1));
+	p->map_lines = (char **)ft_calloc(map_height + 1, sizeof(char *));
 	if (!p->map_lines)
 		exit(ERR_SYSCALL);
-	p->map_lines[map_height] = NULL;
 	y = 0;
 	while (lines)
 	{
@@ -105,7 +104,7 @@ t_parse_tmp	*tokenize_lines(const t_strlst *lines)
 {
 	t_parse_tmp	*parsed;
 
-	parsed = (t_parse_tmp *)malloc(sizeof(t_parse_tmp));
+	parsed = (t_parse_tmp *)ft_calloc(1, sizeof(t_parse_tmp));
 	if (!parsed)
 		exit(ERR_SYSCALL);
 	while (lines)
@@ -147,7 +146,7 @@ t_data	*init_cubdata(char *file)
 
 /*
 	// パース：構造体に格納
-	data = (t_data *)malloc(sizeof(t_data));
+	data = (t_data *)ft_calloc(1, sizeof(t_data));
 	if (!data)
 		exit(ERR_SYSCALL);
 	//t_dataに格納

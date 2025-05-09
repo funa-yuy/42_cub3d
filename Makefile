@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/08 16:50:27 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/09 16:24:49 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,11 @@ GNL_FILES = get_next_line.c \
 # ---------- Compile  ---------- #
 
 CC = cc
-#todo: デバック: -gを最後に消す
+#todo: デバック: -gとfsanitizeを最後に消す
 CFLAGS = \
 	-Wall -Wextra -Werror -g \
+	-fsanitize=address \
+	-fsanitize=undefined \
 	-I$(HEADER_DIR) \
 	-I$(MLX_DIR) \
 	-I$(GNL_DIR) \
