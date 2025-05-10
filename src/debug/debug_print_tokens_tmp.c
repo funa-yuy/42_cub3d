@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print_parse_tmp.c                            :+:      :+:    :+:   */
+/*   debug_print_tokens_tmp.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:49:49 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/09 16:49:57 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 20:20:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	debug_print_parse_tmp(const t_parse_tmp *p)
+void	debug_print_tokens_tmp(const t_tokens_tmp *p)
 {
-	int	y;
-	int	x;
+	size_t	y;
+	size_t	x;
 
-	printf("----------- パース後 -------------\n");
+	printf("----------- トーカナイズ後 -------------\n");
 	printf("北 path: %s\n", p->no_path);
 	printf("南 path: %s\n", p->so_path);
 	printf("西 path: %s\n", p->we_path);

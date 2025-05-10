@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 17:57:16 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 20:21:29 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_strlst
 	struct s_strlst		*prev;
 }				t_strlst;
 
-typedef struct s_parse_tmp
+typedef struct s_tokens_tmp
 {
 	char	*no_path;
 	char	*so_path;
@@ -60,7 +60,7 @@ typedef struct s_parse_tmp
 	char	*f_rgb;
 	char	*c_rgb;
 	char	**map_lines; // 最後に map だけ残っていた行をまとめる（ここで一旦char **に）
-}	t_parse_tmp;
+}	t_tokens_tmp;
 
 typedef struct s_pos
 {
@@ -109,7 +109,7 @@ t_data		*init_cubdata(char *file);
 /* init */
 t_strlst	*init_lst_data(char *file);
 t_strlst	*normalize_cubdata(char *file);
-t_parse_tmp	*tokenize_lines(const t_strlst *lines);
+t_tokens_tmp	*tokenize_lines(const t_strlst *lines);
 
 
 /* utils */
@@ -120,6 +120,6 @@ size_t		str_lstsize(const t_strlst *lst);
 /* dedug 最終的には削除する*/
 void		debug_print_data(t_data *data);
 void		debug_print_strlst(t_strlst *lst);
-void		debug_print_parse_tmp(const t_parse_tmp *p);
+void		debug_print_tokens_tmp(const t_tokens_tmp *p);
 
 #endif

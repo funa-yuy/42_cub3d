@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 18:37:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 20:33:58 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*read_img_with_mlx(t_data *data, char *filename)
 	return (img);
 }
 
-void	init_images(t_data *data, const t_parse_tmp *parsed)
+void	init_images(t_data *data, const t_tokens_tmp *parsed)
 {
 	data->no_img = read_img_with_mlx(data, parsed->no_path);
 	data->so_img = read_img_with_mlx(data, parsed->so_path);
@@ -89,7 +89,7 @@ int	rgb_to_hex(char *color)
 	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
 
-void	init_color(t_data *data, const t_parse_tmp *parsed)
+void	init_color(t_data *data, const t_tokens_tmp *parsed)
 {
 	data->f_color = rgb_to_hex(parsed->f_rgb);
 	data->c_color = rgb_to_hex(parsed->c_rgb);
@@ -129,7 +129,7 @@ void	fill_map(t_data *d, char **map_lines)
 	if (!map_lines || !map_lines[0])//もし、空行だったらexitする todo:正規化の段階でからだったらエラー吐くようにする?
 	{
 		//todo : free
-		// exit(ERROR);todo: debugのために、一旦exitせずに終わる
+		// exit(ERROR);//todo: debugのために、一旦exitせずに終わる
 		return ;
 	}
 	map_height = 0;
@@ -146,7 +146,7 @@ void	fill_map(t_data *d, char **map_lines)
 	}
 }
 
-t_data	*parse_to_data(const t_parse_tmp *parsed)
+t_data	*parse_to_data(const t_tokens_tmp *parsed)
 {
 	t_data	*data;
 
@@ -170,7 +170,7 @@ t_data	*init_cubdata(char *file)
 {
 	t_data				*data;
 	const t_strlst		*lines_list;
-	const t_parse_tmp	*parsed;
+	const t_tokens_tmp	*parsed;
 
 	// 正規化：strlst に格納
 	lines_list = NULL;
@@ -184,6 +184,6 @@ t_data	*init_cubdata(char *file)
 
 	// パース：構造体に格納
 	data = parse_to_data(parsed);
-	// todo: free_parse_tmp(parsed);
+	// todo: free_tokens_tmp(parsed);
 	return (data);
 }
