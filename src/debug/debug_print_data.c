@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 20:45:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 22:07:43 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void	debug_print_data(t_data *data)
 		while (data->map && data->map[++y] != NULL)
 			printf("%s\n", data->map[y]);
 	}
+	//todo; ここに、mlxを表示する
+	//mlx_put_image_to_window(data->mlx, data->win, data->no_img, IMG_SIZE, IMG_SIZE);
 	printf("---------------------------------\n\n");
 }

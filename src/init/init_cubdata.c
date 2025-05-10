@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:39:53 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:59:27 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ t_data	*init_cubdata(char *file)
 	free_strlst((t_strlst *)lines_list);
 	/* パース：構造体に格納 */
 	data = parse_to_data(tokens);
-	debug_print_data((t_data *)data);
 	free_tokens_tmp((t_tokens_tmp *)tokens);
 	return (data);
 }

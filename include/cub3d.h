@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:29:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 22:05:26 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_tokens_tmp
 	char	*ea_path;
 	char	*f_rgb;
 	char	*c_rgb;
-	char	**map_lines; // 最後に map だけ残っていた行をまとめる（ここで一旦char **に）
+	char	**map_lines;
 }	t_tokens_tmp;
 
 typedef struct s_pos
@@ -69,27 +69,10 @@ typedef struct s_pos
 	char			dir;
 }				t_pos;
 
-typedef struct s_texture
-{
-	/*
-	void	*no_img;//mlxで初期化して格納する
-	void	*so_img;//mlxで初期化して格納する
-	void	*we_img;//mlxで初期化して格納する
-	void	*ea_img;//mlxで初期化して格納する
-	int		f_color;//16進数に変換して格納する
-	int		c_color;//16進数に変換して格納する
-	*/
-	char	*no_img;//一旦テスト用に文字列のままで格納
-	char	*so_img;//一旦テスト用に文字列のままで格納
-	char	*we_img;//一旦テスト用に文字列のままで格納
-	char	*ea_img;//一旦テスト用に文字列のままで格納
-	char	*f_color;//一旦テスト用に文字列のままで格納
-	char	*c_color;//一旦テスト用に文字列のままで格納
-}				t_texture;
-
 typedef struct s_data
 {
 	void		*mlx;
+	void		*win;
 	t_pos		player;//プレイヤーの位置を記録(動くたびに変わる)
 	char		**map;//空白には空白を、最後の文字の次には改行or|0を入れる
 	void		*no_img;//mlxで初期化して格納する
