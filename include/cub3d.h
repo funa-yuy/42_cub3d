@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 13:32:32 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 17:57:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_pos
 {
 	unsigned int	y;
 	unsigned int	x;
+	char			dir;
 }				t_pos;
 
 typedef struct s_texture
