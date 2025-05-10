@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:01:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:21:16 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ t_data			*init_cubdata(char *file);
 t_strlst		*init_lst_data(char *file);
 t_strlst		*normalize_cubdata(char *file);
 t_tokens_tmp	*tokenize_lines(const t_strlst *lines);
+t_data			*parse_to_data(const t_tokens_tmp *parsed);
 void			fill_map(t_data *d, char **map_lines);
 void			fill_images(t_data *data, const t_tokens_tmp *parsed);
 void			fill_color(t_data *data, const t_tokens_tmp *parsed);

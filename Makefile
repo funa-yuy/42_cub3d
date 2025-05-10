@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/10 21:02:16 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/10 21:21:28 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ UTILS_SRCS = utils/ft_str_lst.c
 INIT_SRCS = init/init_cubdata.c \
 			init/normalize_cubdata.c \
 			init/tokenize_lines.c \
+			init/parse_to_data.c \
 			init/fill_map.c \
 			init/fill_images.c \
 			init/fill_color.c \
