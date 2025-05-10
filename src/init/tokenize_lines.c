@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:29:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:38:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,5 @@ t_tokens_tmp	*tokenize_lines(const t_strlst *lines)
 		}
 		lines = lines->next;
 	}
-	debug_print_tokens_tmp(tokens);
 	return (tokens);
 }

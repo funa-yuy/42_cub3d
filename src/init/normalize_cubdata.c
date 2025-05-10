@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:48:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/09 13:09:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:38:09 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_strlst	*init_lst_data(char *file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	debug_print_strlst(lines_list);
 	return (lines_list);
 }
 

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:45:38 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:29:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:38:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 	fill_player_position(data);//todo: もし、プレイヤーがぞんざいしなかったらエラー(mapバリデートでやっちゃう？)
 	fill_images(data, tokens);
 	fill_color(data, tokens);
-	debug_print_data(data);
 	return (data);
 }
