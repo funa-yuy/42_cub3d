@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 17:26:32 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 17:36:04 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	debug_print_data(t_data *data)
 
 	printf("----------- パース後 -------------\n");
 	printf("MLX pointer: %p\n", data->mlx);
+	printf("北 texture: %p\n", data->no_img);
+	printf("南 texture: %p\n", data->so_img);
+	printf("西 texture: %p\n", data->we_img);
+	printf("東 texture: %p\n", data->ea_img);
+	printf("床   color: 0x%06X\n", data->f_color);
+	printf("天井 color: 0x%06X\n", data->c_color);
 	// printf("Player position: x = %u, y = %u\n", data->player.x, data->player.y);
 	printf("以下、mapデータ: %s\n", data->map ? "あり↓" : "なし(null)");
 	y = 0;
@@ -26,12 +32,6 @@ void	debug_print_data(t_data *data)
 		printf("%s\n", data->map[y]);
 		y++;
 	}
-	// printf("北 texture: %p\n", data->no_img);
-	// printf("南 texture: %p\n", data->so_img);
-	// printf("西 texture: %p\n", data->we_img);
-	// printf("東 texture: %p\n", data->ea_img);
-	printf("床   color: 0x%06X\n", data->f_color);
-	printf("天井 color: 0x%06X\n", data->c_color);
 	printf("---------------------------------\n\n");
 }
 
@@ -42,6 +42,7 @@ void	*read_img_with_mlx(t_data *data, char *filename)
 	void	*img;
 
 	size = IMG_SIZE;
+
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		exit(ERR_SYSCALL);
@@ -96,7 +97,7 @@ t_data	*parse_to_data(const t_parse_tmp *parsed)
 	if (!data->map)
 		exit(ERR_SYSCALL);
 	// init_player_position(data);//todo: もし、プレイヤーがぞんざいしなかったらエラー(mapバリデートでやっちゃう？)
-	// init_images(data, parsed);
+	init_images(data, parsed);
 	init_color(data, parsed);
 	debug_print_data(data);
 	return (data);
