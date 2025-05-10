@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 20:21:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:09:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	fill_map_lines(t_tokens_tmp *p, const t_strlst *lines)
 	size_t		y;
 	size_t		map_height;
 
-	if (!lines || !lines->str)//もし、空行だったらexitする todo:正規化の段階でからだったらエラー吐くようにする?
+	//もし、空行だったらexitする todo:正規化の段階でからだったらエラー吐くようにする?
+	if (!lines || !lines->str)
 	{
 		//todo : free
 		exit(ERROR);
@@ -92,7 +93,8 @@ t_tokens_tmp	*tokenize_lines(const t_strlst *lines)
 		{
 			//識別子に当てはまらなかったら、それ以降を全部mapとして判定する
 			fill_map_lines(parsed, lines);
-			break ;//todo: mapは最後の要素のはずなので、map格納が終わったらbreakする？
+			//todo: mapは最後の要素のはずなので、map格納が終わったらbreakする？
+			break ;
 		}
 		lines = lines->next;
 	}

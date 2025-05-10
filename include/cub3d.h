@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 20:21:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:01:49 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,22 +104,25 @@ typedef struct s_data
 // function
 // ------------------------------------------------
 /* main */
-t_data		*init_cubdata(char *file);
+t_data			*init_cubdata(char *file);
 
 /* init */
-t_strlst	*init_lst_data(char *file);
-t_strlst	*normalize_cubdata(char *file);
+t_strlst		*init_lst_data(char *file);
+t_strlst		*normalize_cubdata(char *file);
 t_tokens_tmp	*tokenize_lines(const t_strlst *lines);
+void			fill_map(t_data *d, char **map_lines);
+void			fill_images(t_data *data, const t_tokens_tmp *parsed);
+void			fill_color(t_data *data, const t_tokens_tmp *parsed);
+void			fill_player_position(t_data *data);
 
-
-/* utils */
-void		str_lstadd_back(t_strlst **lst, t_strlst *new);
-t_strlst	*str_lstnew(char *str);
-size_t		str_lstsize(const t_strlst *lst);
+/* util	s */
+void			str_lstadd_back(t_strlst **lst, t_strlst *new);
+t_strlst		*str_lstnew(char *str);
+size_t			str_lstsize(const t_strlst *lst);
 
 /* dedug 最終的には削除する*/
-void		debug_print_data(t_data *data);
-void		debug_print_strlst(t_strlst *lst);
-void		debug_print_tokens_tmp(const t_tokens_tmp *p);
+void			debug_print_data(t_data *data);
+void			debug_print_strlst(t_strlst *lst);
+void			debug_print_tokens_tmp(const t_tokens_tmp *p);
 
 #endif
