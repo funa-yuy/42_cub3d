@@ -6,13 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:45:38 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:01:33 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:29:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_data	*parse_to_data(const t_tokens_tmp *parsed)
+t_data	*parse_to_data(const t_tokens_tmp *tokens)
 {
 	t_data	*data;
 
@@ -22,12 +22,12 @@ t_data	*parse_to_data(const t_tokens_tmp *parsed)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit(ERROR);
-	fill_map(data, parsed->map_lines);//todo: ここでmapのバリデートする?
+	fill_map(data, tokens->map_lines);//todo: ここでmapのバリデートする?
 	// if (!data->map)todo: debugのために、一旦exitしない
 	// 	exit(ERR_SYSCALL);
 	fill_player_position(data);//todo: もし、プレイヤーがぞんざいしなかったらエラー(mapバリデートでやっちゃう？)
-	fill_images(data, parsed);
-	fill_color(data, parsed);
+	fill_images(data, tokens);
+	fill_color(data, tokens);
 	debug_print_data(data);
 	return (data);
 }

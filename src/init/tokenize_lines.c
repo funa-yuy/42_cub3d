@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:09:13 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:29:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	fill_map_lines(t_tokens_tmp *p, const t_strlst *lines)
 
 t_tokens_tmp	*tokenize_lines(const t_strlst *lines)
 {
-	t_tokens_tmp	*parsed;
+	t_tokens_tmp	*tokens;
 
-	parsed = (t_tokens_tmp *)ft_calloc(1, sizeof(t_tokens_tmp));
-	if (!parsed)
+	tokens = (t_tokens_tmp *)ft_calloc(1, sizeof(t_tokens_tmp));
+	if (!tokens)
 		exit(ERR_SYSCALL);
 	while (lines)
 	{
@@ -88,16 +88,16 @@ t_tokens_tmp	*tokenize_lines(const t_strlst *lines)
 			|| ft_strncmp(lines->str, "EA ", 3) == 0 \
 			|| ft_strncmp(lines->str, "F ", 2) == 0 \
 			|| ft_strncmp(lines->str, "C ", 2) == 0)
-			fill_tokens_tmp(parsed, lines->str);
+			fill_tokens_tmp(tokens, lines->str);
 		else
 		{
 			//識別子に当てはまらなかったら、それ以降を全部mapとして判定する
-			fill_map_lines(parsed, lines);
+			fill_map_lines(tokens, lines);
 			//todo: mapは最後の要素のはずなので、map格納が終わったらbreakする？
 			break ;
 		}
 		lines = lines->next;
 	}
-	debug_print_tokens_tmp(parsed);
-	return (parsed);
+	debug_print_tokens_tmp(tokens);
+	return (tokens);
 }

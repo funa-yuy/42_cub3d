@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:59:24 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:09:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 21:29:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	*read_img_with_mlx(t_data *data, char *filename)
 	return (img);
 }
 
-void	fill_images(t_data *data, const t_tokens_tmp *parsed)
+void	fill_images(t_data *data, const t_tokens_tmp *tokens)
 {
-	data->no_img = read_img_with_mlx(data, parsed->no_path);
-	data->so_img = read_img_with_mlx(data, parsed->so_path);
-	data->we_img = read_img_with_mlx(data, parsed->we_path);
-	data->ea_img = read_img_with_mlx(data, parsed->ea_path);
+	data->no_img = read_img_with_mlx(data, tokens->no_path);
+	data->so_img = read_img_with_mlx(data, tokens->so_path);
+	data->we_img = read_img_with_mlx(data, tokens->we_path);
+	data->ea_img = read_img_with_mlx(data, tokens->ea_path);
 }
