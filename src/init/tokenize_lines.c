@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/09 17:28:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 13:04:14 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	fill_map_lines(t_parse_tmp *p, const t_strlst *lines)
 	if (!lines || !lines->str)//もし、空行だったらexitする todo:正規化の段階でからだったらエラー吐くようにする?
 	{
 		//todo : free
-		exit(ERR_FILE);
+		exit(ERROR);
 	}
 	map_height = str_lstsize(lines);
 	p->map_lines = (char **)ft_calloc(map_height + 1, sizeof(char *));

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/09 17:28:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/10 13:32:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@
 // macro
 // ------------------------------------------------
 # define ERR_SYSCALL 1
-# define ERR_FILE 1
+# define ERROR 1
+
+# define IMG_SIZE	32
+
 # define EMPTY	'0'
 # define WALL	'1'
 # define POS_NORTH	'N'
@@ -61,8 +64,8 @@ typedef struct s_parse_tmp
 
 typedef struct s_pos
 {
-	int	y;
-	int	x;
+	unsigned int	y;
+	unsigned int	x;
 }				t_pos;
 
 typedef struct s_texture
@@ -86,10 +89,14 @@ typedef struct s_texture
 typedef struct s_data
 {
 	void		*mlx;
-	void		*win;
 	t_pos		player;//プレイヤーの位置を記録(動くたびに変わる)
 	char		**map;//空白には空白を、最後の文字の次には改行or|0を入れる
-	t_texture	*texture;
+	void		*no_img;//mlxで初期化して格納する
+	void		*so_img;//mlxで初期化して格納する
+	void		*we_img;//mlxで初期化して格納する
+	void		*ea_img;//mlxで初期化して格納する
+	int			f_color;//16進数に変換して格納する
+	int			c_color;//16進数に変換して格納する
 }				t_data;
 
 // ------------------------------------------------
