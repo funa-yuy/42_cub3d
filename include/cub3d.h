@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 22:05:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/11 00:30:11 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define ERR_SYSCALL 1
 # define ERROR 1
 
-# define IMG_SIZE	32
+# define IMG_SIZE	64
 
 # define EMPTY	'0'
 # define WALL	'1'
