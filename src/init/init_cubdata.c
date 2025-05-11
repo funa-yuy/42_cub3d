@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:59:27 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/11 16:15:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	free_strlst(t_strlst *list)
 
 void	free_tokens_tmp(t_tokens_tmp *t)
 {
-	size_t	y;
-
 	if (!t)
 		return ;
 	if (t->no_path)
@@ -45,13 +43,7 @@ void	free_tokens_tmp(t_tokens_tmp *t)
 		free(t->f_rgb);
 	if (t->c_rgb)
 		free(t->c_rgb);
-	y = -1;
-	if (t->map_lines)
-	{
-		while (t->map_lines[++y])
-			free(t->map_lines[y]);
-		free(t->map_lines);
-	}
+	free_str_array(t->map_lines);
 	free(t);
 }
 
