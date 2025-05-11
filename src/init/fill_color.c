@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:00:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 15:39:51 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/05/11 23:53:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,18 @@ int	rgb_to_hex(char *color)
 	int		b;
 	int		result;
 
+	//todo: 本来は、tokenizeでpathがcolorな場合のエラー処理するので、ここでは必要ない
 	if (!color)
-		return (0);//todo: debugのために、一旦exitせずに終わる
-	rgb_tmp = ft_split(color, ',');//todo: 一旦", "で区切られてる前提でやってる、もっと細かいparse関数を作る
+	{
+		//todo; free
+		error_print_and_exit("Invalid color value.");
+	}
+	//todo: 一旦", "で区切られてる前提でやってる、もっと細かいparse関数を作る
+	rgb_tmp = ft_split(color, ',');
 	if (!rgb_tmp)
 	{
-		// exit(ERR_SYSCALL);
-		return (0);//todo: debugのために、一旦exitせずに終わる
+		//todo; free
+		error_perror_and_exit(NULL);
 	}
 	r = ft_atoi(rgb_tmp[0]);
 	g = ft_atoi(rgb_tmp[1]);

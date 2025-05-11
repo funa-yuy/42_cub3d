@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:01:34 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/12 00:00:58 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	fill_player_position(t_data *data)
 		}
 		y++;
 	}
+	error_print_and_exit("Player does not exist.");
 }

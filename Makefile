@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/11 16:15:40 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/11 18:43:46 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ HEADER = $(HEADER_DIR)/cub3d.h
 MAIN_SRCS = main/main.c
 
 UTILS_SRCS = utils/ft_str_lst.c \
-			utils/free_str_array.c
+			utils/free_str_array.c \
+			utils/error_print_exit.c
 
 INIT_SRCS = init/init_cubdata.c \
 			init/normalize_cubdata.c \

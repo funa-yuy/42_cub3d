@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:48:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:38:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/11 18:49:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,20 @@ t_strlst	*init_lst_data(char *file)
 	lines_list = NULL;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		exit(ERR_SYSCALL);
+	{
+		//todo; free
+		error_perror_and_exit(file);
+	}
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		//todo: 空行だったらリストに追加しない機能を追加する
 		new = str_lstnew(line);
 		if (!new)
-			exit(ERR_SYSCALL);
+		{
+			//todo; free
+			error_perror_and_exit(NULL);
+		}
 		str_lstadd_back(&lines_list, new);
 		free(line);
 		line = get_next_line(fd);

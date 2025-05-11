@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 16:35:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/11 23:42:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@
 
 /* library */
 # include <stdio.h>
+# include <string.h>
+# include <sys/errno.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
-# include <X11/keysym.h>
-# include <X11/X.h>
+// # include <X11/keysym.h>
+// # include <X11/X.h>
 
 // ------------------------------------------------
 // macro
 // ------------------------------------------------
-# define ERR_SYSCALL 1
-# define ERROR 1
-
 # define IMG_SIZE	64
 
 # define EMPTY	'0'
@@ -107,6 +106,8 @@ void			str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst		*str_lstnew(char *str);
 size_t			str_lstsize(const t_strlst *lst);
 void			free_str_array(char **str);
+void			error_print_and_exit(char *str);
+void			error_perror_and_exit(char *str);
 
 
 /* dedug 最終的には削除する*/
