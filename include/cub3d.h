@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 16:20:27 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:35:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	t_pos		player;//プレイヤーの位置を記録(動くたびに変わる)
-	char		**map;//空白には空白を、最後の文字の次には改行or|0を入れる
-	void		*no_img;//mlxで初期化して格納する
-	void		*so_img;//mlxで初期化して格納する
-	void		*we_img;//mlxで初期化して格納する
-	void		*ea_img;//mlxで初期化して格納する
-	int			f_color;//16進数に変換して格納する
-	int			c_color;//16進数に変換して格納する
+	t_pos		player;//プレイヤーの初期位置&向き
+	char		**map;
+	void		*no_img;//mlx_put_image_to_windowしたもの
+	void		*so_img;//mlx_put_image_to_windowしたもの
+	void		*we_img;//mlx_put_image_to_windowしたもの
+	void		*ea_img;//mlx_put_image_to_windowしたもの
+	int			f_color;//16進数　に変換したカラー
+	int			c_color;//16進数　に変換したカラー
 }				t_data;
 
 // ------------------------------------------------
