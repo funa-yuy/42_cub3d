@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 21:38:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/11 17:09:58 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strdup_trim_nl(const char *str)
 	return (dst);
 }
 
-void	fill_tokens_tmp(t_tokens_tmp	*p, const char *line)
+void	fill_textures_in_tokens_tmp(t_tokens_tmp	*p, const char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
 		p->no_path = ft_strdup_trim_nl(&line[3]);
@@ -50,7 +50,7 @@ void	fill_tokens_tmp(t_tokens_tmp	*p, const char *line)
 		p->c_rgb = ft_strdup_trim_nl(&line[2]);
 }
 
-void	fill_map_lines(t_tokens_tmp *p, const t_strlst *lines)
+void	fill_map_in_tokens_tmp(t_tokens_tmp *p, const t_strlst *lines)
 {
 	size_t		y;
 	size_t		map_height;
@@ -88,11 +88,11 @@ t_tokens_tmp	*tokenize_lines(const t_strlst *lines)
 			|| ft_strncmp(lines->str, "EA ", 3) == 0 \
 			|| ft_strncmp(lines->str, "F ", 2) == 0 \
 			|| ft_strncmp(lines->str, "C ", 2) == 0)
-			fill_tokens_tmp(tokens, lines->str);
+			fill_textures_in_tokens_tmp(tokens, lines->str);
 		else
 		{
 			//識別子に当てはまらなかったら、それ以降を全部mapとして判定する
-			fill_map_lines(tokens, lines);
+			fill_map_in_tokens_tmp(tokens, lines);
 			//todo: mapは最後の要素のはずなので、map格納が終わったらbreakする？
 			break ;
 		}
