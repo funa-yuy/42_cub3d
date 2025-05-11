@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 14:05:13 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/11 14:35:36 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void	debug_print_data(t_data *data)
 			printf("%s\n", data->map[y]);
 	}
 	printf("---------------------------------\n\n");
-	degub_mlx_data(data);
+	// degub_mlx_data(data);//mlxで描写して確認する。run_cub_map.sh使いたい場合はコメントアウトする
 }

@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/10 21:21:28 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/11 14:32:03 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ INIT_SRCS = init/init_cubdata.c \
 			init/fill_color.c \
 			init/fill_player_position.c
 
+FREE_SRCS = free/free_data.c
+
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_strlst.c \
@@ -40,6 +42,7 @@ DEBUG_SRCS = debug/debug_print_data.c \
 SRC_FILES = $(MAIN_SRCS) \
 			$(UTILS_SRCS) \
 			$(INIT_SRCS) \
+			$(FREE_SRCS) \
 			$(DEBUG_SRCS)
 
 # ---------- Libft & GNL ---------- #
