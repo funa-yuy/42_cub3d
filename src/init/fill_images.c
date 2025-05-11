@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:59:24 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 15:45:16 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/05/11 15:56:49 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	*read_img_with_mlx(t_data *data, char *filename)
 
 void	fill_images(t_data *data, const t_tokens_tmp *tokens)
 {
-	if (data && data->no_img)
+	if (tokens && tokens->no_path)
 		data->no_img = read_img_with_mlx(data, tokens->no_path);
-	if (data && data->so_img)
+	if (tokens && tokens->so_path)
 		data->so_img = read_img_with_mlx(data, tokens->so_path);
-	if (data && data->we_img)
+	if (tokens && tokens->we_path)
 		data->we_img = read_img_with_mlx(data, tokens->we_path);
-	if (data && data->ea_img)
+	if (tokens && tokens->ea_path)
 		data->ea_img = read_img_with_mlx(data, tokens->ea_path);
 }
