@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/11 16:15:40 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/12 22:22:25 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,15 +58,20 @@ GNL_FILES = get_next_line.c \
 # ---------- Compile  ---------- #
 
 CC = cc
-#todo: デバック: -gとfsanitizeを最後に消す
 CFLAGS = \
-	-Wall -Wextra -Werror -g \
-	-fsanitize=address \
-	-fsanitize=undefined \
+	-Wall -Wextra -Werror \
 	-I$(HEADER_DIR) \
 	-I$(MLX_DIR) \
 	-I$(GNL_DIR) \
 	-I$(LIBFT_DIR)
+DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined
+LDFLAGS =
+
+# make test時に、デバックフラグを追加
+ifeq ($(MAKECMDGOALS),test)
+	CFLAGS += $(DEBUG_FLAGS)
+	LDFLAGS += $(DEBUG_FLAGS)
+endif
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
@@ -90,7 +95,7 @@ endif
 
 
 ############### Build Rules ###############
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
 
 all: $(OBJ_DIR) $(MLX) $(NAME)
 
@@ -106,13 +111,15 @@ fclean: clean
 
 re: fclean all
 
+test: clean $(OBJ_DIR) $(MLX) $(NAME)
+
 # ---------- File Dependency ---------- #
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT) $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 	@mkdir -p $(dir $@)

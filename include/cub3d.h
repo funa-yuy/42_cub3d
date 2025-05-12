@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 16:35:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/12 22:10:33 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <stdio.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
-# include <X11/keysym.h>
-# include <X11/X.h>
+// # include <X11/keysym.h>
+// # include <X11/X.h>
 
 // ------------------------------------------------
 // macro
@@ -66,15 +66,18 @@ typedef struct s_pos
 {
 	unsigned int	y;
 	unsigned int	x;
-	char			dir;
+	char			dir;//todo: enumにする
 }				t_pos;
+
+//todo: mapの要素を表すenumを作る→1,0," "
 
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
 	t_pos		player;//プレイヤーの初期位置&向き
-	char		**map;
+	//todo 高さと幅を追加する
+	char		**map;	//todo: mapを1次元配列にする→enumを格納する
 	void		*no_img;//mlx_put_image_to_windowしたもの
 	void		*so_img;//mlx_put_image_to_windowしたもの
 	void		*we_img;//mlx_put_image_to_windowしたもの
@@ -102,7 +105,7 @@ void			fill_player_position(t_data *data);
 /* freer */
 void			free_data(t_data *d);
 
-/* utils */
+/* utils *///todo: initディレクトに入れる
 void			str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst		*str_lstnew(char *str);
 size_t			str_lstsize(const t_strlst *lst);

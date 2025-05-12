@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:30:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 16:20:33 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/05/12 22:04:38 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//todo : initディレクトリに入れる→initディレクトリのディレクトリ名も変える
 void	free_data(t_data *d)
 {
 	if (!d)
@@ -30,7 +31,7 @@ void	free_data(t_data *d)
 	if (d->mlx)
 	{
 		/* ---- macの場合、以下をコメントアウト ---- */
-		mlx_destroy_display(d->mlx);
+		// mlx_destroy_display(d->mlx);
 		free(d->mlx);
 	}
 	free(d);
