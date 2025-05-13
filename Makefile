@@ -134,7 +134,7 @@ re: fclean all
 
 debug: clean $(OBJ_DIR) $(MLX) $(NAME)
 
-test: test-clean debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT)
+test: debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFT) $(MLX_FLAGS)
 	$(VALGRIND) ./$(TEST_NAME)
 
