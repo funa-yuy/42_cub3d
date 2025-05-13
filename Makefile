@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/13 18:29:54 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/13 20:24:42 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,17 +73,18 @@ OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 
 # ------- dedug ------- #
 
-DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined
+DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
 ifeq ($(MAKECMDGOALS),debug)
 	CFLAGS += $(DEBUG_FLAGS)
 endif
-
+# Mac以外の場合にのみ、valgrindフラグを割り当てる
+VALGRIND =
 # ------- test ------- #
 
 TEST_NAME = unit_test
 TEST_DIR = test/unit-tests
 TEST_OBJ_DIR = $(OBJ_DIR)/unit-tests
-TEST_FILE =
+TEST_FILE = $(TEST_DIR)/dummy_test.c
 
 ifneq ($(filter test,$(MAKECMDGOALS)),)
 	TEST_ARG = $(filter-out test test-clean, $(MAKECMDGOALS))
@@ -111,6 +112,7 @@ else
 	MLX_DIR = minilibx-linux
 	MLX = $(MLX_DIR)/libmlx.a
 	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -lXext -lX11
+	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 endif
 
 ############### Build Rules ###############
@@ -134,7 +136,7 @@ debug: clean $(OBJ_DIR) $(MLX) $(NAME)
 
 test: test-clean debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFT) $(MLX_FLAGS)
-	./$(TEST_NAME)
+	$(VALGRIND) ./$(TEST_NAME)
 
 test-clean:
 	rm -rf $(TEST_OBJ_DIR)
