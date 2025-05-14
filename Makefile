@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/05/14 13:58:24 by miyuu            ###   ########.fr        #
-=======
-#    Updated: 2025/05/14 13:10:53 by mfunakos         ###   ########.fr        #
->>>>>>> main
+#    Updated: 2025/05/14 15:57:43 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +39,7 @@ DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_strlst.c \
 			debug/debug_print_tokens_tmp.c
 
-<<<<<<< HEAD
-SRC_FILES = $(MAIN_SRCS) \
-=======
 SRC_WITHOUT_MAIN = $(UTILS_SRCS) \
->>>>>>> main
 			$(INIT_SRCS) \
 			$(DEBUG_SRCS)
 
