@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:45:38 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/12 00:06:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:28:18 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,10 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 
 	data = (t_data *)ft_calloc(1, sizeof(t_data));
 	if (!data)
-	{
-		//todo; free
 		error_perror_and_exit(NULL);
-	}
 	data->mlx = mlx_init();
 	if (!data->mlx)
-	{
-		//todo : free
 		error_print_and_exit("mlx_init failed");
-	}
 	data->win = mlx_new_window(data->mlx, 4 * IMG_SIZE, IMG_SIZE, "cub3D");
 	fill_images(data, tokens);
 	fill_color(data, tokens);

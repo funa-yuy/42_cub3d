@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/12 00:06:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:28:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ char	*strdup_trim_nl(const char *str)
 		len--;
 	dst = (char *)malloc(sizeof(char) * (len + 1));
 	if (!dst)
-	{
-		//todo; free
 		error_perror_and_exit(NULL);
-	}
 	i = 0;
 	while (len > i)
 	{
@@ -63,10 +60,7 @@ void	fill_map_in_tokens_tmp(t_tokens_tmp *p, const t_strlst *lines)
 	map_height = str_lstsize(lines);
 	p->map_lines = (char **)ft_calloc(map_height + 1, sizeof(char *));
 	if (!p->map_lines)
-	{
-		//todo; free
 		error_perror_and_exit(NULL);
-	}
 	y = 0;
 	while (lines)
 	{
@@ -81,10 +75,7 @@ t_tokens_tmp	*tokenize_lines(const t_strlst *lines)
 
 	tokens = (t_tokens_tmp *)ft_calloc(1, sizeof(t_tokens_tmp));
 	if (!tokens)
-	{
-		//todo; free
 		error_perror_and_exit(NULL);
-	}
 	while (lines)
 	{
 		if (ft_strncmp(lines->str, "NO ", 3) == 0 \

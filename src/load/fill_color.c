@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:00:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 23:53:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 15:26:54 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,11 @@ int	rgb_to_hex(char *color)
 
 	//todo: 本来は、tokenizeでpathがcolorな場合のエラー処理するので、ここでは必要ない
 	if (!color)
-	{
-		//todo; free
 		error_print_and_exit("Invalid color value.");
-	}
 	//todo: 一旦", "で区切られてる前提でやってる、もっと細かいparse関数を作る
 	rgb_tmp = ft_split(color, ',');
 	if (!rgb_tmp)
-	{
-		//todo; free
 		error_perror_and_exit(NULL);
-	}
 	r = ft_atoi(rgb_tmp[0]);
 	g = ft_atoi(rgb_tmp[1]);
 	b = ft_atoi(rgb_tmp[2]);
