@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print_strlst.c                               :+:      :+:    :+:   */
+/*   debug_dprintf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 13:36:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/14 20:46:19 by miyuu            ###   ########.fr       */
+/*   Created: 2025/03/12 20:01:30 by tmuranak          #+#    #+#             */
+/*   Updated: 2025/05/14 20:45:38 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdarg.h>
 
 #ifdef DEBUG
 
-void	debug_print_strlst(t_strlst *lst)
+int	debug_dprintf(int fd, const char *format, ...)
 {
-	debug_dprintf(STDOUT_FILENO, "------------ 正規化後 -------------\n");
-	while (lst)
-	{
-		debug_dprintf(STDOUT_FILENO, "%s", lst->str);
-		lst = lst->next;
-	}
-	debug_dprintf(STDOUT_FILENO, "---------------------------------\n\n");
-}
+	va_list	args;
+	int		rv;
 
+	va_start(args, format);
+	rv = vdprintf(fd, format, args);
+	va_end(args);
+	return (rv);
+}
 #else
 
-void	debug_print_strlst(t_strlst *lst)
+int	debug_dprintf(int fd, const char *format, ...)
 {
-	(void) lst;
+	(void) fd;
+	(void) format;
+	return (0);
 }
 #endif

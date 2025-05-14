@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/14 16:01:50 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/14 20:29:01 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ LOAD_SRCS = load/init_cubdata.c \
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_strlst.c \
-			debug/debug_print_tokens_tmp.c
+			debug/debug_print_tokens_tmp.c \
+			debug/debug_dprintf.c
 
 SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
 					$(DEBUG_SRCS)
@@ -69,7 +70,7 @@ OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 		$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
 
 # ------- dedug ------- #
-
+# DEBUG_FLAGS = -DDEBUG -g
 ifeq ($(shell uname), Darwin) #macの場合
 	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
 	VALGRIND =
@@ -78,9 +79,9 @@ else
 	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 endif
 
-ifeq ($(MAKECMDGOALS),debug)
-	CFLAGS += $(DEBUG_FLAGS)
-endif
+# ifeq ($(MAKECMDGOALS),debug)
+# 	CFLAGS += $(DEBUG_FLAGS)
+# endif
 
 # ------- test ------- #
 
@@ -136,7 +137,8 @@ fclean: test-clean clean
 
 re: fclean all
 
-debug: clean $(OBJ_DIR) $(MLX) $(NAME)
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: $(OBJ_DIR) $(MLX) $(NAME)
 
 test: debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFT) $(MLX_FLAGS)

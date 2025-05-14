@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/13 20:31:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 20:47:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,28 @@ void	debug_print_data(t_data *data)
 {
 	size_t	y;
 
-	printf("----------- パース後 -------------\n");
-	printf("MLX pointer: %p\n", data->mlx);
-	printf("WIN pointer: %p\n", data->win);
-	printf("北 texture: %p\n", data->no_img);
-	printf("南 texture: %p\n", data->so_img);
-	printf("西 texture: %p\n", data->we_img);
-	printf("東 texture: %p\n", data->ea_img);
-	printf("床   color: 0x%06X\n", data->f_color);
-	printf("天井 color: 0x%06X\n", data->c_color);
-	printf("Player position: x = %u, y = %u, dir = %c\n", \
+	debug_dprintf(STDOUT_FILENO, "----------- パース後 -------------\n");
+	debug_dprintf(STDOUT_FILENO, "MLX pointer: %p\n", data->mlx);
+	debug_dprintf(STDOUT_FILENO, "WIN pointer: %p\n", data->win);
+	debug_dprintf(STDOUT_FILENO, "北 texture: %p\n", data->no_img);
+	debug_dprintf(STDOUT_FILENO, "南 texture: %p\n", data->so_img);
+	debug_dprintf(STDOUT_FILENO, "西 texture: %p\n", data->we_img);
+	debug_dprintf(STDOUT_FILENO, "東 texture: %p\n", data->ea_img);
+	debug_dprintf(STDOUT_FILENO, "床   color: 0x%06X\n", data->f_color);
+	debug_dprintf(STDOUT_FILENO, "天井 color: 0x%06X\n", data->c_color);
+	debug_dprintf(STDOUT_FILENO, "Player position: x = %u, y = %u, dir = %c\n", \
 	data->player.x, data->player.y, data->player.dir);
 	y = -1;
-	printf("以下、mapデータ: ");
+	debug_dprintf(STDOUT_FILENO, "以下、mapデータ: ");
 	if (!data->map)
-		printf("なし(null)\n");
+		debug_dprintf(STDOUT_FILENO, "なし(null)\n");
 	else
 	{
-		printf("\n");
+		debug_dprintf(STDOUT_FILENO, "\n");
 		while (data->map && data->map[++y] != NULL)
-			printf("%s\n", data->map[y]);
+			debug_dprintf(STDOUT_FILENO, "%s\n", data->map[y]);
 	}
-	printf("---------------------------------\n\n");
+	debug_dprintf(STDOUT_FILENO, "---------------------------------\n\n");
 	// degub_mlx_data(data);//mlxで描写して確認する。run_cub_map.sh使いたい場合はコメントアウトする
 }
 
