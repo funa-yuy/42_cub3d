@@ -6,11 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:36:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/09 09:53:18 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 16:52:53 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#ifdef DEBUG
 
 void	debug_print_strlst(t_strlst *lst)
 {
@@ -22,3 +24,11 @@ void	debug_print_strlst(t_strlst *lst)
 	}
 	printf("---------------------------------\n\n");
 }
+
+#else
+
+void	debug_print_strlst(t_strlst *lst)
+{
+	(void) lst;
+}
+#endif

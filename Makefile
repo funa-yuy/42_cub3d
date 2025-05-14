@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/14 15:57:43 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/14 16:01:50 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ HEADER = $(HEADER_DIR)/cub3d.h
 # ========== Source Files =========== #
 MAIN_SRCS = main/main.c
 
-INIT_SRCS = load/init_cubdata.c \
+LOAD_SRCS = load/init_cubdata.c \
 			load/normalize_cubdata.c \
 			load/tokenize_lines.c \
 			load/parse_to_data.c \
@@ -39,9 +39,8 @@ DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_strlst.c \
 			debug/debug_print_tokens_tmp.c
 
-SRC_WITHOUT_MAIN = $(UTILS_SRCS) \
-			$(INIT_SRCS) \
-			$(DEBUG_SRCS)
+SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
+					$(DEBUG_SRCS)
 
 SRC_FILES = $(MAIN_SRCS) \
 			$(SRC_WITHOUT_MAIN)

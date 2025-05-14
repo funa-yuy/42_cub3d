@@ -6,11 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:49:49 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 20:45:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 16:53:18 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+#ifdef DEBUG
 
 void	debug_print_tokens_tmp(const t_tokens_tmp *p)
 {
@@ -35,3 +37,11 @@ void	debug_print_tokens_tmp(const t_tokens_tmp *p)
 	}
 	printf("---------------------------------\n\n");
 }
+
+#else
+
+void	debug_print_tokens_tmp(const t_tokens_tmp *p)
+{
+	(void) p;
+}
+#endif
