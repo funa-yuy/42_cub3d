@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
+#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/11 16:15:40 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/14 13:10:53 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# ------ Path for the program ------- #
+# ====== Path for the program ======= #
 
 NAME = cub3d
 SRC_DIR = src
@@ -18,7 +18,7 @@ OBJ_DIR = bin
 HEADER_DIR = include
 HEADER = $(HEADER_DIR)/cub3d.h
 
-# ------ Source Files ------- #
+# ========== Source Files =========== #
 MAIN_SRCS = main/main.c
 
 UTILS_SRCS = utils/ft_str_lst.c \
@@ -40,13 +40,15 @@ DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_strlst.c \
 			debug/debug_print_tokens_tmp.c
 
-SRC_FILES = $(MAIN_SRCS) \
-			$(UTILS_SRCS) \
+SRC_WITHOUT_MAIN = $(UTILS_SRCS) \
 			$(INIT_SRCS) \
 			$(FREE_SRCS) \
 			$(DEBUG_SRCS)
 
-# ---------- Libft & GNL ---------- #
+SRC_FILES = $(MAIN_SRCS) \
+			$(SRC_WITHOUT_MAIN)
+
+# ============== Libft & GNL ============== #
 
 LIBFT_DIR = lib/libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -55,14 +57,11 @@ GNL_DIR = lib/get_next_line
 GNL_FILES = get_next_line.c \
 			get_next_line_utils.c
 
-# ---------- Compile  ---------- #
+# ============== Compile  ============== #
 
 CC = cc
-#todo: デバック: -gとfsanitizeを最後に消す
 CFLAGS = \
-	-Wall -Wextra -Werror -g \
-	-fsanitize=address \
-	-fsanitize=undefined \
+	-Wall -Wextra -Werror \
 	-I$(HEADER_DIR) \
 	-I$(MLX_DIR) \
 	-I$(GNL_DIR) \
@@ -72,7 +71,41 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 		$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
 
-# ---------- minilibx  ---------- #
+# ------- dedug ------- #
+
+ifeq ($(shell uname), Darwin) #macの場合
+	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
+	VALGRIND =
+else
+	DEBUG_FLAGS = -DDEBUG -g
+	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
+endif
+
+ifeq ($(MAKECMDGOALS),debug)
+	CFLAGS += $(DEBUG_FLAGS)
+endif
+
+# ------- test ------- #
+
+TEST_NAME = unit_test
+TEST_DIR = test/unit-tests
+TEST_OBJ_DIR = $(OBJ_DIR)/unit-tests
+TEST_FILE = $(TEST_DIR)/dummy_test.c
+
+ifneq ($(filter test,$(MAKECMDGOALS)),)
+	TEST_ARG = $(filter-out test test-clean, $(MAKECMDGOALS))
+endif
+ifneq ($(TEST_ARG),)
+	TEST_FILE = $(TEST_DIR)/$(TEST_ARG)
+endif
+
+TEST_SRC = $(addprefix $(SRC_DIR)/, $(SRC_WITHOUT_MAIN))
+TEST_OBJS = $(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
+			$(TEST_FILE:$(TEST_DIR)/%.c=$(TEST_OBJ_DIR)/%.o) \
+			$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
+
+# ============== minilibx  ============== #
+
 # 使用しているOSを自動判定して、ダウンロードするminilibxを割り当てる
 ifeq ($(shell uname), Darwin) #macの場合
 	MINILIBX_URL = https://cdn.intra.42.fr/document/document/32194/minilibx_opengl.tgz
@@ -88,9 +121,9 @@ else
 	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -lXext -lX11
 endif
 
-
 ############### Build Rules ###############
-.PHONY: all clean fclean re
+
+.PHONY: all clean fclean re debug test test-clean
 
 all: $(OBJ_DIR) $(MLX) $(NAME)
 
@@ -99,14 +132,25 @@ clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean; fi
 
-fclean: clean
+fclean: test-clean clean
 	rm -f $(NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@if [ -d "$(MLX_DIR)" ]; then $(RM) -r $(MLX_DIR); fi
 
 re: fclean all
 
-# ---------- File Dependency ---------- #
+debug: clean $(OBJ_DIR) $(MLX) $(NAME)
+
+test: debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFT) $(MLX_FLAGS)
+	$(VALGRIND) ./$(TEST_NAME)
+
+test-clean:
+	rm -rf $(TEST_OBJ_DIR)
+	rm -f $(TEST_NAME)
+
+# ========== File Dependency ========== #
+
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
@@ -131,3 +175,13 @@ $(MLX): $(MINILIBX_TAR_GZ)
 	@if [ ! -d "$(MLX_DIR)" ]; then tar xvzf $(MINILIBX_TAR_GZ); fi
 	$(MAKE) -j4 -C $(MLX_DIR)
 	@rm -f $(MINILIBX_TAR_GZ)
+
+$(TEST_OBJ_DIR):
+	mkdir -p $(TEST_OBJ_DIR)
+
+$(TEST_OBJ_DIR)/%.o: $(TEST_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
+
+$(TEST_ARG):
+	@:
