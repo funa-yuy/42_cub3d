@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
+#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/13 20:24:42 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/14 13:10:53 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,12 +73,18 @@ OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 
 # ------- dedug ------- #
 
-DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
+ifeq ($(shell uname), Darwin) #macの場合
+	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
+	VALGRIND =
+else
+	DEBUG_FLAGS = -DDEBUG -g
+	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
+endif
+
 ifeq ($(MAKECMDGOALS),debug)
 	CFLAGS += $(DEBUG_FLAGS)
 endif
-# Mac以外の場合にのみ、valgrindフラグを割り当てる
-VALGRIND =
+
 # ------- test ------- #
 
 TEST_NAME = unit_test
@@ -99,6 +105,7 @@ TEST_OBJS = $(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 			$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
 
 # ============== minilibx  ============== #
+
 # 使用しているOSを自動判定して、ダウンロードするminilibxを割り当てる
 ifeq ($(shell uname), Darwin) #macの場合
 	MINILIBX_URL = https://cdn.intra.42.fr/document/document/32194/minilibx_opengl.tgz
@@ -112,10 +119,10 @@ else
 	MLX_DIR = minilibx-linux
 	MLX = $(MLX_DIR)/libmlx.a
 	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -lXext -lX11
-	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 endif
 
 ############### Build Rules ###############
+
 .PHONY: all clean fclean re debug test test-clean
 
 all: $(OBJ_DIR) $(MLX) $(NAME)
@@ -143,6 +150,7 @@ test-clean:
 	rm -f $(TEST_NAME)
 
 # ========== File Dependency ========== #
+
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
