@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/14 13:22:02 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/14 13:58:24 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,18 +21,18 @@ HEADER = $(HEADER_DIR)/cub3d.h
 # ------ Source Files ------- #
 MAIN_SRCS = main/main.c
 
-INIT_SRCS = init/init_cubdata.c \
-			init/normalize_cubdata.c \
-			init/tokenize_lines.c \
-			init/parse_to_data.c \
-			init/fill_map.c \
-			init/fill_images.c \
-			init/fill_color.c \
-			init/fill_player_position.c \
-			init/free_data.c \
-			init/utils/ft_str_lst.c \
-			init/utils/free_str_array.c \
-			init/utils/error_print_exit.c
+INIT_SRCS = load/init_cubdata.c \
+			load/normalize_cubdata.c \
+			load/tokenize_lines.c \
+			load/parse_to_data.c \
+			load/fill_map.c \
+			load/fill_images.c \
+			load/fill_color.c \
+			load/fill_player_position.c \
+			load/free_data.c \
+			load/utils/ft_str_lst.c \
+			load/utils/free_str_array.c \
+			load/utils/error_print_exit.c
 
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
