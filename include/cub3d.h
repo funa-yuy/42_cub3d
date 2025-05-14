@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 23:42:40 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 13:18:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ void			fill_map(t_data *d, char **map_lines);
 void			fill_images(t_data *data, const t_tokens_tmp *tokens);
 void			fill_color(t_data *data, const t_tokens_tmp *tokens);
 void			fill_player_position(t_data *data);
-
-/* freer */
 void			free_data(t_data *d);
 
 /* utils */

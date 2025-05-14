@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/11 18:43:46 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/14 13:22:02 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,6 @@ HEADER = $(HEADER_DIR)/cub3d.h
 # ------ Source Files ------- #
 MAIN_SRCS = main/main.c
 
-UTILS_SRCS = utils/ft_str_lst.c \
-			utils/free_str_array.c \
-			utils/error_print_exit.c
-
 INIT_SRCS = init/init_cubdata.c \
 			init/normalize_cubdata.c \
 			init/tokenize_lines.c \
@@ -32,9 +28,11 @@ INIT_SRCS = init/init_cubdata.c \
 			init/fill_map.c \
 			init/fill_images.c \
 			init/fill_color.c \
-			init/fill_player_position.c
-
-FREE_SRCS = free/free_data.c
+			init/fill_player_position.c \
+			init/free_data.c \
+			init/utils/ft_str_lst.c \
+			init/utils/free_str_array.c \
+			init/utils/error_print_exit.c
 
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
@@ -42,9 +40,7 @@ DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_tokens_tmp.c
 
 SRC_FILES = $(MAIN_SRCS) \
-			$(UTILS_SRCS) \
 			$(INIT_SRCS) \
-			$(FREE_SRCS) \
 			$(DEBUG_SRCS)
 
 # ---------- Libft & GNL ---------- #
