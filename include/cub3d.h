@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 12:17:31 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/15 18:10:14 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,63 @@
 # include <sys/errno.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
-# include <X11/keysym.h>
-# include <X11/X.h>
+// # include <X11/keysym.h>
+// # include <X11/X.h>
 
 // ------------------------------------------------
 // macro
 // ------------------------------------------------
 # define IMG_SIZE	64
 
-# define EMPTY	'0'
-# define WALL	'1'
-# define POS_NORTH	'N'
-# define POS_SOUTH	'S'
-# define POS_EAST	'E'
-# define POS_WEST	'W'
+// # define EMPTY	'0'
+// # define WALL	'1'
+// # define POS_NORTH	'N'
+// # define POS_SOUTH	'S'
+// # define POS_EAST	'E'
+// # define POS_WEST	'W'
 
 // ------------------------------------------------
 // struct
 // ------------------------------------------------
+typedef enum e_map_type
+{
+	EMPTY,//0
+	WALL,//1
+}	t_map_type;
+
+typedef enum e_player_dir
+{
+	DIR_NORTH,//N
+	DIR_SOUTH,//S
+	DIR_EAST,//E
+	DIR_WEST,//W
+}	t_player_dir;
+
+typedef struct s_pos
+{
+	unsigned int	y;
+	unsigned int	x;
+	char			dir;
+	// t_player_dir	dir;//todo: enumにする
+}				t_pos;
+
+typedef struct s_data
+{
+	void			*mlx;
+	void			*win;
+	t_pos			player;//プレイヤーの初期位置&向き
+	unsigned int	width;
+	unsigned int	height;
+	char			**map;
+	// int				*map;	//todo: mapを1次元配列にする→enumを格納する
+	void			*no_img;//mlx_put_image_to_windowしたもの
+	void			*so_img;//mlx_put_image_to_windowしたもの
+	void			*we_img;//mlx_put_image_to_windowしたもの
+	void			*ea_img;//mlx_put_image_to_windowしたもの
+	int				f_color;//16進数　に変換したカラー
+	int				c_color;//16進数　に変換したカラー
+}				t_data;
+
 typedef struct s_strlst
 {
 	char				*str;
@@ -60,30 +99,6 @@ typedef struct s_tokens_tmp
 	char	*c_rgb;
 	char	**map_lines;
 }	t_tokens_tmp;
-
-typedef struct s_pos
-{
-	unsigned int	y;
-	unsigned int	x;
-	char			dir;//todo: enumにする
-}				t_pos;
-
-//todo: mapの要素を表すenumを作る→1,0," "
-
-typedef struct s_data
-{
-	void		*mlx;
-	void		*win;
-	t_pos		player;//プレイヤーの初期位置&向き
-	//todo 高さと幅を追加する
-	char		**map;	//todo: mapを1次元配列にする→enumを格納する
-	void		*no_img;//mlx_put_image_to_windowしたもの
-	void		*so_img;//mlx_put_image_to_windowしたもの
-	void		*we_img;//mlx_put_image_to_windowしたもの
-	void		*ea_img;//mlx_put_image_to_windowしたもの
-	int			f_color;//16進数　に変換したカラー
-	int			c_color;//16進数　に変換したカラー
-}				t_data;
 
 // ------------------------------------------------
 // function
