@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 20:13:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:14:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ t_data	*expected_cub_data(void)
 	int		size;
 
 	size = IMG_SIZE;
-	int	map[] = {
-			WALL, WALL, WALL, WALL, WALL, WALL, \
-			WALL, EMPTY, EMPTY, WALL, EMPTY, WALL, \
-			WALL, EMPTY, WALL, EMPTY, EMPTY, WALL, \
-			WALL, WALL, EMPTY, EMPTY, EMPTY, WALL, \
-			WALL, WALL, WALL, WALL, WALL, WALL \
+	int	map[] = { \
+					WALL, WALL, WALL, WALL, WALL, WALL, \
+					WALL, EMPTY, EMPTY, WALL, EMPTY, WALL, \
+					WALL, EMPTY, WALL, EMPTY, EMPTY, WALL, \
+					WALL, WALL, EMPTY, EMPTY, EMPTY, WALL, \
+					WALL, WALL, WALL, WALL, WALL, WALL \
 				};
 	data = (t_data *)ft_calloc(1, sizeof(t_data));
 	data->mlx = mlx_init();
