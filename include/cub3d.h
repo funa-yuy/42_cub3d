@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 18:10:14 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/15 18:35:39 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ typedef struct s_pos
 {
 	unsigned int	y;
 	unsigned int	x;
-	char			dir;
-	// t_player_dir	dir;//todo: enumにする
+	// char			dir;
+	t_player_dir	dir;//todo: enumにする
 }				t_pos;
 
 typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
-	t_pos			player;//プレイヤーの初期位置&向き
-	unsigned int	width;
 	unsigned int	height;
+	unsigned int	width;
 	char			**map;
-	// int				*map;	//todo: mapを1次元配列にする→enumを格納する
+	int				*map_enum;	//todo: mapを1次元配列にする→enumを格納する
+	t_pos			player;//プレイヤーの初期位置&向き
 	void			*no_img;//mlx_put_image_to_windowしたもの
 	void			*so_img;//mlx_put_image_to_windowしたもの
 	void			*we_img;//mlx_put_image_to_windowしたもの
