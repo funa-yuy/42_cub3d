@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/13 20:39:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/15 12:17:31 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 /* library */
 # include <stdio.h>
+# include <string.h>
+# include <sys/errno.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
 # include <X11/keysym.h>
@@ -29,9 +31,6 @@
 // ------------------------------------------------
 // macro
 // ------------------------------------------------
-# define ERR_SYSCALL 1
-# define ERROR 1
-
 # define IMG_SIZE	64
 
 # define EMPTY	'0'
@@ -101,20 +100,19 @@ void			fill_map(t_data *d, char **map_lines);
 void			fill_images(t_data *data, const t_tokens_tmp *tokens);
 void			fill_color(t_data *data, const t_tokens_tmp *tokens);
 void			fill_player_position(t_data *data);
-
-/* freer */
 void			free_data(t_data *d);
-
-/* utils *///todo: initディレクトに入れる
+/* init/utils */
 void			str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst		*str_lstnew(char *str);
 size_t			str_lstsize(const t_strlst *lst);
 void			free_str_array(char **str);
+void			error_print_and_exit(char *str);
+void			error_perror_and_exit(char *str);
 
-
-/* dedug 最終的には削除する*/
+/* dedug 最終的には削除する?*/
 void			debug_print_data(t_data *data);
 void			debug_print_strlst(t_strlst *lst);
 void			debug_print_tokens_tmp(const t_tokens_tmp *p);
+int				debug_dprintf(int fd, const char *format, ...);
 
 #endif

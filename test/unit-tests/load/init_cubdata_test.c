@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print_strlst.c                               :+:      :+:    :+:   */
+/*   init_cubdata_test.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 13:36:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/14 20:46:19 by miyuu            ###   ########.fr       */
+/*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
+/*   Updated: 2025/05/14 21:32:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#ifdef DEBUG
-
-void	debug_print_strlst(t_strlst *lst)
+//todo: test書く
+int	main(void)
 {
-	debug_dprintf(STDOUT_FILENO, "------------ 正規化後 -------------\n");
-	while (lst)
-	{
-		debug_dprintf(STDOUT_FILENO, "%s", lst->str);
-		lst = lst->next;
-	}
-	debug_dprintf(STDOUT_FILENO, "---------------------------------\n\n");
-}
+	t_data	*data;
 
-#else
-
-void	debug_print_strlst(t_strlst *lst)
-{
-	(void) lst;
+	data = NULL;
+	data = init_cubdata("map/test_parse/ok/simple.cub");
+	debug_print_data((t_data *)data);
+	free_data((t_data *)data);
+	return (0);
 }
-#endif

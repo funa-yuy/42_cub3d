@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 20:23:59 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/13 20:28:46 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 17:14:43 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ int	main(void)
 	printf("単体テストを行いたいファイルを指定してください\n");
 	printf("make test ファイル名\n");
 	printf("例) \n");
-	printf("make test init/normalize_cubdata_test.c\n");
+	printf("make test load/normalize_cubdata_test.c\n");
 	return (0);
 }

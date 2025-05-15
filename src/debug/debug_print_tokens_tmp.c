@@ -6,32 +6,42 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:49:49 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/10 20:45:21 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/14 20:46:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+#ifdef DEBUG
+
 void	debug_print_tokens_tmp(const t_tokens_tmp *p)
 {
 	size_t	y;
 
-	printf("----------- トーカナイズ後 -------------\n");
-	printf("北 path: %s\n", p->no_path);
-	printf("南 path: %s\n", p->so_path);
-	printf("西 path: %s\n", p->we_path);
-	printf("東 path: %s\n", p->ea_path);
-	printf("f_rgb: %s\n", p->f_rgb);
-	printf("c_rgb: %s\n", p->c_rgb);
+	debug_dprintf(STDOUT_FILENO, "----------- トーカナイズ後 -------------\n");
+	debug_dprintf(STDOUT_FILENO, "北 path: %s\n", p->no_path);
+	debug_dprintf(STDOUT_FILENO, "南 path: %s\n", p->so_path);
+	debug_dprintf(STDOUT_FILENO, "西 path: %s\n", p->we_path);
+	debug_dprintf(STDOUT_FILENO, "東 path: %s\n", p->ea_path);
+	debug_dprintf(STDOUT_FILENO, "f_rgb: %s\n", p->f_rgb);
+	debug_dprintf(STDOUT_FILENO, "c_rgb: %s\n", p->c_rgb);
 	y = -1;
-	printf("以下、mapデータ: ");
+	debug_dprintf(STDOUT_FILENO, "以下、mapデータ: ");
 	if (!p->map_lines)
-		printf("なし(null)\n");
+		debug_dprintf(STDOUT_FILENO, "なし(null)\n");
 	else
 	{
-		printf("\n");
+		debug_dprintf(STDOUT_FILENO, "\n");
 		while (p->map_lines && p->map_lines[++y] != NULL)
-			printf("%s\n", p->map_lines[y]);
+			debug_dprintf(STDOUT_FILENO, "%s\n", p->map_lines[y]);
 	}
-	printf("---------------------------------\n\n");
+	debug_dprintf(STDOUT_FILENO, "---------------------------------\n\n");
 }
+
+#else
+
+void	debug_print_tokens_tmp(const t_tokens_tmp *p)
+{
+	(void) p;
+}
+#endif
