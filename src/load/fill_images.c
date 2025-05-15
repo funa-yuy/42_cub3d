@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:59:24 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/14 15:27:12 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/15 12:06:25 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	*read_img_with_mlx(t_data *data, char *filename)
 void	fill_images(t_data *data, const t_tokens_tmp *tokens)
 {
 	//todo: 本来は、tokenizeでpathがNULLな場合のエラー処理するので、ここでは必要ない
-	if (!(tokens->no_path && tokens->so_path && tokens->we_path && tokens->ea_path))
+	if (!(tokens->no_path && tokens->so_path && \
+			tokens->we_path && tokens->ea_path))
 		error_print_and_exit("Invalid path_to_texture value.");
 	if (tokens && tokens->no_path)
 		data->no_img = read_img_with_mlx(data, tokens->no_path);

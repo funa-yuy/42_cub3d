@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/14 20:29:01 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/15 12:05:00 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER_DIR = include
 HEADER = $(HEADER_DIR)/cub3d.h
 
 # ========== Source Files =========== #
-MAIN_SRCS = main/main.c
+MAIN_SRC = main.c
 
 LOAD_SRCS = load/init_cubdata.c \
 			load/normalize_cubdata.c \
@@ -43,7 +43,7 @@ DEBUG_SRCS = debug/debug_print_data.c \
 SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
 					$(DEBUG_SRCS)
 
-SRC_FILES = $(MAIN_SRCS) \
+SRC_FILES = $(MAIN_SRC) \
 			$(SRC_WITHOUT_MAIN)
 
 # ============== Libft & GNL ============== #
@@ -70,7 +70,7 @@ OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 		$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
 
 # ------- dedug ------- #
-# DEBUG_FLAGS = -DDEBUG -g
+
 ifeq ($(shell uname), Darwin) #macの場合
 	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
 	VALGRIND =
@@ -78,10 +78,6 @@ else
 	DEBUG_FLAGS = -DDEBUG -g
 	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 endif
-
-# ifeq ($(MAKECMDGOALS),debug)
-# 	CFLAGS += $(DEBUG_FLAGS)
-# endif
 
 # ------- test ------- #
 
