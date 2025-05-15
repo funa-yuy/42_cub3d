@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 19:20:59 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:08:46 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	degub_mlx_data(t_data *data)
 	mlx_loop(mlx);
 }
 
-char	*print_player_direction(t_player_dir dir)
+char	*get_player_dir_str(t_player_dir dir)
 {
 	if (DIR_NORTH == dir)
 		return ("DIR_NORTH");
@@ -56,7 +56,7 @@ void	debug_print_data(t_data *data)
 	debug_dprintf(STDOUT_FILENO, "床   color: 0x%06X\n", data->f_color);
 	debug_dprintf(STDOUT_FILENO, "天井 color: 0x%06X\n", data->c_color);
 	debug_dprintf(STDOUT_FILENO, "Player position: x = %u, y = %u, dir = %s\n", \
-	data->player.x, data->player.y, print_player_direction(data->player.dir));
+	data->player.x, data->player.y, get_player_dir_str(data->player.dir));
 	y = -1;
 	//todo: char **mapの部分は消す
 	debug_dprintf(STDOUT_FILENO, "以下、mapデータ: ");
