@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 18:35:39 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/15 20:39:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef enum e_map_type
 {
 	EMPTY,//0
 	WALL,//1
+	NOTHING,//空白
 }	t_map_type;
 
 typedef enum e_player_dir
