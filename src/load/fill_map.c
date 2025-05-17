@@ -6,12 +6,13 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 20:45:27 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/17 20:26:38 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 t_map_type	get_player_dir_enum(char str)
 {
 	if (str == '0' || str == 'N' || str == 'S' || str == 'E' || str == 'W')
@@ -68,6 +69,7 @@ void	fill_map_test(t_data *data, const t_strlst *lines)
 		lines = lines->next;
 	}
 }
+*/
 
 // cahr cが入って、対応するenumを返す関数を作る→もし、enumに入らない文字だったらどうするか考える。
 void	fill_map(t_data *d, char **map_lines)
