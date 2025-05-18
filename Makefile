@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/15 12:05:00 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/18 13:54:37 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,12 +85,15 @@ TEST_NAME = unit_test
 TEST_DIR = test/unit-tests
 TEST_OBJ_DIR = $(OBJ_DIR)/unit-tests
 TEST_FILE = $(TEST_DIR)/dummy_test.c
+# ここに、mustでコンパイルに含めたいファイルを追加していく
+TEST_MUST_FILE = load/check_t_data_structure.c
 
 ifneq ($(filter test,$(MAKECMDGOALS)),)
 	TEST_ARG = $(filter-out test test-clean, $(MAKECMDGOALS))
 endif
 ifneq ($(TEST_ARG),)
-	TEST_FILE = $(TEST_DIR)/$(TEST_ARG)
+	TEST_FILE = $(TEST_ARG) \
+				$(TEST_DIR)/$(TEST_MUST_FILE)
 endif
 
 TEST_SRC = $(addprefix $(SRC_DIR)/, $(SRC_WITHOUT_MAIN))
