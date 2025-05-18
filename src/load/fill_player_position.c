@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 18:34:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 18:43:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ bool	is_player_dir_char(char c)
 	return (false);
 }
 
-//todo: リファクタリングしたい。ネストが深くなってる
 void	fill_player_position(t_data *data, char **map_lines)
 {
 	size_t	y;
