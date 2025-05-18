@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 13:54:04 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 14:43:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ NO ./textures/north.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
-
 F 220,100,0
 C 225,30,0
-
 111111
 100101
 101001
 1100N1
 111111
 */
-// 上記のような.cubがよみこまれた場合、t_dataに格納されるべきデータ
 void	init_test00(void)
 {
 	char	*input_string;	// <- 問題
@@ -57,9 +54,9 @@ void	init_test00(void)
 	debug_print_data((t_data *)target);
 	// 構造体の各フィールドに格納された値がすべて一致していればtrue、そうでなければfalseを返却する関数
 	if (check_t_data_structure(target, data))
-		printf("OK!\n");
+		printf("\x1b[32mOK!\x1b[32m\n");
 	else
-		printf("ERROR\n");
+		printf("\x1b[31mERROR\x1b[31m\n");
 }
 
 int	main(void)

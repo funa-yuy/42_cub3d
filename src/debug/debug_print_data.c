@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 20:08:46 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 14:37:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void	degub_mlx_data(t_data *data)
 	mlx_put_image_to_window(mlx, win, data->ea_img, IMG_SIZE * 3, 0);
 	mlx_loop(mlx);
 }
+
+char	get_map_type_c(t_map_type type)
+{
+	if (type == EMPTY)
+		return ('0');
+	if (type == WALL)
+		return ('1');
+	if (type == NOTHING)
+		return (' ');
+	return ('!');
+}
+
 
 char	*get_player_dir_str(t_player_dir dir)
 {
@@ -71,7 +83,7 @@ void	debug_print_data(t_data *data)
 	i = 0;
 	while (i < data->width * data->height)
 	{
-		printf("%d", data->map_enum[i]);
+		printf("%c", get_map_type_c(data->map_enum[i]));
 		if ((i + 1) % data->width == 0)
 			printf("\n");
 		i++;
