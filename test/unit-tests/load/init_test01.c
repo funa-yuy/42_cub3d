@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 15:32:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 18:15:49 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ void	init_test01(void)
 	};
 	target = &(t_data){\
 		NULL, NULL, \
-		14, 33, /*高さ, 幅*/ \
-		map, (t_pos){11, 26, DIR_WEST}, \
-		NULL, NULL, NULL, NULL, 0x63580a, 0x0a1e0a};
+		NULL, NULL, NULL, NULL, \
+		0x63580a, 0x0a1e0a, /* f_color, c_color */\
+		14, 33, /* height,width */ \
+		(t_pos){11, 26, DIR_WEST}, map};/*player, map*/
 
 	input_string = "map/test_parse/ok/minimalist.cub";
 	data = init_cubdata(input_string);
 	data -> mlx = NULL;
 
 	debug_print_data((t_data *)target);
-	// 構造体の各フィールドに格納された値がすべて一致していればtrue、そうでなければfalseを返却する関数
 	if (check_t_data_structure(target, data))
 		printf("\x1b[32mOK!\x1b[32m\n");
 	else
