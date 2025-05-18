@@ -6,14 +6,14 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/17 20:26:38 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 14:35:21 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-t_map_type	get_player_dir_enum(char str)
+t_map_type	get_map_type_enum(char str)
 {
 	if (str == '0' || str == 'N' || str == 'S' || str == 'E' || str == 'W')
 		return (EMPTY);
@@ -61,7 +61,7 @@ void	fill_map_test(t_data *data, const t_strlst *lines)
 		while (j < data->width)
 		{
 			if (lines->str[j])
-				data->map[i] = get_player_dir_enum(lines->str[j]);
+				data->map[i] = get_map_type_enum(lines->str[j]);
 			else
 				data->map[i] = NOTHING;
 			i++;

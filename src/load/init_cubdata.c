@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/11 16:15:00 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 14:04:06 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,13 @@ t_data	*init_cubdata(char *file)
 	/* 正規化：strlst に格納 */
 	lines_list = NULL;
 	lines_list = normalize_cubdata(file);
-	debug_print_strlst((t_strlst *)lines_list);
 	/* トーカナイズ：中間構造体への格納(parse_temp)に格納 */
 	tokens = NULL;
 	tokens = tokenize_lines(lines_list);
-	debug_print_tokens_tmp((t_tokens_tmp *)tokens);
 	free_strlst((t_strlst *)lines_list);
 	/* パース：構造体に格納 */
 	data = parse_to_data(tokens);
 	free_tokens_tmp((t_tokens_tmp *)tokens);
+	debug_print_data(data);
 	return (data);
 }

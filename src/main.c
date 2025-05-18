@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/05/11 15:59:05 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/05/18 14:04:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	data = init_cubdata(argv[1]);
-	debug_print_data((t_data *)data);
 	//描写
 	free_data(data);
 	return (0);

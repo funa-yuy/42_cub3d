@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 20:39:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 14:26:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ typedef enum e_player_dir
 
 typedef struct s_pos
 {
-	unsigned int	y;
-	unsigned int	x;
+	unsigned int	y;//縦
+	unsigned int	x;//横
 	// char			dir;
 	t_player_dir	dir;//todo: enumにする
 }				t_pos;
