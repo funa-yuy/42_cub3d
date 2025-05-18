@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 18:09:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 18:44:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,13 @@
 # include <sys/errno.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
-// # include <X11/keysym.h>
-// # include <X11/X.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 // ------------------------------------------------
 // macro
 // ------------------------------------------------
 # define IMG_SIZE	64
-
-// # define EMPTY	'0'
-// # define WALL	'1'
-// # define POS_NORTH	'N'
-// # define POS_SOUTH	'S'
-// # define POS_EAST	'E'
-// # define POS_WEST	'W'
 
 // ------------------------------------------------
 // struct
@@ -62,8 +55,7 @@ typedef struct s_pos
 {
 	unsigned int	y;//縦
 	unsigned int	x;//横
-	// char			dir;
-	t_player_dir	dir;//todo: enumにする
+	t_player_dir	dir;
 }				t_pos;
 
 typedef struct s_data
