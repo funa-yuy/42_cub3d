@@ -6,12 +6,11 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 15:28:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 16:09:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 t_map_type	get_map_type_enum(char str)
 {
@@ -30,6 +29,7 @@ void	fill_map(t_data *data, char **map_lines)
 	size_t		x;
 	size_t		y;
 	size_t		i;
+	size_t		line_len;
 
 	//もし、空行だったらexitする todo:正規化の段階で空だったらエラー吐くようにする
 	data->map = (int *)ft_calloc(data->height * data->width + 1, sizeof(int));
@@ -40,9 +40,10 @@ void	fill_map(t_data *data, char **map_lines)
 	while (map_lines && map_lines[y])
 	{
 		x = 0;
+		line_len = ft_strlen(map_lines[y]);
 		while (x < data->width)
 		{
-			if (map_lines[y][x])
+			if (x < line_len)
 				data->map[i] = get_map_type_enum(map_lines[y][x]);
 			else
 				data->map[i] = NOTHING;

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 15:43:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:48:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_map_data(t_data *data)
 		else if (data->map[i] == NOTHING)
 			debug_dprintf(STDOUT_FILENO, " ");
 		else
-			debug_dprintf(STDOUT_FILENO, "*");
+			debug_dprintf(STDOUT_FILENO, "\x1b[31m*\x1b[31m");
 		if ((i + 1) % data->width == 0)
 			printf("\n");
 		i++;

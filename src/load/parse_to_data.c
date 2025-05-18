@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:45:38 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 15:23:07 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:47:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 	data->win = mlx_new_window(data->mlx, 4 * IMG_SIZE, IMG_SIZE, "cub3D");
 	fill_images(data, tokens);
 	fill_color(data, tokens);
-	fill_player_position(data, tokens->map_lines);//todo: もし、プレイヤーがぞんざいしなかったらエラー(mapバリデートでやっちゃう？)
+	//todo: もし、プレイヤーがぞんざいしなかったらエラー(mapバリデートでやっちゃう？)
+	fill_player_position(data, tokens->map_lines);
 	data->height = get_map_height(tokens->map_lines);
 	data->width = get_longest_width(tokens->map_lines);
 	fill_map(data, tokens->map_lines);//todo: ここでmapのバリデートする?
