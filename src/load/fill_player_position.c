@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 20:26:52 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:42:59 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,35 @@ t_player_dir	get_player_dir_enum(char dir)
 	return (-1);
 }
 
-void	fill_player_position(t_data *data)
+//todo: リファクタリングしたい。ネストが深くなってる
+void	fill_player_position(t_data *data, char **map_lines)
 {
 	size_t	y;
 	size_t	x;
+	bool	player_found;
 
 	y = 0;
-	while (data->map && data->map[y])
+	player_found = false;
+	while (map_lines && map_lines[y])
 	{
 		x = 0;
-		while (data->map[y][x])
+		while (map_lines[y][x])
 		{
-			if (data->map[y][x] == 'N' \
-				|| data->map[y][x] == 'S' \
-				|| data->map[y][x] == 'E' \
-				|| data->map[y][x] == 'W')
+			if (map_lines[y][x] == 'N' || map_lines[y][x] == 'S' \
+				|| map_lines[y][x] == 'E' || map_lines[y][x] == 'W')
 			{
-				data->player = (t_pos){y, x, get_player_dir_enum(data->map[y][x])};
-				//playerが正しく存在する前提なので。プレイヤー見つかったら終わる。ちゃんといるかをここで再度判定するのもあり
-				return ;
+				if (!player_found)
+				{
+					data->player = (t_pos){y, x, get_player_dir_enum(map_lines[y][x])};
+					player_found = true;
+				}
+				else
+					error_print_and_exit("There are multiple players.");
 			}
 			x++;
 		}
 		y++;
 	}
-	error_print_and_exit("Player does not exist.");
+	if (!player_found)
+		error_print_and_exit("Player does not exist.");
 }

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 14:43:32 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:31:59 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_test00(void)
 	target = &(t_data){\
 		NULL, NULL, \
 		5, 6, \
-		NULL, map, (t_pos){4, 3, DIR_NORTH}, \
+		map, (t_pos){4, 3, DIR_NORTH}, \
 		NULL, NULL, NULL, NULL, 0xDC6400, 0xE11E00};
 
 	input_string = "map/test_parse/ok/simple.cub";

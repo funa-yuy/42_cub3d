@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 14:37:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:43:49 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void	degub_mlx_data(t_data *data)
 	mlx_loop(mlx);
 }
 
-char	get_map_type_c(t_map_type type)
-{
-	if (type == EMPTY)
-		return ('0');
-	if (type == WALL)
-		return ('1');
-	if (type == NOTHING)
-		return (' ');
-	return ('!');
-}
-
-
 char	*get_player_dir_str(t_player_dir dir)
 {
 	if (DIR_NORTH == dir)
@@ -53,11 +41,29 @@ char	*get_player_dir_str(t_player_dir dir)
 	return (NULL);
 }
 
-void	debug_print_data(t_data *data)
+void	print_map_data(t_data *data)
 {
-	size_t	y;
 	size_t	i;
 
+	i = 0;
+	while (i < data->width * data->height)
+	{
+		if (data->map[i] == EMPTY)
+			debug_dprintf(STDOUT_FILENO, "0");
+		else if (data->map[i] == WALL)
+			debug_dprintf(STDOUT_FILENO, "1");
+		else if (data->map[i] == NOTHING)
+			debug_dprintf(STDOUT_FILENO, " ");
+		else
+			debug_dprintf(STDOUT_FILENO, "*");
+		if ((i + 1) % data->width == 0)
+			printf("\n");
+		i++;
+	}
+}
+
+void	debug_print_data(t_data *data)
+{
 	debug_dprintf(STDOUT_FILENO, "----------- パース後 -------------\n");
 	debug_dprintf(STDOUT_FILENO, "MLX pointer: %p\n", data->mlx);
 	debug_dprintf(STDOUT_FILENO, "WIN pointer: %p\n", data->win);
@@ -67,27 +73,15 @@ void	debug_print_data(t_data *data)
 	debug_dprintf(STDOUT_FILENO, "東 texture: %p\n", data->ea_img);
 	debug_dprintf(STDOUT_FILENO, "床   color: 0x%06X\n", data->f_color);
 	debug_dprintf(STDOUT_FILENO, "天井 color: 0x%06X\n", data->c_color);
+	debug_dprintf(STDOUT_FILENO, "高さ height: %d\n", data->height);
+	debug_dprintf(STDOUT_FILENO, "幅    width: %d\n", data->width);
 	debug_dprintf(STDOUT_FILENO, "Player position: x = %u, y = %u, dir = %s\n", \
 	data->player.x, data->player.y, get_player_dir_str(data->player.dir));
-	y = -1;
-	//todo: char **mapの部分は消す
-	debug_dprintf(STDOUT_FILENO, "以下、mapデータ: ");
+	debug_dprintf(STDOUT_FILENO, "以下、mapデータ: \n");
 	if (!data->map)
 		debug_dprintf(STDOUT_FILENO, "なし(null)\n");
 	else
-	{
-		debug_dprintf(STDOUT_FILENO, "\n");
-		while (data->map && data->map[++y] != NULL)
-			debug_dprintf(STDOUT_FILENO, "%s\n", data->map[y]);
-	}
-	i = 0;
-	while (i < data->width * data->height)
-	{
-		printf("%c", get_map_type_c(data->map_enum[i]));
-		if ((i + 1) % data->width == 0)
-			printf("\n");
-		i++;
-	}
+		print_map_data(data);
 	debug_dprintf(STDOUT_FILENO, "---------------------------------\n\n");
 	// degub_mlx_data(data);//mlxで描写して確認する。run_cub_map.sh使いたい場合はコメントアウトする
 }

@@ -6,11 +6,44 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:45:38 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/14 15:55:05 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:23:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+unsigned int	get_map_height(char **map)
+{
+	unsigned int	height;
+
+	if (!map)
+		return (0);
+	height = 0;
+	while (map[height])
+		height++;
+	return (height);
+}
+
+unsigned int	get_longest_width(char **map)
+{
+	unsigned int	max;
+	unsigned int	now;
+	size_t			i;
+
+	if (!map)
+		return (0);
+	max = 0;
+	now = 0;
+	i = 0;
+	while (map[i])
+	{
+		now = ft_strlen(map[i]);
+		if (now > max)
+			max = now;
+		i++;
+	}
+	return (max);
+}
 
 t_data	*parse_to_data(const t_tokens_tmp *tokens)
 {
@@ -25,7 +58,9 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 	data->win = mlx_new_window(data->mlx, 4 * IMG_SIZE, IMG_SIZE, "cub3D");
 	fill_images(data, tokens);
 	fill_color(data, tokens);
+	fill_player_position(data, tokens->map_lines);//todo: もし、プレイヤーがぞんざいしなかったらエラー(mapバリデートでやっちゃう？)
+	data->height = get_map_height(tokens->map_lines);
+	data->width = get_longest_width(tokens->map_lines);
 	fill_map(data, tokens->map_lines);//todo: ここでmapのバリデートする?
-	fill_player_position(data);//todo: もし、プレイヤーがぞんざいしなかったらエラー(mapバリデートでやっちゃう？)
 	return (data);
 }
