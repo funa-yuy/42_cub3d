@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 16:09:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 18:32:59 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	fill_map(t_data *data, char **map_lines)
 	size_t		i;
 	size_t		line_len;
 
-	//もし、空行だったらexitする todo:正規化の段階で空だったらエラー吐くようにする
 	data->map = (int *)ft_calloc(data->height * data->width + 1, sizeof(int));
 	if (!data->map)
 		error_perror_and_exit(NULL);

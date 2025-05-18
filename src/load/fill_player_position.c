@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 15:42:59 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 18:34:48 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ t_player_dir	get_player_dir_enum(char dir)
 	return (-1);
 }
 
+bool	is_player_dir_char(char c)
+{
+	if (c == 'N')
+		return (true);
+	if (c == 'S')
+		return (true);
+	if (c == 'E')
+		return (true);
+	if (c == 'W')
+		return (true);
+	return (false);
+}
+
 //todo: リファクタリングしたい。ネストが深くなってる
 void	fill_player_position(t_data *data, char **map_lines)
 {
@@ -39,16 +52,13 @@ void	fill_player_position(t_data *data, char **map_lines)
 		x = 0;
 		while (map_lines[y][x])
 		{
-			if (map_lines[y][x] == 'N' || map_lines[y][x] == 'S' \
-				|| map_lines[y][x] == 'E' || map_lines[y][x] == 'W')
+			if (is_player_dir_char(map_lines[y][x]))
 			{
-				if (!player_found)
-				{
-					data->player = (t_pos){y, x, get_player_dir_enum(map_lines[y][x])};
-					player_found = true;
-				}
-				else
+				if (player_found)
 					error_print_and_exit("There are multiple players.");
+				data->player = \
+						(t_pos){y, x, get_player_dir_enum(map_lines[y][x])};
+				player_found = true;
 			}
 			x++;
 		}
