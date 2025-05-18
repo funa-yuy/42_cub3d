@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 14:26:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 15:31:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ typedef struct s_data
 	void			*win;
 	unsigned int	height;
 	unsigned int	width;
-	char			**map;
-	int				*map_enum;	//todo: mapを1次元配列にする→enumを格納する
+	int				*map;
 	t_pos			player;//プレイヤーの初期位置&向き
 	void			*no_img;//mlx_put_image_to_windowしたもの
 	void			*so_img;//mlx_put_image_to_windowしたもの
@@ -115,7 +114,7 @@ t_data			*parse_to_data(const t_tokens_tmp *tokens);
 void			fill_map(t_data *d, char **map_lines);
 void			fill_images(t_data *data, const t_tokens_tmp *tokens);
 void			fill_color(t_data *data, const t_tokens_tmp *tokens);
-void			fill_player_position(t_data *data);
+void			fill_player_position(t_data *data, char **map_lines);
 void			free_data(t_data *d);
 /* init/utils */
 void			str_lstadd_back(t_strlst **lst, t_strlst *new);
