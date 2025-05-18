@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 13:13:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 13:52:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 18:16:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ bool	check_t_data_structure(t_data *target, t_data *test)
 		return (false);
 	if (target->c_color != test->c_color)
 		return (false);
-	if (target->map_enum != NULL && test->map_enum != NULL)
+	if (target->map != NULL && test->map != NULL)
 	{
 		i = 0;
 		while (i < target->height * target->width)
 		{
-			if (target->map_enum[i] != test->map_enum[i])
+			if (target->map[i] != test->map[i])
 				return (false);
 			i++;
 		}
 	}
-	else if (target->map_enum != test->map_enum)
+	else if (target->map != test->map)
 		return (false);
 	return (true);
 }
