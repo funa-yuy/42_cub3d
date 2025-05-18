@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:48:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 14:03:38 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/18 18:33:43 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_strlst	*init_lst_data(char *file)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		//todo: 空行だったらリストに追加しない機能を追加する
+		//todo: 空行だったらリストに追加しない機能を追加する?map部分のから行はスキップしたくない
 		new = str_lstnew(line);
 		if (!new)
 			error_perror_and_exit(NULL);
