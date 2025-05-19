@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 19:50:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 20:20:51 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_data	*init_cubdata(char *file)
 	const t_strlst		*lines_list;
 	const t_tokens_tmp	*tokens;
 
-	//todo: fileの拡張子が.cubで終わるかをみる
 	/* 正規化：strlst に格納 */
 	lines_list = NULL;
 	lines_list = normalize_cubdata(file);

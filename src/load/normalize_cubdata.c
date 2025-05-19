@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:48:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 19:31:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 20:20:55 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ bool	is_empty_line(char *line)
 	return (true);
 }
 
-t_strlst	*init_lst_data(char *file)
+t_strlst	*init_lst_data(int fd)
 {
-	int			fd;
 	char		*line;
 	t_strlst	*lines_list;
 	t_strlst	*new;
@@ -36,9 +35,6 @@ t_strlst	*init_lst_data(char *file)
 
 	lines_list = NULL;
 	line_num = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		error_perror_and_exit(file);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -60,8 +56,14 @@ t_strlst	*init_lst_data(char *file)
 t_strlst	*normalize_cubdata(char *file)
 {
 	t_strlst	*lines_list;
+	int			fd;
 
-	lines_list = init_lst_data(file);
+	//todo: fileの拡張子が.cubで終わるかをみる
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		error_perror_and_exit(file);
+	lines_list = init_lst_data(fd);
+	close(fd);
 	debug_print_strlst(lines_list);
 	return (lines_list);
 }
