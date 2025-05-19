@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_test06.c                                      :+:      :+:    :+:   */
+/*   init_test07.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 18:57:12 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:52:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_test01(void)
 		NULL, NULL, NULL, NULL, \
 		0xDC6400, 0xE11E00, /* f_color, c_color */\
 		14, 33, /* height,width */ \
-		(t_pos){11, 26, DIR_WEST}, map};/*player, map*/
+		(t_pos){11, 26, DIR_NORTH}, map};/*player, map*/
 
 	input_string = "map/correct/nl_minimalist.cub";
 	data = init_cubdata(input_string);

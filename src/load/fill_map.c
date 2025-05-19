@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 18:32:59 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:42:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	fill_map(t_data *data, char **map_lines)
 	while (map_lines && map_lines[y])
 	{
 		x = 0;
+		//todo: line_lenが空行(改行のみor空白のみ)だったらエラ-exitする
 		line_len = ft_strlen(map_lines[y]);
 		while (x < data->width)
 		{
