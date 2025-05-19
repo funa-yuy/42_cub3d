@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print_strlst.c                               :+:      :+:    :+:   */
+/*   error_print_exit.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 13:36:50 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/14 20:46:19 by miyuu            ###   ########.fr       */
+/*   Created: 2025/05/11 18:42:33 by miyuu             #+#    #+#             */
+/*   Updated: 2025/05/19 12:50:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-#ifdef DEBUG
-
-void	debug_print_strlst(t_strlst *lst)
+void	error_perror_and_exit(char *str)
 {
-	debug_dprintf(STDOUT_FILENO, "------------ 正規化後 -------------\n");
-	while (lst)
-	{
-		debug_dprintf(STDOUT_FILENO, "%s", lst->str);
-		lst = lst->next;
-	}
-	debug_dprintf(STDOUT_FILENO, "---------------------------------\n\n");
+	ft_putstr_fd("ERROR: ", STDERR_FILENO);
+	perror(str);
+	exit(1);
 }
 
-#else
-
-void	debug_print_strlst(t_strlst *lst)
+void	error_print_and_exit(char *str)
 {
-	(void) lst;
+	ft_putstr_fd("ERROR: ", STDERR_FILENO);
+	ft_putendl_fd(str, STDERR_FILENO);
+	exit(1);
 }
-#endif

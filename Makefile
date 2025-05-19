@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/14 13:10:53 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/05/15 12:05:00 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,33 +19,31 @@ HEADER_DIR = include
 HEADER = $(HEADER_DIR)/cub3d.h
 
 # ========== Source Files =========== #
-MAIN_SRCS = main/main.c
+MAIN_SRC = main.c
 
-UTILS_SRCS = utils/ft_str_lst.c \
-			utils/free_str_array.c
-
-INIT_SRCS = init/init_cubdata.c \
-			init/normalize_cubdata.c \
-			init/tokenize_lines.c \
-			init/parse_to_data.c \
-			init/fill_map.c \
-			init/fill_images.c \
-			init/fill_color.c \
-			init/fill_player_position.c
-
-FREE_SRCS = free/free_data.c
+LOAD_SRCS = load/init_cubdata.c \
+			load/normalize_cubdata.c \
+			load/tokenize_lines.c \
+			load/parse_to_data.c \
+			load/fill_map.c \
+			load/fill_images.c \
+			load/fill_color.c \
+			load/fill_player_position.c \
+			load/free_data.c \
+			load/utils/ft_str_lst.c \
+			load/utils/free_str_array.c \
+			load/utils/error_print_exit.c
 
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_strlst.c \
-			debug/debug_print_tokens_tmp.c
+			debug/debug_print_tokens_tmp.c \
+			debug/debug_dprintf.c
 
-SRC_WITHOUT_MAIN = $(UTILS_SRCS) \
-			$(INIT_SRCS) \
-			$(FREE_SRCS) \
-			$(DEBUG_SRCS)
+SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
+					$(DEBUG_SRCS)
 
-SRC_FILES = $(MAIN_SRCS) \
+SRC_FILES = $(MAIN_SRC) \
 			$(SRC_WITHOUT_MAIN)
 
 # ============== Libft & GNL ============== #
@@ -79,10 +77,6 @@ ifeq ($(shell uname), Darwin) #macの場合
 else
 	DEBUG_FLAGS = -DDEBUG -g
 	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
-endif
-
-ifeq ($(MAKECMDGOALS),debug)
-	CFLAGS += $(DEBUG_FLAGS)
 endif
 
 # ------- test ------- #
@@ -139,7 +133,8 @@ fclean: test-clean clean
 
 re: fclean all
 
-debug: clean $(OBJ_DIR) $(MLX) $(NAME)
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: $(OBJ_DIR) $(MLX) $(NAME)
 
 test: debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFT) $(MLX_FLAGS)
