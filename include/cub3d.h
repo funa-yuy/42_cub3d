@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 18:44:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 12:46:30 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct s_data
 	void			*so_img;//mlx_put_image_to_windowしたもの
 	void			*we_img;//mlx_put_image_to_windowしたもの
 	void			*ea_img;//mlx_put_image_to_windowしたもの
-	int				f_color;//16進数　に変換したカラー
-	int				c_color;//16進数　に変換したカラー
+	uint32_t		f_color;//16進数　に変換したカラー
+	uint32_t		c_color;//16進数　に変換したカラー
 	unsigned int	height;
 	unsigned int	width;
 	t_pos			player;//プレイヤーの初期位置&向き
