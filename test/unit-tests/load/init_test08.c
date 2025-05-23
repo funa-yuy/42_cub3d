@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_test00.c                                      :+:      :+:    :+:   */
+/*   init_test08.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 18:53:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:02:53 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@ NO ./textures/north.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
+
 F 220,100,0
 C 225,30,0
+
 111111
 100101
 101001
 1100N1
 111111
+
 */
 void	init_test00(void)
 {
@@ -48,7 +51,7 @@ void	init_test00(void)
 		5, 6, /* height,width */\
 		(t_pos){3, 4, DIR_NORTH}, map};/*player, map*/
 
-	input_string = "map/correct/simple.cub";
+	input_string = "map/correct/nl_simple.cub";
 	data = init_cubdata(input_string);
 	data -> mlx = NULL;
 

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 12:46:30 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 20:44:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ typedef struct s_tokens_tmp
 t_data			*init_cubdata(char *file);
 
 /* init */
-t_strlst		*init_lst_data(char *file);
 t_strlst		*normalize_cubdata(char *file);
 t_tokens_tmp	*tokenize_lines(const t_strlst *lines);
 t_data			*parse_to_data(const t_tokens_tmp *tokens);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_test01.c                                      :+:      :+:    :+:   */
+/*   init_test07.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 18:53:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:52:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ NO ./textures/north.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
-F 99,88,10
-C 10,30,10
+
+F 220,100,0
+C 225,30,0
+
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
@@ -35,6 +37,7 @@ C 10,30,10
 11000001110101011111011110N0111
 11110111 1110101 101111010001
 11111111 1111111 111111111111
+
 */
 void	init_test01(void)
 {
@@ -62,11 +65,11 @@ void	init_test01(void)
 	target = &(t_data){\
 		NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
-		0x63580a, 0x0a1e0a, /* f_color, c_color */\
+		0xDC6400, 0xE11E00, /* f_color, c_color */\
 		14, 33, /* height,width */ \
-		(t_pos){11, 26, DIR_WEST}, map};/*player, map*/
+		(t_pos){11, 26, DIR_NORTH}, map};/*player, map*/
 
-	input_string = "map/correct/minimalist.cub";
+	input_string = "map/correct/nl_minimalist.cub";
 	data = init_cubdata(input_string);
 	data -> mlx = NULL;
 
