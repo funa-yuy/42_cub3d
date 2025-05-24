@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 16:44:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 00:02:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,55 @@ void	fill_textures_in_tokens_tmp(t_tokens_tmp	*p, const char *line)
 		p->c_rgb = trim_spaces_both_ends(&line[2]);
 }
 
+static bool	is_empty_line(char *line)
+{
+	size_t	i;
+
+	i = 0;
+	while (line && line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\n')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+size_t	get_trimmed_lstsize(const t_strlst *lst)
+{
+	size_t		total_size;
+	size_t		empty_num;
+	t_strlst	*last_lst;
+
+	if (!lst)
+		return (0);
+	total_size = str_lstsize(lst);
+	empty_num = 0;
+	last_lst = str_lstlast(lst);
+	while (last_lst && is_empty_line(last_lst->str))
+	{
+		last_lst = last_lst->prev;
+		empty_num++;
+	}
+	return (total_size - empty_num);
+}
+
 void	fill_map_in_tokens_tmp(t_tokens_tmp *p, const t_strlst *lines)
 {
 	size_t		y;
 	size_t		map_height;
 
-	//もし、空行だったらexitする todo:正規化の段階で空だったらエラー吐くようにする
-	map_height = str_lstsize(lines);
+	map_height = get_trimmed_lstsize(lines);
 	p->map_lines = (char **)ft_calloc(map_height + 1, sizeof(char *));
 	if (!p->map_lines)
 		error_perror_and_exit(NULL);
 	y = 0;
-	while (lines)
+	while (y < map_height && lines)
 	{
-		p->map_lines[y++] = strdup_trim_nl(lines->str);
+		p->map_lines[y] = strdup_trim_nl(lines->str);
+		if (!p->map_lines[y])
+			error_perror_and_exit(NULL);
+		y++;
 		lines = lines->next;
 	}
 }

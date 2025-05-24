@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 11:55:58 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/24 23:52:48 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void			free_data(t_data *d);
 void			str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst		*str_lstnew(char *str);
 size_t			str_lstsize(const t_strlst *lst);
+t_strlst		*str_lstlast(const t_strlst *lst);
 void			free_str_array(char **str);
 void			error_print_and_exit(char *str);
 void			error_perror_and_exit(char *str);
