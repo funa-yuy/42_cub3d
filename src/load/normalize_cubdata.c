@@ -6,25 +6,11 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:48:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 20:20:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 00:09:28 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-bool	is_empty_line(char *line)
-{
-	size_t	i;
-
-	i = 0;
-	while (line && line[i])
-	{
-		if (line[i] != ' ' && line[i] != '\n')
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 t_strlst	*init_lst_data(int fd)
 {
@@ -38,7 +24,6 @@ t_strlst	*init_lst_data(int fd)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		//todo: 空行だったらリストに追加しない機能を追加する?map部分のから行はスキップしたくない
 		if (line_num > 6 || !is_empty_line(line))
 		{
 			new = str_lstnew(line);

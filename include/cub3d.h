@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 23:52:48 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 00:22:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ t_strlst		*str_lstlast(const t_strlst *lst);
 void			free_str_array(char **str);
 void			error_print_and_exit(char *str);
 void			error_perror_and_exit(char *str);
+bool			is_empty_line(char *line);
+char			*trim_spaces_both_ends(const char *str);
+size_t			get_trimmed_lstsize(const t_strlst *lst);
+char			*strdup_trim_nl(const char *str);
 
 /* dedug 最終的には削除する?*/
 void			debug_print_data(t_data *data);
