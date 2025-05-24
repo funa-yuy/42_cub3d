@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_test04.c                                      :+:      :+:    :+:   */
+/*   init_test05.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 18:58:12 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/24 13:56:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ C 225,30,0
 111111
 
 */
-void	init_test00(void)
+void	init_test05(void)
 {
 	char	*input_string;	// <- 問題
 	t_data	*target;		// <- 答え
@@ -59,20 +59,22 @@ void	init_test00(void)
 		0xDC6400, 0xE11E00, /* f_color, c_color */\
 		5, 6, /* height,width */\
 		(t_pos){3, 4, DIR_NORTH}, map};/*player, map*/
+	printf("\x1b[32m ================ ↓正解↓ ================ \x1b[39m\n");
+	debug_print_data((t_data *)target);
 
+	printf("\x1b[32m ================ ↓自作↓ ================= \x1b[39m\n");
 	input_string = "map/correct/2_or_more_nl_3.cub";
 	data = init_cubdata(input_string);
 	data -> mlx = NULL;
 
-	debug_print_data((t_data *)target);
 	if (check_t_data_structure(target, data))
-		printf("\x1b[32mOK!\x1b[32m\n");
+		printf("\x1b[32mOK!\x1b[39m\n");
 	else
-		printf("\x1b[31mERROR\x1b[31m\n");
+		printf("\x1b[31mERROR\x1b[39m\n");
 }
 
 int	main(void)
 {
-	init_test00();
+	init_test05();
 	return (0);
 }
