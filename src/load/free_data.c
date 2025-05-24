@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:30:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 11:55:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 00:56:44 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_data(t_data *d)
 	if (d->mlx)
 	{
 		/* ---- macの場合、以下をコメントアウト ---- */
-		// mlx_destroy_display(d->mlx);
+		mlx_destroy_display(d->mlx);
 		free(d->mlx);
 	}
 	free(d);

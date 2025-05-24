@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 00:21:18 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 00:56:15 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	fill_map_in_tokens_tmp(t_tokens_tmp *p, const t_strlst *lines)
 	while (y < map_height && lines)
 	{
 		p->map_lines[y] = strdup_trim_nl(lines->str);
-		if (!p->map_lines[y])
-			error_perror_and_exit(NULL);
 		y++;
 		lines = lines->next;
 	}
