@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:30:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 16:50:32 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/24 17:27:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ NO ./textures/north.xpm
 1100N1
 111111
 */
-void	init_test14(void)
+int	init_test14(void)
 {
 	char	*input_string;	// <- 問題
 	t_data	*target;		// <- 答え
@@ -58,13 +58,21 @@ void	init_test14(void)
 	data -> mlx = NULL;
 
 	if (check_t_data_structure(target, data))
+	{
 		printf("\x1b[32mOK!\x1b[39m\n");
+		return (0);
+	}
 	else
+	{
 		printf("\x1b[31mERROR\x1b[39m\n");
+		return (1);
+	}
 }
 
 int	main(void)
 {
-	init_test14();
-	return (0);
+	int	status;
+
+	status = init_test14();
+	return (status);
 }

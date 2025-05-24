@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:30:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 13:54:43 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/24 17:24:57 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ C       225,30,0
 
 
 */
-void	init_test12(void)
+int	init_test12(void)
 {
 	char	*input_string;	// <- 問題
 	t_data	*target;		// <- 答え
@@ -68,13 +68,21 @@ void	init_test12(void)
 	data -> mlx = NULL;
 
 	if (check_t_data_structure(target, data))
+	{
 		printf("\x1b[32mOK!\x1b[39m\n");
+		return (0);
+	}
 	else
+	{
 		printf("\x1b[31mERROR\x1b[39m\n");
+		return (1);
+	}
 }
 
 int	main(void)
 {
-	init_test12();
-	return (0);
+	int	status;
+
+	status = init_test12();
+	return (status);
 }
