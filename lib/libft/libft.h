@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:48:53 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/07 20:54:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/24 14:17:02 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* ------ ここから追加 ------ */
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_isspace(int c);
 #endif
