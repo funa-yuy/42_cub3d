@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 16:06:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/24 16:44:55 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,35 +96,41 @@ void	fill_map_in_tokens_tmp(t_tokens_tmp *p, const t_strlst *lines)
 	}
 }
 
+bool	is_cub_identifier(const char *str)
+{
+	if (ft_strncmp(str, "NO ", 3) == 0 \
+		|| ft_strncmp(str, "SO ", 3) == 0 \
+		|| ft_strncmp(str, "WE ", 3) == 0 \
+		|| ft_strncmp(str, "EA ", 3) == 0 \
+		|| ft_strncmp(str, "F ", 2) == 0 \
+		|| ft_strncmp(str, "C ", 2) == 0)
+		return (true);
+	return (false);
+}
+
 t_tokens_tmp	*tokenize_lines(const t_strlst *lines)
 {
 	t_tokens_tmp	*tokens;
 	size_t			i;
+	size_t			line_num;
 
 	tokens = (t_tokens_tmp *)ft_calloc(1, sizeof(t_tokens_tmp));
 	if (!tokens)
 		error_perror_and_exit(NULL);
-
+	line_num = 0;
 	while (lines)
 	{
 		i = 0;
 		while (ft_isspace(lines->str[i]))
 			i++;
-		if (ft_strncmp(&lines->str[i], "NO ", 3) == 0 \
-			|| ft_strncmp(&lines->str[i], "SO ", 3) == 0 \
-			|| ft_strncmp(&lines->str[i], "WE ", 3) == 0 \
-			|| ft_strncmp(&lines->str[i], "EA ", 3) == 0 \
-			|| ft_strncmp(&lines->str[i], "F ", 2) == 0 \
-			|| ft_strncmp(&lines->str[i], "C ", 2) == 0)
-			fill_textures_in_tokens_tmp(tokens, &lines->str[i]);
-		else
+		if (line_num > 5 || !is_cub_identifier(&lines->str[i]))
 		{
-			//todo: 6行目以降はmapとして認識する　正規化の時と同じことやる
-			//識別子に当てはまらなかったら、それ以降を全部mapとして判定する
 			fill_map_in_tokens_tmp(tokens, lines);
-			//todo: mapは最後の要素のはずなので、map格納が終わったらbreakする？
 			break ;
 		}
+		else
+			fill_textures_in_tokens_tmp(tokens, &lines->str[i]);
+		line_num++;
 		lines = lines->next;
 	}
 	debug_print_tokens_tmp(tokens);
