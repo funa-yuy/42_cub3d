@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:00:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 16:55:50 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 16:59:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ bool	is_integer(char *str)
 {
 	size_t	i;
 
+	i = 0;
 	if (!str || !str[i])
 		return (false);
-	i = 0;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	if (!str[i])
