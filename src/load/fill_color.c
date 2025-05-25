@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:00:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 16:59:22 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 18:04:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,24 @@ int	convert_rgb_integer(char *str)
 	return (value);
 }
 
+int	get_comma_count(char *str)
+{
+	size_t	i;
+	size_t	count;
+
+	if (!str)
+		return (0);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 int	rgb_to_hex(char *color)
 {
 	char	**rgb_tmp;
@@ -52,7 +70,7 @@ int	rgb_to_hex(char *color)
 	int		b;
 	int		result;
 
-	if (!color)
+	if (!color || get_comma_count(color) != 2)
 		error_print_and_exit("Invalid color value.");
 	rgb_tmp = ft_split(color, ',');
 	if (!rgb_tmp)
