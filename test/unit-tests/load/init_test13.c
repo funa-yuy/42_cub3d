@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_test00.c                                      :+:      :+:    :+:   */
+/*   init_test13.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/24 17:21:46 by miyuu            ###   ########.fr       */
+/*   Created: 2025/05/19 19:30:00 by miyuu             #+#    #+#             */
+/*   Updated: 2025/05/24 17:25:07 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 bool	check_t_data_structure(t_data *target, t_data *test);
 
 /*
-NO ./textures/north.xpm
+map/correct/before_id_space.cub
+
+   NO ./textures/north.xpm
 SO ./textures/south.xpm
-WE ./textures/west.xpm
+	WE ./textures/west.xpm
 EA ./textures/east.xpm
 F 220,100,0
 C 225,30,0
@@ -27,7 +29,7 @@ C 225,30,0
 1100N1
 111111
 */
-int	init_test00(void)
+int	init_test13(void)
 {
 	char	*input_string;	// <- 問題
 	t_data	*target;		// <- 答え
@@ -51,7 +53,7 @@ int	init_test00(void)
 	debug_print_data((t_data *)target);
 
 	printf("\x1b[32m ================ ↓自作↓ ================= \x1b[39m\n");
-	input_string = "map/correct/simple.cub";
+	input_string = "map/correct/before_id_space.cub";
 	data = init_cubdata(input_string);
 	data -> mlx = NULL;
 
@@ -71,6 +73,6 @@ int	main(void)
 {
 	int	status;
 
-	status = init_test00();
+	status = init_test13();
 	return (status);
 }
