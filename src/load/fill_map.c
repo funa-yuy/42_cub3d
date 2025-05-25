@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 15:02:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 19:29:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@ t_map_type	get_map_type_enum(char str)
 	return (-1);
 }
 
-void	fill_map(t_data *data, char **map_lines)
+void	set_data_map(t_data *data, char **map_lines)
 {
 	size_t		x;
 	size_t		y;
 	size_t		i;
 	size_t		line_len;
 
-	data->map = (int *)ft_calloc(data->height * data->width + 1, sizeof(int));
-	if (!data->map)
-		error_perror_and_exit(NULL);
 	y = 0;
 	i = 0;
 	while (map_lines && map_lines[y])
@@ -53,4 +50,12 @@ void	fill_map(t_data *data, char **map_lines)
 		}
 		y++;
 	}
+}
+
+void	fill_map(t_data *data, char **map_lines)
+{
+	data->map = (int *)ft_calloc(data->height * data->width + 1, sizeof(int));
+	if (!data->map)
+		error_perror_and_exit(NULL);
+	set_data_map(data, map_lines);
 }
