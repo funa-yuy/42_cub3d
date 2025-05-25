@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
+#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/25 14:09:49 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/25 17:51:27 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,7 @@ TEST_OBJS = $(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 # 使用しているOSを自動判定して、ダウンロードするminilibxを割り当てる
 ifeq ($(shell uname), Darwin) #macの場合
 	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34596/minilibx_macos_opengl.tgz
- 	MINILIBX_TAR_GZ = minilibx_macos_opengl.tgz
+	MINILIBX_TAR_GZ = minilibx_macos_opengl.tgz
 	MLX_DIR = minilibx_opengl_20191021
 	MLX = $(MLX_DIR)/libmlx.a
 	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
