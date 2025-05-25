@@ -52,7 +52,7 @@ while IFS= read -r filepath; do
     fi
 
     rm -f "$valgrind_output"
-done < <(find "$TARGET_DIR" -type f -name "*.cub" | sort)
+done < <(find "$TARGET_DIR" -type f -name "*" | sort)
 
 # エラーマップの読み込み
 if [ -s "$temp_file" ]; then

@@ -36,7 +36,7 @@ while IFS= read -r filepath; do
     else
         echo "$filepath" >> "$temp_file"
     fi
-done < <(find "$TARGET_DIR" -type f -name "*.cub" | sort)
+done < <(find "$TARGET_DIR" -type f -name "*" | sort)
 
 # エラーマップの読み込み
 if [ -s "$temp_file" ]; then

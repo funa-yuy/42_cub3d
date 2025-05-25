@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:45:38 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 18:43:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 15:06:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 	fill_player_position(data, tokens->map_lines);
 	data->height = get_map_height(tokens->map_lines);
 	data->width = get_longest_width(tokens->map_lines);
+	if (data->height < 3 || data->width < 3)
+		error_print_and_exit("Invalid map value.");
 	fill_map(data, tokens->map_lines);//todo: ここでmapのバリデートする?
 	return (data);
 }

@@ -54,6 +54,7 @@ dkms.conf
 # original
 .vscode
 .cursor
+.cursorrules
 cub3d
 unit_test
 mfunakos

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 20:20:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 17:32:56 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,36 @@ void	free_tokens_tmp(t_tokens_tmp *t)
 	free(t);
 }
 
+bool	valid_cub_extension(char *filepath)
+{
+	size_t	len;
+	char	*last_slash;
+	char	*filename;
+
+	if (!filepath)
+		return (false);
+	len = ft_strlen(filepath);
+	if (len < 5)
+		return (false);
+	last_slash = ft_strrchr(filepath, '/');
+	if (last_slash && filepath[len - 1] != '/')
+		filename = last_slash + 1;
+	else
+		filename = filepath;
+	len = ft_strlen(filename);
+	if (len < 5)
+		return (false);
+	return (ft_strcmp(filename + len - 4, ".cub") == 0);
+}
+
 t_data	*init_cubdata(char *file)
 {
 	t_data				*data;
 	const t_strlst		*lines_list;
 	const t_tokens_tmp	*tokens;
 
+	if (!valid_cub_extension(file))
+		error_print_and_exit("Invalid file extension.");
 	/* 正規化：strlst に格納 */
 	lines_list = NULL;
 	lines_list = normalize_cubdata(file);
