@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_lines.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 17:28:05 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 00:56:15 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 13:42:23 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	fill_textures_in_tokens_tmp(t_tokens_tmp	*p, const char *line)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0)
+	if (!p->no_path && ft_strncmp(line, "NO ", 3) == 0)
 		p->no_path = trim_spaces_both_ends(&line[3]);
-	else if (ft_strncmp(line, "SO ", 3) == 0)
+	else if (!p->so_path && ft_strncmp(line, "SO ", 3) == 0)
 		p->so_path = trim_spaces_both_ends(&line[3]);
-	else if (ft_strncmp(line, "WE ", 3) == 0)
+	else if (!p->we_path && ft_strncmp(line, "WE ", 3) == 0)
 		p->we_path = trim_spaces_both_ends(&line[3]);
-	else if (ft_strncmp(line, "EA ", 3) == 0)
+	else if (!p->ea_path && ft_strncmp(line, "EA ", 3) == 0)
 		p->ea_path = trim_spaces_both_ends(&line[3]);
-	else if (ft_strncmp(line, "F ", 2) == 0)
+	else if (!p->f_rgb && ft_strncmp(line, "F ", 2) == 0)
 		p->f_rgb = trim_spaces_both_ends(&line[2]);
-	else if (ft_strncmp(line, "C ", 2) == 0)
+	else if (!p->c_rgb && ft_strncmp(line, "C ", 2) == 0)
 		p->c_rgb = trim_spaces_both_ends(&line[2]);
 }
 
