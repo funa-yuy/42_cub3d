@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 20:13:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 14:50:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	fill_map(t_data *data, char **map_lines)
 	{
 		x = 0;
 		line_len = ft_strlen(map_lines[y]);
+		if (line_len < 0 || is_empty_line(map_lines[y]))
+			error_print_and_exit("Invalid map value.");
 		while (x < data->width)
 		{
 			if (x < line_len)
