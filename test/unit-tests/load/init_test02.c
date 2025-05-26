@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_test00.c                                      :+:      :+:    :+:   */
+/*   init_test02.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 18:53:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/19 19:13:38 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ NO ./textures/north.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
-F 220,100,0
-C 225,30,0
-111111
-100101
-101001
-1100N1
-111111
+F 90,8,10
+C 0,244,11
+  1111111
+1100S001
+1111111
 */
 void	init_test00(void)
 {
@@ -35,20 +33,18 @@ void	init_test00(void)
 
 	int	map[] = \
 	{
-		WALL, WALL, WALL, WALL, WALL, WALL, \
-		WALL, EMPTY, EMPTY, WALL, EMPTY, WALL, \
-		WALL, EMPTY, WALL, EMPTY, EMPTY, WALL, \
-		WALL, WALL, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, WALL, WALL, WALL, WALL, WALL \
+		NOTHING, NOTHING, WALL, WALL, WALL, WALL, WALL, WALL, WALL, \
+		WALL, WALL, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, WALL, NOTHING,\
+		WALL, WALL, WALL, WALL, WALL, WALL, WALL, NOTHING, NOTHING,\
 	};
 	target = &(t_data){\
 		NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
-		0xDC6400, 0xE11E00, /* f_color, c_color */\
-		5, 6, /* height,width */\
-		(t_pos){3, 4, DIR_NORTH}, map};/*player, map*/
+		0x5A080A, 0x00F40B, /* f_color, c_color */\
+		3, 9, /* height,width */\
+		(t_pos){1, 4, DIR_SOUTH}, map};/*player, map*/
 
-	input_string = "map/correct/simple.cub";
+	input_string = "map/correct/small.cub";
 	data = init_cubdata(input_string);
 	data -> mlx = NULL;
 
