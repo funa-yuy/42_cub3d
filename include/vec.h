@@ -7,6 +7,14 @@
 
 typedef __m128 t_f32x4; // t_f32x4(f32, f32, f32, f32)
 
+typedef struct s_vec_f32x4 t_vec_f32x4;
+struct s_vec_f32x4 {
+	float z;
+	float y;
+	float x;
+	float w;
+};
+
 t_f32x4 init_f32x4(float w,float x, float y, float z);
 
 // instructions
