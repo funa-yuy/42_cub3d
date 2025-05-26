@@ -1,5 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
+# **************************************************************************** # #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
@@ -34,6 +33,18 @@ LOAD_SRCS = load/init_cubdata.c \
 			load/utils/free_str_array.c \
 			load/utils/error_print_exit.c
 
+
+VEC_SRCS = \
+	   vec/eq_f32x4.c\
+	   vec/add_f32x4.c\
+	   vec/sub_f32x4.c\
+	   vec/mul_f32x4.c\
+	   vec/div_f32x4.c\
+	   vec/f32x4_wxyz.c\
+	   vec/init_f32x4.c\
+	   vec/print_f32x4.c
+
+
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_print_strlst.c \
@@ -41,7 +52,8 @@ DEBUG_SRCS = debug/debug_print_data.c \
 			debug/debug_dprintf.c
 
 SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
-					$(DEBUG_SRCS)
+					$(DEBUG_SRCS)\
+					$(VEC_SRCS)
 
 SRC_FILES = $(MAIN_SRC) \
 			$(SRC_WITHOUT_MAIN)
