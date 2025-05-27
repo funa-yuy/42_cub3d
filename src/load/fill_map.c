@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/27 14:11:40 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/27 15:53:39 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	set_data_map(t_data *data, char **map_lines)
 		y++;
 	}
 }
-
+/*
 size_t	calc_index(unsigned int x, unsigned int y, unsigned int width)
 {
 	return (y * width + x);
@@ -147,6 +147,105 @@ bool	is_valid_map(t_data *data)
 	result = dfs(visited, data, index);
 	return (result);
 }
+*/
+
+size_t	calc_index(size_t x, size_t y, unsigned int width)
+{
+	return (y * width + x);
+}
+
+bool	is_boundary_value(t_data *data, size_t x, size_t y)
+{
+	size_t			index;
+	int				*map;
+	unsigned int	width;
+	unsigned int	height;
+
+	map = data->map;
+	width = data->width;
+	height = data->height;
+	/* 番端のlineにいたらout 左, 右, 上, 下 */
+	if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+		return (true);
+
+	/* 現在地が"NOTHING"だったらout */
+	index = calc_index(x, y, width);
+	if (map[index] == NOTHING)
+		return (true);
+
+	/* 左右上下に1マス進んだ先が"NOTHING"だったらout */
+	//左に1マス
+	if (map[index - 1] == NOTHING)
+		return (true);
+	//右に1マス
+	if (map[index + 1] == NOTHING)
+		return (true);
+	//上に1マス
+	if (map[index - width] == NOTHING)
+		return (true);
+	//下に1マス
+	if (map[index + width] == NOTHING)
+		return (true);
+
+	return (false);
+}
+
+bool	is_surrounded_walls(t_data *data, size_t x, size_t y, bool *visited)
+{
+	size_t			index;
+	unsigned int	width;
+	unsigned int	height;
+	int				*map;
+
+	map = data->map;
+	width = data->width;
+	height = data->height;
+
+	if (is_boundary_value(data, x, y))
+		return (false);
+
+	index = calc_index(x, y, width);
+	if (visited[index])
+		return (true);
+
+	visited[index] = true;
+
+	/*
+	左右上下に1マス進んだ先を検証。
+	→マス進むことができる(範囲内 & 壁ではない)かつ、訪れたことがない場合、dfsをする
+	*/
+	//左に1マス
+	if (x > 0 && map[index - 1] != WALL && \
+		!visited[index - 1] && !is_surrounded_walls(data, x - 1, y, visited))
+		return (false);
+	//右に1マス
+	if (x + 1 < width && map[index + 1] != WALL && \
+		!visited[index + 1] && !is_surrounded_walls(data, x + 1, y, visited))
+		return (false);
+	//上に1マス
+	if (y > 0 && map[index - width] != WALL && \
+		!visited[index - width] && !is_surrounded_walls(data, x, y - 1, visited))
+		return (false);
+	//下に1マス
+	if (y + 1 < height && map[index + width] != WALL && \
+		!visited[index + width] && !is_surrounded_walls(data, x, y + 1, visited))
+		return (false);
+
+	return (true);
+}
+
+bool	is_valid_map(t_data *data)
+{
+	bool	result;
+	bool	*visited;
+
+	visited = (bool *)ft_calloc((data->width * data->height + 1), sizeof(bool));
+	if (!visited)
+		error_perror_and_exit(NULL);
+	result = is_surrounded_walls(data, data->player.x, data->player.y, visited);
+	return (result);
+}
+
 
 void	fill_map(t_data *data, char **map_lines)
 {
