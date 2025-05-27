@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 00:15:40 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/28 01:36:44 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/28 01:37:31 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,19 @@ bool	is_surrounded_walls(t_data *data, size_t x, size_t y, bool *visited)
 	width = data->width;
 	if (!is_valid_position(data, x, y))
 		return (false);
-
 	index = calc_map_index(x, y, width);
 	if (visited[index])
 		return (true);
 	visited[index] = true;
-	/*
-	左右上下に1マス進んだ先を再帰的に検証。
-	→1マス先が壁ではない かつ 訪れたことがない場合、再帰 → 再帰の結果がfalseだったらfalse返す
-	*/
-	//左に1マス
 	if (map[index - 1] != WALL && !visited[index - 1] \
 		&& !is_surrounded_walls(data, x - 1, y, visited))
 		return (false);
-	//右に1マス
 	if (map[index + 1] != WALL && !visited[index + 1] \
 		&& !is_surrounded_walls(data, x + 1, y, visited))
 		return (false);
-	//上に1マス
 	if (map[index - width] != WALL && !visited[index - width] \
 		&& !is_surrounded_walls(data, x, y - 1, visited))
 		return (false);
-	//下に1マス
 	if (map[index + width] != WALL && !visited[index + width] \
 		&& !is_surrounded_walls(data, x, y + 1, visited))
 		return (false);
