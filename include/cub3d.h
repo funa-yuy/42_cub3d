@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/19 20:44:01 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/28 01:26:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,20 @@ void			fill_images(t_data *data, const t_tokens_tmp *tokens);
 void			fill_color(t_data *data, const t_tokens_tmp *tokens);
 void			fill_player_position(t_data *data, char **map_lines);
 void			free_data(t_data *d);
+bool			is_valid_map(t_data *data);
 /* init/utils */
 void			str_lstadd_back(t_strlst **lst, t_strlst *new);
 t_strlst		*str_lstnew(char *str);
 size_t			str_lstsize(const t_strlst *lst);
+t_strlst		*str_lstlast(const t_strlst *lst);
 void			free_str_array(char **str);
 void			error_print_and_exit(char *str);
 void			error_perror_and_exit(char *str);
+bool			is_empty_line(char *line);
+char			*trim_spaces_both_ends(const char *str);
+size_t			get_trimmed_lstsize(const t_strlst *lst);
+char			*strdup_trim_nl(const char *str);
+size_t			calc_map_index(size_t x, size_t y, unsigned int width);
 
 /* dedug 最終的には削除する?*/
 void			debug_print_data(t_data *data);

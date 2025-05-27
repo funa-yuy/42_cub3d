@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/24 11:38:03 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/28 00:17:42 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,13 @@ LOAD_SRCS = load/init_cubdata.c \
 			load/fill_color.c \
 			load/fill_player_position.c \
 			load/free_data.c \
+			load/is_valid_map.c \
 			load/utils/ft_str_lst.c \
 			load/utils/free_str_array.c \
-			load/utils/error_print_exit.c
+			load/utils/error_print_exit.c \
+			load/utils/is_empty_line.c \
+			load/utils/tokenize_utils.c \
+			load/utils/calc_map_index.c
 
 #debugディレクトリは最終的に削除する
 DEBUG_SRCS = debug/debug_print_data.c \
