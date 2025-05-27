@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 19:29:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/27 14:11:40 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,109 @@ void	set_data_map(t_data *data, char **map_lines)
 	}
 }
 
+size_t	calc_index(unsigned int x, unsigned int y, unsigned int width)
+{
+	return (y * width + x);
+}
+
+//一番端にきている？
+bool	is_at_boundary(int *map, size_t index, unsigned int width, unsigned int max)
+{
+	size_t	x;
+	size_t	y;
+
+	x = index % width;
+	y = index / width;
+
+	//上下左右端にいたらout x or y = 0, x = width - 1, y = height - 1
+	if (x == 0 || x == width - 1 || y == 0 || y == (max / width) - 1)
+		return (true);
+	// if (index < width || (max - width <= index &&  index < max))
+	// 	return (true);
+
+	//2だったらout
+	if (map[index] == NOTHING)
+		return (true);
+
+	//歩けない場所(範囲外、もしくはEMPTY以外)だったらfalse
+	//右 右が範囲外もしくは
+	if (index + 1 >= max || map[index + 1] == NOTHING)
+		return (true);
+	//左
+	if (index - 1 < 0 || map[index - 1] == NOTHING)
+		return (true);
+	//下
+	if (index + width >= max || map[index + width] == NOTHING)
+		return (true);
+	//上
+	if (index - width < 0 || map[index - width] == NOTHING)
+		return (true);
+
+	// if (index + 1 >= max || index - 1 < 0 || index + width >= max || index - width < 0)
+	// 	return (true);
+	return (false);
+}
+
+bool	dfs(bool *visited, t_data *data, size_t index)
+{
+	unsigned int	max;
+	int				*map;
+	unsigned int	width;
+	unsigned int	height;
+
+	map = data->map;
+	width = data->width;
+	height = data->height;
+	max = width * height;
+	//一番端に来たかのチェック
+	if (is_at_boundary(map, index, width, max))
+		return (false);
+	if (visited[index])
+		return (true);
+	//訪問済み
+	visited[index] = true;
+	//右
+	if (index + 1 < max && map[index + 1] != WALL && \
+		!visited[index + 1] && !dfs(visited, data, index + 1))
+		return (false);
+	//左
+	if (index > 0 && map[index - 1] != WALL && \
+		!visited[index - 1] && !dfs(visited, data, index - 1))
+		return (false);
+	//下
+	if (index + width < max && map[index + width] != WALL && \
+		!visited[index + width] && !dfs(visited, data, index + width))
+		return (false);
+	//上
+	if (index >= width && map[index - width] != WALL && \
+		!visited[index - width] && !dfs(visited, data, index - width))
+		return (false);
+	return (true);
+}
+
+
+bool	is_valid_map(t_data *data)
+{
+	bool	*visited;
+	size_t	index;
+	bool	result;
+
+	//visited = mallocする width* height + 1;
+	visited = (bool *)ft_calloc((data->width * data->height + 1), sizeof(bool));
+	if (!visited)
+		error_perror_and_exit(NULL);
+	index = calc_index(data->player.x, data->player.y, data->width);
+	result = dfs(visited, data, index);
+	return (result);
+}
+
 void	fill_map(t_data *data, char **map_lines)
 {
 	data->map = (int *)ft_calloc(data->height * data->width + 1, sizeof(int));
 	if (!data->map)
 		error_perror_and_exit(NULL);
 	set_data_map(data, map_lines);
+
+	if (!is_valid_map(data))
+		error_print_and_exit("The map is not surrounded by walls.");
 }
