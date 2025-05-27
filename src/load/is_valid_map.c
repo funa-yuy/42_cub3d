@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 00:15:40 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/28 00:24:09 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/28 01:23:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ bool	is_valid_map(t_data *data)
 	if (!visited)
 		error_perror_and_exit(NULL);
 	result = is_surrounded_walls(data, data->player.x, data->player.y, visited);
+	free(visited);
 	return (result);
 }
