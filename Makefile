@@ -16,35 +16,38 @@ NAME = cub3d
 SRC_DIR = src
 OBJ_DIR = bin
 HEADER_DIR = include
-HEADER = $(HEADER_DIR)/cub3d.h
 
 # ========== Source Files =========== #
-MAIN_SRC = main.c
+MAIN_SRC = src/main.c
 
-LOAD_SRCS = load/init_cubdata.c \
-			load/normalize_cubdata.c \
-			load/tokenize_lines.c \
-			load/parse_to_data.c \
-			load/fill_map.c \
-			load/fill_images.c \
-			load/fill_color.c \
-			load/fill_player_position.c \
-			load/free_data.c \
-			load/utils/ft_str_lst.c \
-			load/utils/free_str_array.c \
-			load/utils/error_print_exit.c
+LOAD_SRCS = \
+		src/load/init_cubdata.c \
+		src/load/normalize_cubdata.c \
+		src/load/tokenize_lines.c \
+		src/load/parse_to_data.c \
+		src/load/fill_map.c \
+		src/load/fill_images.c \
+		src/load/fill_color.c \
+		src/load/fill_player_position.c \
+		src/load/free_data.c \
+		src/load/utils/ft_str_lst.c \
+		src/load/utils/free_str_array.c \
+		src/load/utils/error_print_exit.c
 
 #debugディレクトリは最終的に削除する
-DEBUG_SRCS = debug/debug_print_data.c \
-			debug/debug_print_strlst.c \
-			debug/debug_print_tokens_tmp.c \
-			debug/debug_dprintf.c
+DEBUG_SRCS = \
+		src/debug/debug_print_data.c \
+		src/debug/debug_print_strlst.c \
+		src/debug/debug_print_tokens_tmp.c \
+		src/debug/debug_dprintf.c
 
-SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
-					$(DEBUG_SRCS)
+SRC_WITHOUT_MAIN = \
+		$(LOAD_SRCS) \
+		$(DEBUG_SRCS)
 
-SRC_FILES = $(MAIN_SRC) \
-			$(SRC_WITHOUT_MAIN)
+SRC = \
+	$(MAIN_SRC) \
+	$(SRC_WITHOUT_MAIN)
 
 # ============== Libft & GNL ============== #
 
@@ -52,8 +55,9 @@ LIBFT_DIR = lib/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 GNL_DIR = lib/get_next_line
-GNL_FILES = get_next_line.c \
-			get_next_line_utils.c
+GNL_FILES = \
+		get_next_line.c \
+		get_next_line_utils.c
 
 # ============== Compile  ============== #
 
@@ -65,7 +69,6 @@ CFLAGS = \
 	-I$(GNL_DIR) \
 	-I$(LIBFT_DIR)
 
-SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 		$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
 
@@ -96,7 +99,7 @@ ifneq ($(TEST_ARG),)
 				$(TEST_DIR)/$(TEST_MUST_FILE)
 endif
 
-TEST_SRC = $(addprefix $(SRC_DIR)/, $(SRC_WITHOUT_MAIN))
+TEST_SRC = $(SRC_WITHOUT_MAIN)
 TEST_OBJS = $(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 			$(TEST_FILE:$(TEST_DIR)/%.c=$(TEST_OBJ_DIR)/%.o) \
 			$(addprefix $(OBJ_DIR)/, $(GNL_FILES:.c=.o))
@@ -108,24 +111,24 @@ ifeq ($(shell uname), Darwin) #macの場合
 	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34596/minilibx_macos_opengl.tgz
 	MINILIBX_TAR_GZ = minilibx_macos_opengl.tgz
 	MLX_DIR = minilibx_opengl_20191021
-	MLX = $(MLX_DIR)/libmlx.a
-	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+	MLX_FLAGS =  -lmlx -framework OpenGL -framework AppKit
 else
 	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34595/minilibx-linux.tgz
 	MINILIBX_TAR_GZ = minilibx-linux.tgz
 	MLX_DIR = minilibx-linux
-	MLX = $(MLX_DIR)/libmlx.a
-	MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx -lXext -lX11
+	MLX_FLAGS = -lmlx -lXext -lX11
 endif
+
+MLX = $(MLX_DIR)/libmlx.a
 
 ############### Build Rules ###############
 
 .PHONY: all clean fclean re debug test test-clean
 
-all: $(OBJ_DIR) $(MLX) $(NAME)
+all: $(NAME)
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)/*
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean; fi
 
@@ -137,10 +140,10 @@ fclean: test-clean clean
 re: fclean all
 
 debug: CFLAGS += $(DEBUG_FLAGS)
-debug: $(OBJ_DIR) $(MLX) $(NAME)
+debug: all
 
 test: debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFT) $(MLX_FLAGS)
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -o $(TEST_NAME) $(TEST_OBJS) $(LIBFT) $(MLX_FLAGS) -L$(MLX_DIR)
 	$(VALGRIND) ./$(TEST_NAME)
 
 test-clean:
@@ -149,37 +152,44 @@ test-clean:
 
 # ========== File Dependency ========== #
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-$(NAME): $(OBJS)
+$(LIBFT): 
 	@$(MAKE) -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
-	@mkdir -p $(dir $@)
+
+$(NAME): $(MLX) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT) $(MLX) -L$(MLX_DIR)
+
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 
 $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c
-	@mkdir -p $(dir $@)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+
+$(TEST_OBJ_DIR)/%.o: $(TEST_DIR)/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
+
 
 # minilibxのダウンロード & 展開 & コンパイル
 # 1. minilibxが存在しない場合のみダウンロード
 $(MINILIBX_TAR_GZ):
 	@if [ ! -d "$(MLX_DIR)" ]; then curl -O $(MINILIBX_URL); fi
+
+$(MLX_DIR): $(MINILIBX_TAR_GZ)
+	tar xvzf $(MINILIBX_TAR_GZ)
+
 # 2. アーカイブの展開とコンパイル(ダウンロードしたアーカイブは削除)
-$(MLX): $(MINILIBX_TAR_GZ)
-	@if [ ! -d "$(MLX_DIR)" ]; then tar xvzf $(MINILIBX_TAR_GZ); fi
+$(MLX): $(MLX_DIR)
 	$(MAKE) -j4 -C $(MLX_DIR)
-	@rm -f $(MINILIBX_TAR_GZ)
 
 $(TEST_OBJ_DIR):
 	mkdir -p $(TEST_OBJ_DIR)
 
-$(TEST_OBJ_DIR)/%.o: $(TEST_DIR)/%.c
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(DEBUG_FLAGS) -c $< -o $@
 
 $(TEST_ARG):
 	@:
