@@ -164,7 +164,9 @@ $(NAME): $(MLX) $(GNL) $(OBJS) $(LIBFT)
 # ここはもう少しなんとかしたい
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 
 $(TEST_OBJ_DIR)/%.o: $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
