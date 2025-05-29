@@ -33,6 +33,9 @@ LOAD_SRCS = load/init_cubdata.c \
 			load/utils/free_str_array.c \
 			load/utils/error_print_exit.c
 
+LINE_SEGMENT_SRCS = \
+	   line_segment/has_cross_point.c
+
 
 VEC_SRCS = \
 	   vec/eq_f32x4.c\
@@ -42,7 +45,8 @@ VEC_SRCS = \
 	   vec/div_f32x4.c\
 	   vec/f32x4_wxyz.c\
 	   vec/init_f32x4.c\
-	   vec/print_f32x4.c
+	   vec/print_f32x4.c\
+	   vec/f32x4_to_struct.c\
 
 
 #debugディレクトリは最終的に削除する
@@ -53,7 +57,8 @@ DEBUG_SRCS = debug/debug_print_data.c \
 
 SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
 					$(DEBUG_SRCS)\
-					$(VEC_SRCS)
+					$(VEC_SRCS)\
+					$(LINE_SEGMENT_SRCS)
 
 SRC_FILES = $(MAIN_SRC) \
 			$(SRC_WITHOUT_MAIN)

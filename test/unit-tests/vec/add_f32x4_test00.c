@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 /// ```
-/// make test test/unit_tests/vec/add_f32x4_test00.c
+/// make test test/unit-tests/vec/add_f32x4_test00.c
 /// ```
 int main()
 {
@@ -12,7 +12,7 @@ int main()
 	t_f32x4 b;
 	t_vec_f32x4 *vc;
 
-	a= init_f32x4(1, 2, 3, 4);
+	a = init_f32x4(1, 2, 3, 4);
 	b = init_f32x4(4, 3 , 2, 1);
 	print_f32x4("vec     a:", a);
 	print_f32x4("vec     b:", b);

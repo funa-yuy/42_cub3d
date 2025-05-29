@@ -39,6 +39,8 @@ float f32x4_z(t_f32x4 a);
 
 void set_f32x4_to_arr(float arr[4], t_f32x4 a);
 
+t_vec_f32x4 f32x4_to_struct(t_f32x4 a);
+
 // debug function
 
 void print_f32x4(char *str, t_f32x4 a);
