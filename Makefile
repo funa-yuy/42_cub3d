@@ -132,7 +132,6 @@ clean:
 
 	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean; fi
 
-	# 削除の部分なんとかなりそうなもん
 fclean: test-clean clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
@@ -166,8 +165,6 @@ $(NAME): $(MLX) $(GNL) $(OBJS) $(LIBFT)
 	      -o $(NAME) \
 	      $(OBJS) $(GNL) $(LIBFT) $(MLX) \
 	      $(MLX_FLAGS) -L$(MLX_DIR)
-
-# ここはもう少しなんとかしたい
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
