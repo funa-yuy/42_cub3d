@@ -19,13 +19,11 @@ OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(SRC)
+	$(CC) $(CFLAGS) -c $(SRC) -o $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS)  -c $< -o $@
 
-clean: 
-	$(RM) $(OBJ)
+clean:
 
 fclean: clean 
 	$(RM) $(NAME)

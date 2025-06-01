@@ -35,20 +35,24 @@ LOAD_SRCS = \
 		src/load/utils/free_str_array.c \
 		src/load/utils/error_print_exit.c
 
+
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
 		src/debug/debug_print_strlst.c \
 		src/debug/debug_print_tokens_tmp.c \
 		src/debug/debug_dprintf.c
 
+
 SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)
 
+
 SRC = \
-	$(MAIN_SRC) \
-	$(SRC_WITHOUT_MAIN) \
-	$(GNL_FILES)
+		$(MAIN_SRC) \
+		$(SRC_WITHOUT_MAIN) \
+		$(GNL_FILES)
+
 
 # ============== Libft & GNL ============== #
 
@@ -67,6 +71,7 @@ CFLAGS = \
 	-I$(MLX_DIR) \
 	-I$(GNL_DIR) \
 	-I$(LIBFT_DIR)
+
 
 OBJS = \
 	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
@@ -92,10 +97,9 @@ TEST_FILE = $(TEST_DIR)/dummy_test.c
 # ここに、mustでコンパイルに含めたいファイルを追加していく
 TEST_MUST_FILE = load/check_t_data_structure.c
 
-TEST_SRC = $(SRC_WITHOUT_MAIN)
+TEST_SRC = $(SRC_WITHOUT_MAIN) 
 TEST_OBJS = \
 		$(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
-		$(TEST_FILE:$(TEST_DIR)/%.c=$(TEST_OBJ_DIR)/%.o)
 
 
 # ============== minilibx  ============== #
@@ -141,11 +145,13 @@ re: fclean all
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
 
-test: debug $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
+test: TEST_SRC += $(filter-out test test-clean, $(MAKECMDGOALS))
+test: CFLAGS += $(DEBUG_FLAGS)
+test: $(MLX) $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 	$(CC) \
 		$(CFLAGS) \
 		-o $(TEST_NAME) \
-		$(TEST_OBJS) $(LIBFT) $(GNL) \
+		$(TEST_OBJS) $(GNL) $(LIBFT) $(MLX)\
 		$(MLX_FLAGS) -L$(MLX_DIR)
 	$(VALGRIND) ./$(TEST_NAME)
 
@@ -168,7 +174,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
-$(TEST_OBJ_DIR)/%.o: $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
+$(TEST_OBJ_DIR)/%.o: $(GNL) $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # minilibxのダウンロード & 展開 & コンパイル
