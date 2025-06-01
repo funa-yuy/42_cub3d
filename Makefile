@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/25 17:51:27 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/05/28 00:17:42 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,13 @@ LOAD_SRCS = \
 		src/load/fill_color.c \
 		src/load/fill_player_position.c \
 		src/load/free_data.c \
+		src/load/is_valid_map.c \
 		src/load/utils/ft_str_lst.c \
 		src/load/utils/free_str_array.c \
 		src/load/utils/error_print_exit.c \
 		src/load/utils/is_empty_line.c \
-		src/load/utils/tokenize_utils.c
+		src/load/utils/tokenize_utils.c \
+		src/load/utils/calc_map_index.c
 
 
 DEBUG_SRCS = \

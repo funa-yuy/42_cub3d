@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:56:02 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 19:29:41 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/28 00:15:47 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,6 @@ void	fill_map(t_data *data, char **map_lines)
 	if (!data->map)
 		error_perror_and_exit(NULL);
 	set_data_map(data, map_lines);
+	if (!is_valid_map(data))
+		error_print_and_exit("The map is not surrounded by walls.");
 }
