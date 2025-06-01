@@ -146,6 +146,7 @@ debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
 
 test: TEST_SRC += $(filter-out test test-clean, $(MAKECMDGOALS))
+test: TEST_SRC += test/unit-tests/load/check_t_data_structure.c
 test: CFLAGS += $(DEBUG_FLAGS)
 test: $(MLX) $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 	$(CC) \
