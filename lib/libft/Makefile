@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/11 17:00:40 by mfunakos          #+#    #+#              #
-#    Updated: 2025/05/07 20:55:28 by miyuu            ###   ########.fr        #
+#    Updated: 2025/05/24 14:22:55 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ ft_strtrim.c \
 ft_substr.c \
 ft_tolower.c \
 ft_toupper.c \
-ft_strcmp.c #ここから追加
+ft_strcmp.c \
+ft_isspace.c
 
 BONUS = ft_lstnew.c\
 ft_lstadd_front.c\
