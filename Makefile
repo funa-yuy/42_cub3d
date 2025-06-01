@@ -93,7 +93,6 @@ TEST_NAME = unit_test
 
 TEST_DIR = test/unit-tests
 TEST_OBJ_DIR = $(OBJ_DIR)/unit-tests
-TEST_FILE = $(TEST_DIR)/dummy_test.c
 # ここに、mustでコンパイルに含めたいファイルを追加していく
 TEST_MUST_FILE = load/check_t_data_structure.c
 
@@ -175,7 +174,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
-$(TEST_OBJ_DIR)/%.o: $(GNL) $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
+$(TEST_OBJ_DIR)/%.o: $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # minilibxのダウンロード & 展開 & コンパイル
