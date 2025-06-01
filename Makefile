@@ -76,17 +76,6 @@ CFLAGS = \
 OBJS = \
 	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 
-
-# ------- dedug ------- #
-
-ifeq ($(shell uname), Darwin) #macの場合
-	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
-	VALGRIND =
-else
-	DEBUG_FLAGS = -DDEBUG -g
-	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
-endif
-
 # ------- test ------- #
 
 TEST_NAME = unit_test
@@ -94,22 +83,27 @@ TEST_NAME = unit_test
 TEST_DIR = test/unit-tests
 TEST_OBJ_DIR = $(OBJ_DIR)/unit-tests
 # ここに、mustでコンパイルに含めたいファイルを追加していく
-TEST_MUST_FILE = load/check_t_data_structure.c
+TEST_MUST_FILE = test/unit-tests/load/check_t_data_structure.c
 
 TEST_SRC = $(SRC_WITHOUT_MAIN) 
 TEST_OBJS = \
 		$(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 
-
-# ============== minilibx  ============== #
-
-# 使用しているOSを自動判定して、ダウンロードするminilibxを割り当てる
+# 環境差異
 ifeq ($(shell uname), Darwin) #macの場合
+	# ---------- dedug ---------- #
+	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
+	VALGRIND =
+	# ------- mlx setting ------- #
 	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34596/minilibx_macos_opengl.tgz
 	MINILIBX_TAR_GZ = minilibx_macos_opengl.tgz
 	MLX_DIR = minilibx_opengl_20191021
 	MLX_FLAGS =  -lmlx -framework OpenGL -framework AppKit
 else
+	# ------- dedug ------- #
+	DEBUG_FLAGS = -DDEBUG -g
+	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
+	# ------- mlx setting ------- #
 	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34595/minilibx-linux.tgz
 	MINILIBX_TAR_GZ = minilibx-linux.tgz
 	MLX_DIR = minilibx-linux
@@ -144,9 +138,9 @@ debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
 
 test: TEST_SRC += $(filter-out test test-clean, $(MAKECMDGOALS))
-test: TEST_SRC += test/unit-tests/load/check_t_data_structure.c
+test: TEST_SRC += $(TEST_MUST_FILE)
 test: CFLAGS += $(DEBUG_FLAGS)
-test: $(MLX) $(OBJ_DIR) $(TEST_OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
+test: $(MLX) $(OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 	$(CC) \
 		$(CFLAGS) \
 		-o $(TEST_NAME) \
@@ -161,10 +155,11 @@ test-clean:
 # ========== File Dependency ========== #
 
 $(NAME): $(MLX) $(GNL) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) \
-	      -o $(NAME) \
-	      $(OBJS) $(GNL) $(LIBFT) $(MLX) \
-	      $(MLX_FLAGS) -L$(MLX_DIR)
+	$(CC) \
+		$(CFLAGS) \
+		-o $(NAME) \
+		$(OBJS) $(GNL) $(LIBFT) $(MLX) \
+		$(MLX_FLAGS) -L$(MLX_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
