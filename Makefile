@@ -39,6 +39,7 @@ LINE_SEGMENT_SRCS = \
 
 VEC_SRCS = \
 	   vec/eq_f32x4.c\
+	   vec/cross_point.c\
 	   vec/add_f32x4.c\
 	   vec/sub_f32x4.c\
 	   vec/mul_f32x4.c\

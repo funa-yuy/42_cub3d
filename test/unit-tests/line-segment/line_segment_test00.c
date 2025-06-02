@@ -14,8 +14,8 @@ int main()
 	a.s = init_f32x4(0,0,0,0);
 	a.e = init_f32x4(0,2,2,0);
 
-	b.e = init_f32x4(0, 0, 2, 0);
-	b.s = init_f32x4(0, 2, 0, 0);
+	b.e = init_f32x4(0, 0, 4, 0);
+	b.s = init_f32x4(0, 4, 0, 0);
 
 	printf("has cross point %b \n", has_cross_point(a, b));
 	return (0);

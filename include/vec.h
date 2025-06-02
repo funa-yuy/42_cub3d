@@ -41,6 +41,14 @@ void set_f32x4_to_arr(float arr[4], t_f32x4 a);
 
 t_vec_f32x4 f32x4_to_struct(t_f32x4 a);
 
+
+// linear_solver
+
+t_f32x4 linear_solver(
+	t_f32x4 p,
+	t_f32x4 q
+);
+
 // debug function
 
 void print_f32x4(char *str, t_f32x4 a);

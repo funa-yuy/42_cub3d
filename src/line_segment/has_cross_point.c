@@ -8,7 +8,7 @@
 // 一つの線分に関して
 // x成分の大きい方を返す
 // return (.w = min, 0, 0, .z = max)
-t_vec_f32x4 minmax_line_segment_x(t_line_segment a)
+static t_vec_f32x4 minmax_line_segment_x(t_line_segment a)
 {
 	t_vec_f32x4 s;
 	t_vec_f32x4 e;
@@ -21,7 +21,7 @@ t_vec_f32x4 minmax_line_segment_x(t_line_segment a)
 		return (f32x4_to_struct(init_f32x4(e.x, 0, 0, s.x)));
 }
 
-t_vec_f32x4 minmax_line_segment_y(t_line_segment a)
+static t_vec_f32x4 minmax_line_segment_y(t_line_segment a)
 {
 	t_vec_f32x4 s;
 	t_vec_f32x4 e;
@@ -43,7 +43,7 @@ has_cross_point_axis_x(t_line_segment a, t_line_segment b)
 	a_min_max = minmax_line_segment_x(a);
 	b_min_max = minmax_line_segment_x(b);
 	return (
-		a_min_max.w <= b_min_max.z && b_min_max.w < a_min_max.z
+		a_min_max.w <= b_min_max.z && b_min_max.w <= a_min_max.z
 	);
 }
 
@@ -56,7 +56,7 @@ has_cross_point_axis_y(t_line_segment a, t_line_segment b)
 	a_min_max = minmax_line_segment_y(a);
 	b_min_max = minmax_line_segment_y(b);
 	return (
-		a_min_max.w <= b_min_max.z && b_min_max.w < a_min_max.z
+		a_min_max.w <= b_min_max.z && b_min_max.w <= a_min_max.z
 	);
 }
 

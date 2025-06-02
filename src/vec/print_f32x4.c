@@ -8,10 +8,10 @@
 
 void print_f32x4(char *str, t_f32x4 a)
 {
-	float arr[4];
+	t_vec_f32x4 p;
 
-	set_f32x4_to_arr(arr, a);
+	p = f32x4_to_struct(a);
 	debug_dprintf(STDERR_FILENO, "%s", str);
 	debug_dprintf(STDERR_FILENO, "f32x4(%f, %f, %f, %f)\n",
-			arr[0], arr[1], arr[2], arr[3]);
+			p.w, p.x, p.y, p.z);
 }
