@@ -6,11 +6,61 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:00:20 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/14 15:26:54 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/05/25 18:04:41 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+bool	is_integer(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (!str || !str[i])
+		return (false);
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	if (!str[i])
+		return (false);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+int	convert_rgb_integer(char *str)
+{
+	int	value;
+
+	if (!is_integer(str))
+		error_print_and_exit("Invalid color value.");
+	value = ft_atoi(str);
+	if (value < 0 || value > 255)
+		error_print_and_exit("Color value must be between 0-255.");
+	return (value);
+}
+
+int	get_comma_count(char *str)
+{
+	size_t	i;
+	size_t	count;
+
+	if (!str)
+		return (0);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	return (count);
+}
 
 int	rgb_to_hex(char *color)
 {
@@ -20,16 +70,14 @@ int	rgb_to_hex(char *color)
 	int		b;
 	int		result;
 
-	//todo: 本来は、tokenizeでpathがcolorな場合のエラー処理するので、ここでは必要ない
-	if (!color)
+	if (!color || get_comma_count(color) != 2)
 		error_print_and_exit("Invalid color value.");
-	//todo: 一旦", "で区切られてる前提でやってる、もっと細かいparse関数を作る
 	rgb_tmp = ft_split(color, ',');
 	if (!rgb_tmp)
 		error_perror_and_exit(NULL);
-	r = ft_atoi(rgb_tmp[0]);
-	g = ft_atoi(rgb_tmp[1]);
-	b = ft_atoi(rgb_tmp[2]);
+	r = convert_rgb_integer(rgb_tmp[0]);
+	g = convert_rgb_integer(rgb_tmp[1]);
+	b = convert_rgb_integer(rgb_tmp[2]);
 	result = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 	free(rgb_tmp[0]);
 	free(rgb_tmp[1]);

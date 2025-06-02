@@ -54,12 +54,14 @@ dkms.conf
 # original
 .vscode
 .cursor
+.cursorrules
 cub3d
 unit_test
 mfunakos
 *.DS_Store
 minilibx_opengl_20191021
 minilibx-linux
+<<<<<<< HEAD
 
 # Clang lsp tools
 .cache/
@@ -68,3 +70,4 @@ compile_commands.json
 # Vim tmp filee
 *.swp
 *.swo
+*.tgz
