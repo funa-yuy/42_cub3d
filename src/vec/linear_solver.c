@@ -102,13 +102,11 @@ t_f32x4 linear_solver(
 	x_nume = matrix_2x2_mapper(
 		p, q, 
 		init_f32x4(0, f32x4_to_struct(p).z, f32x4_to_struct(q).z, 0),
-		0
-	);
-	y_nume =  matrix_2x2_mapper(
+		0);
+	y_nume = matrix_2x2_mapper(
 		p, q, 
 		init_f32x4(0, f32x4_to_struct(p).z, f32x4_to_struct(q).z, 0),
-		1
-	);
+		1);
 	return (init_f32x4(
 			0,
 		       	matrix_scalar_2x2(x_nume.s, x_nume.e) / base,
