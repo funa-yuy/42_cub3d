@@ -49,6 +49,10 @@ t_f32x4 linear_solver(
 	t_f32x4 q
 );
 
+typedef struct s_line_segment t_line_segment;
+// cross point
+t_f32x4 cross_point(t_line_segment a, t_line_segment b);
+
 // debug function
 
 void print_f32x4(char *str, t_f32x4 a);

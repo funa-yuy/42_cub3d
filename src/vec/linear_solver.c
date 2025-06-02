@@ -83,6 +83,10 @@ static float matrix_scalar_2x2(t_f32x4 a, t_f32x4 b)
 /// c*x + d*y = f
 ///
 /// and solve this equations
+///
+///
+/// if parameter positionj out of range or each line segment is relation with pararel,
+/// parameter w is set 1
 t_f32x4 linear_solver(
 	t_f32x4 p,
 	t_f32x4 q
@@ -93,6 +97,8 @@ t_f32x4 linear_solver(
 	t_line_segment y_nume;
 
 	base = matrix_scalar_2x2(p, q);
+	if (base == 0)
+		return (init_f32x4(1, 0, 0, 0));
 	x_nume = matrix_2x2_mapper(
 		p, q, 
 		init_f32x4(0, f32x4_to_struct(p).z, f32x4_to_struct(q).z, 0),
@@ -110,14 +116,3 @@ t_f32x4 linear_solver(
 			0));
 }
 
-
-/// ２つのline_segmentを受け取って交点の位置ベクトルを返す
-/// ベクトル
-///
-//t_f32x4 cross_point(t_line_segment a, t_line_segment b)
-//{
-//	float base;
-//
-//	base = matrix_scalar_2x2(init_f32x4(0, , , 0))
-//	return (init_f32x4(float w, float x, float y, float z));
-//}

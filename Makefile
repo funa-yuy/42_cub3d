@@ -39,25 +39,22 @@ LOAD_SRCS = \
 		src/load/utils/calc_map_index.c
 
 LINE_SEGMENT_SRCS = \
-	   src/line_segment/has_cross_point.c
+		src/line_segment/has_cross_point.c
 
 
 VEC_SRCS = \
-	   src/vec/eq_f32x4.c\
-	   src/vec/linear_solver.c\
-	   src/vec/add_f32x4.c\
-	   src/vec/sub_f32x4.c\
-	   src/vec/mul_f32x4.c\
-	   src/vec/div_f32x4.c\
-	   src/vec/f32x4_wxyz.c\
-	   src/vec/init_f32x4.c\
-	   src/vec/print_f32x4.c\
-	   src/vec/f32x4_to_struct.c\
+		src/vec/eq_f32x4.c\
+		src/vec/linear_solver.c\
+		src/vec/add_f32x4.c\
+		src/vec/sub_f32x4.c\
+		src/vec/mul_f32x4.c\
+		src/vec/div_f32x4.c\
+		src/vec/f32x4_wxyz.c\
+		src/vec/init_f32x4.c\
+		src/vec/print_f32x4.c\
+		src/vec/f32x4_to_struct.c\
+		src/vec/cross_point.c
 
-DEBUG_SRCS = debug/debug_print_data.c \
-			debug/debug_print_strlst.c \
-			debug/debug_print_tokens_tmp.c \
-			debug/debug_dprintf.c
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
@@ -66,10 +63,11 @@ DEBUG_SRCS = \
 		src/debug/debug_dprintf.c
 
 
-SRC_WITHOUT_MAIN = $(LOAD_SRCS) \
-					$(DEBUG_SRCS)\
-					$(VEC_SRCS)\
-					$(LINE_SEGMENT_SRCS)
+SRC_WITHOUT_MAIN = \
+		$(LOAD_SRCS) \
+		$(DEBUG_SRCS)\
+		$(VEC_SRCS)\
+		$(LINE_SEGMENT_SRCS)
 
 
 SRC = \
