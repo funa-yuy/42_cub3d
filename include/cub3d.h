@@ -71,7 +71,7 @@ typedef struct s_data
 	unsigned int	height;
 	unsigned int	width;
 	t_pos			player;//プレイヤーの初期位置&向き
-	int				*map;
+	enum e_map_type		*map;
 }				t_data;
 
 typedef struct s_strlst

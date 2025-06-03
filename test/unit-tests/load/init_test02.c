@@ -31,7 +31,7 @@ int	init_test02(void)
 	t_data	*target;		// <- 答え
 	t_data	*data;			// <- 自作データ
 
-	int	map[] = \
+	enum e_map_type	map[] = \
 	{
 		NOTHING, NOTHING, WALL, WALL, WALL, WALL, WALL, WALL, WALL, \
 		WALL, WALL, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, WALL, NOTHING,\

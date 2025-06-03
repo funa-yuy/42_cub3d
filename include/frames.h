@@ -1,0 +1,33 @@
+#ifndef FRAMES_H
+#define FRAMES_H
+
+#include "line_segment.h"
+#include <stdlib.h>
+#include "cub3d.h"
+
+typedef struct s_axis_x_frames t_axis_x_frames;
+
+struct s_axis_x_frames
+{
+	size_t width;
+	size_t height;
+
+	t_line_segment *buf[];
+};
+
+typedef struct s_axis_y_frames t_axis_y_frames;
+struct s_axis_y_frames
+{
+	size_t width;
+	size_t height;
+
+	t_line_segment *buf[];
+};
+
+enum e_map_type get_map_type(
+	t_data *data,
+	size_t x,
+	size_t y
+);
+
+#endif

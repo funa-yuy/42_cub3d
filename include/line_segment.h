@@ -13,4 +13,5 @@ struct s_line_segment
 
 bool has_cross_point(t_line_segment a, t_line_segment b);
 
+t_line_segment *get_line_segment_arr(size_t width, size_t height);
 #endif
