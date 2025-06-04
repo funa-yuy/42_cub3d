@@ -38,7 +38,7 @@ int print_framex(t_axis_x_frames *f)
 		while (x < f->width)
 		{
 			if (is_zero_vector(f->buf[y * f->width + x]))
-				debug_dprintf(STDERR_FILENO, "_");
+				debug_dprintf(STDERR_FILENO, "__");
 			else if (check_right_or_left(f->buf[y * f->width + x]))
 				debug_dprintf(STDERR_FILENO, "->");
 			else 
