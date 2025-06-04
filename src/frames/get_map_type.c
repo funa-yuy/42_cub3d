@@ -9,9 +9,9 @@ enum e_map_type get_map_type(
 	size_t y
 )
 {
-	if (!(0 <= x && x < data->width))
+	if (!(x < data->width))
 		return (WALL);
-	if (!(0 <= y && y < data->height))
+	if (!(y < data->height))
 		return (WALL);
 	return (
 		data->map[y * data->width + x]

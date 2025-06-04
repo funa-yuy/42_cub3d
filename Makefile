@@ -40,7 +40,9 @@ LOAD_SRCS = \
 		src/load/utils/calc_map_index.c
 
 LINE_SEGMENT_SRCS = \
-		src/line_segment/has_cross_point.c
+		src/line_segment/has_cross_point.c\
+		src/line_segment/is_zero_vector.c\
+
 
 
 VEC_SRCS = \
@@ -57,6 +59,15 @@ VEC_SRCS = \
 		src/vec/cross_point.c
 
 
+
+FRAME_SRC = \
+		src/frames/axis_x_frames.c\
+		src/frames/axis_y_frames.c\
+		src/frames/get_line_segment_arr.c\
+		src/frames/get_map_type.c\
+		src/frames/print_frame.c\
+
+
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
 		src/debug/debug_print_strlst.c \
@@ -68,7 +79,8 @@ SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)\
 		$(VEC_SRCS)\
-		$(LINE_SEGMENT_SRCS)
+		$(LINE_SEGMENT_SRCS)\
+		$(FRAME_SRC)
 
 
 SRC = \

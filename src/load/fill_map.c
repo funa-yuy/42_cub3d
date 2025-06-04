@@ -54,7 +54,7 @@ void	set_data_map(t_data *data, char **map_lines)
 
 void	fill_map(t_data *data, char **map_lines)
 {
-	data->map = (int *)ft_calloc(data->height * data->width + 1, sizeof(int));
+	data->map = ft_calloc(data->height * data->width + 1, sizeof(int));
 	if (!data->map)
 		error_perror_and_exit(NULL);
 	set_data_map(data, map_lines);

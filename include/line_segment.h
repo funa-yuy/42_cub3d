@@ -1,4 +1,4 @@
-#ifndef LINE_SEGMENT_H
+#ifndef LINE_SEGMENT_H 
 #define LINE_SEGMENT_H
 
 #include "vec.h"
@@ -14,4 +14,6 @@ struct s_line_segment
 bool has_cross_point(t_line_segment a, t_line_segment b);
 
 t_line_segment *get_line_segment_arr(size_t width, size_t height);
+
+bool is_zero_vector(t_line_segment a);
 #endif
