@@ -27,6 +27,8 @@
 /* ---- macの場合、以下2つをコメントアウト ---- */
 # include <X11/keysym.h>
 # include <X11/X.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 // ------------------------------------------------
 // macro

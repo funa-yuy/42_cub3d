@@ -5,7 +5,8 @@
 
 #include <stdbool.h>
 
-static bool check_up_or_down(t_line_segment l)
+/// 上向きのときtrue
+bool check_vec_up_or_down(t_line_segment l)
 {
 	t_vec_f32x4 a;
 
@@ -15,7 +16,8 @@ static bool check_up_or_down(t_line_segment l)
 	return (0 < a.y);
 }
 
-static bool check_right_or_left(t_line_segment l)
+/// 右向きのときtrue
+bool check_vec_right_or_left(t_line_segment l)
 {
 	t_vec_f32x4 a;
 
@@ -39,7 +41,7 @@ int print_framex(t_axis_x_frames *f)
 		{
 			if (is_zero_vector(f->buf[y * f->width + x]))
 				debug_dprintf(STDERR_FILENO, "__");
-			else if (check_right_or_left(f->buf[y * f->width + x]))
+			else if (check_vec_right_or_left(f->buf[y * f->width + x]))
 				debug_dprintf(STDERR_FILENO, "->");
 			else 
 				debug_dprintf(STDERR_FILENO, "<-");
@@ -65,7 +67,7 @@ int print_framey(t_axis_y_frames *f)
 		{
 			if (is_zero_vector(f->buf[y * f->width + x]))
 				debug_dprintf(STDERR_FILENO, "__");
-			else if (check_up_or_down(f->buf[y * f->width + x]))
+			else if (check_vec_up_or_down(f->buf[y * f->width + x]))
 				debug_dprintf(STDERR_FILENO, "^_");
 			else 
 				debug_dprintf(STDERR_FILENO, "_v");

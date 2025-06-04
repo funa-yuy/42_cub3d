@@ -38,4 +38,8 @@ int print_framex(t_axis_x_frames *f);
 
 int print_framey(t_axis_y_frames *f);
 
+bool check_vec_up_or_down(t_line_segment l);
+
+bool check_vec_right_or_left(t_line_segment l);
+
 #endif
