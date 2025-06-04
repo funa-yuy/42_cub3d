@@ -11,8 +11,6 @@ struct s_line_segment
 	t_f32x4 e;
 };
 
-bool has_cross_point(t_line_segment a, t_line_segment b);
-
 t_line_segment *get_line_segment_arr(size_t width, size_t height);
 
 bool is_zero_vector(t_line_segment a);

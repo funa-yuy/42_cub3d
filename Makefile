@@ -40,7 +40,6 @@ LOAD_SRCS = \
 		src/load/utils/calc_map_index.c
 
 LINE_SEGMENT_SRCS = \
-		src/line_segment/has_cross_point.c\
 		src/line_segment/is_zero_vector.c\
 
 
