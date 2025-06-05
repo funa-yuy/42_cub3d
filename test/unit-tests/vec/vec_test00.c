@@ -4,7 +4,6 @@
 #include <assert.h>
 #include <unistd.h>
 
-
 /// how to access each elements of vector
 ///
 /// ```

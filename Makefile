@@ -55,7 +55,14 @@ VEC_SRCS = \
 		src/vec/init_f32x4.c\
 		src/vec/print_f32x4.c\
 		src/vec/f32x4_to_struct.c\
-		src/vec/cross_point.c
+		src/vec/cross_point.c \
+		
+		#src/vec/init_i32x4.c\
+		#src/vec/add_i32x4.c\
+		#src/vec/sub_i32x4.c\
+		#src/vec/mul_i32x4.c\
+		#src/vec/i32x4_to_struct.c\
+		#src/vec/i32x4_wxyz.c\
 
 
 
@@ -105,7 +112,6 @@ CFLAGS = \
 	-I$(MLX_DIR) \
 	-I$(GNL_DIR) \
 	-I$(LIBFT_DIR)
-
 
 OBJS = \
 	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \

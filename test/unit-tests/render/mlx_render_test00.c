@@ -48,7 +48,7 @@ int main()
 
 	mlx_ptr = mlx_init();
 	mlx_win = mlx_new_window(mlx_ptr, 600, 600, "title");
-	mlx_img = mlx_new_image(mlx_ptr, 600, 600);
+	mlx_img = mlx_new_image(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_addr = (uint32_t *)mlx_get_data_addr(mlx_img, &bpp, &size_line, &endian);
 
 	mlx_clear_window(mlx_ptr, mlx_win);

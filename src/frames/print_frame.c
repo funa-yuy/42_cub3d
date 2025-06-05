@@ -104,7 +104,6 @@ int print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
 		}
 		else
 		{
-
 			debug_dprintf(STDERR_FILENO, " ");
 			while (x < fx->width)
 			{
