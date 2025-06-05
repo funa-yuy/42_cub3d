@@ -79,3 +79,46 @@ int print_framey(t_axis_y_frames *f)
 	return (0);
 }
 
+int print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
+{
+	size_t x;
+	size_t y;
+
+	x = 0;
+	y = 0;
+	while (y < fy->height + fx->height)
+	{
+		x = 0;
+		if (y % 2 == 1)
+		{
+			while (x < fy->width)
+			{
+				if (is_zero_vector(fy->buf[(y / 2) * fy->width + x]))
+					debug_dprintf(STDERR_FILENO, "  ");
+				else if (check_vec_up_or_down(fy->buf[(y / 2) * fy->width + x]))
+					debug_dprintf(STDERR_FILENO, "^ ");
+				else 
+					debug_dprintf(STDERR_FILENO, " v");
+				x += 1;
+			}
+		}
+		else
+		{
+
+			debug_dprintf(STDERR_FILENO, " ");
+			while (x < fx->width)
+			{
+				if (is_zero_vector(fx->buf[(y / 2) * fx->width + x]))
+					debug_dprintf(STDERR_FILENO, "  ");
+				else if (check_vec_right_or_left(fx->buf[(y / 2) * fx->width + x]))
+					debug_dprintf(STDERR_FILENO, "->");
+				else 
+					debug_dprintf(STDERR_FILENO, "<-");
+				x += 1;
+			}
+		}
+		debug_dprintf(STDERR_FILENO, "\n");
+		y += 1;
+	}
+	return (0);
+}

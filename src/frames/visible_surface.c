@@ -15,7 +15,6 @@ bool is_visible_surface_axis_y(t_line_segment l, t_f32x4 player)
 	else
 		return (f32x4_to_struct(l.s).x > f32x4_to_struct(player).x);
 }
-
  
 bool is_visible_surface_axis_x(t_line_segment l, t_f32x4 player)
 {
