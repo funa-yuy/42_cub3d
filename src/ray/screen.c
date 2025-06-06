@@ -63,3 +63,20 @@ int draw_vertical_line(
 	}
 	return (0);
 }
+
+uint32_t *get_vertical_arr_n(void *img_arr, size_t index, t_vec_i32x4 size, int out_size)
+{
+	uint32_t *arr;
+	int i;
+	float d;
+
+	arr = (uint32_t *) malloc(sizeof(uint32_t) * out_size);
+	i = 0;
+	d = (float)size.y / out_size;
+	while (i < out_size)
+	{
+		arr[i] = ((uint32_t *)img_arr)[size.x * (int)floorf( d * i) + index];
+		i += 1;
+	}
+	return (arr);
+}

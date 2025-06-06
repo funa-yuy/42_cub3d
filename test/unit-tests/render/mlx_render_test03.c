@@ -39,7 +39,7 @@ uint32_t *get_image_addr(
 }
 
 /// ```bash
-/// make test test/unit-tests/render/mlx_render_test02.c
+/// make test test/unit-tests/render/mlx_render_test03.c
 /// ```
 int main()
 {
@@ -76,13 +76,20 @@ int main()
 	while (i < width)
 	{
 		uint32_t *arr;
+		int height_size;
 
-		arr = get_vertical_arr(small_mlx_addr, i, width, height);
+		height_size = 128;
+		arr = get_vertical_arr_n(
+			small_mlx_addr, 
+			i, 
+			(t_vec_i32x4){0, height, width, 0 },
+			height_size
+		);
 		if (draw_vertical_line(
 			mlx_addr, 
 			(t_vec_i32x4){0, 100, 100 + i, 0},
 			arr,
-			height
+			height_size
 		))
 		{
 			printf("ERROR!\n");
