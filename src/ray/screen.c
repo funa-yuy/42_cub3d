@@ -4,6 +4,7 @@
 
 #include <math.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 // 
@@ -36,14 +37,14 @@ void	put_point_only_check_y(
 	int32_t	y,
 	uint32_t color)
 {
-	if (0 <= x && x < WINDOW_WIDTH && 0 <= y && y < WINDOW_HEIGHT)
+	if (0 <= y && y < WINDOW_HEIGHT)
 	{
 		mlx_addr[y * WINDOW_WIDTH + x] = color;
 	}
 }
 
 /// 水平に書く
-int draw_vertical(
+int draw_vertical_line(
 	void *mlx_addr, // mut
 	t_vec_i32x4 start, // スクリーン上で始点になるベクトル
 	uint32_t vline[],
@@ -53,7 +54,7 @@ int draw_vertical(
 	size_t i;
 
 	i = 0;
-	if (0 <= start.x && start.x < WINDOW_WIDTH)
+	if (!(0 <= start.x && start.x < WINDOW_WIDTH))
 		return (1);
 	while (i < vline_len)
 	{

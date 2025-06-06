@@ -73,6 +73,9 @@ FRAME_SRC = \
 		src/frames/get_map_type.c\
 		src/frames/print_frame.c\
 
+RENDER_SRC = \
+		src/ray/screen.c\
+
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
@@ -86,7 +89,8 @@ SRC_WITHOUT_MAIN = \
 		$(DEBUG_SRCS)\
 		$(VEC_SRCS)\
 		$(LINE_SEGMENT_SRCS)\
-		$(FRAME_SRC)
+		$(FRAME_SRC)\
+		$(RENDER_SRC)
 
 
 SRC = \
@@ -112,6 +116,7 @@ CFLAGS = \
 	-I$(MLX_DIR) \
 	-I$(GNL_DIR) \
 	-I$(LIBFT_DIR)
+
 
 OBJS = \
 	$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
@@ -185,7 +190,7 @@ test: $(MLX) $(OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 		$(CFLAGS) \
 		-o $(TEST_NAME) \
 		$(TEST_OBJS) $(GNL) $(LIBFT) $(MLX)\
-		$(MLX_FLAGS) -L$(MLX_DIR)
+		$(MLX_FLAGS) -lm -L$(MLX_DIR)
 	$(VALGRIND) ./$(TEST_NAME)
 
 test-clean:
@@ -199,7 +204,7 @@ $(NAME): $(MLX) $(GNL) $(OBJS) $(LIBFT)
 		$(CFLAGS) \
 		-o $(NAME) \
 		$(OBJS) $(GNL) $(LIBFT) $(MLX) \
-		$(MLX_FLAGS) -L$(MLX_DIR)
+		$(MLX_FLAGS) -lm -L$(MLX_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
