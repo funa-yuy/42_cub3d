@@ -1,4 +1,6 @@
 #include "vec.h"
+#include "cub3d.h"
+#include <stdlib.h>
 
 void print_i32x4(char *str, t_i32x4 a)
 {
