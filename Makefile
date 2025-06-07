@@ -21,6 +21,7 @@ HEADER_DIR = include
 MAIN_SRC = \
 		src/main.c
 
+
 LOAD_SRCS = \
 		src/load/init_cubdata.c \
 		src/load/normalize_cubdata.c \
@@ -39,9 +40,9 @@ LOAD_SRCS = \
 		src/load/utils/tokenize_utils.c \
 		src/load/utils/calc_map_index.c
 
+
 LINE_SEGMENT_SRCS = \
 		src/line_segment/is_zero_vector.c\
-
 
 
 VEC_SRCS = \
@@ -65,7 +66,6 @@ VEC_SRCS = \
 		#src/vec/i32x4_wxyz.c\
 
 
-
 FRAME_SRC = \
 		src/frames/axis_x_frames.c\
 		src/frames/axis_y_frames.c\
@@ -73,8 +73,9 @@ FRAME_SRC = \
 		src/frames/get_map_type.c\
 		src/frames/print_frame.c\
 
+
 RENDER_SRC = \
-		src/ray/screen.c\
+		src/render/screen.c\
 
 
 DEBUG_SRCS = \
