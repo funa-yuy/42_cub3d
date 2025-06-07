@@ -4,7 +4,6 @@
 
 #include <math.h>
 #include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 // 
@@ -16,8 +15,7 @@ size_t get_vertical_image_axis_x(t_line_segment axis_x_wall, t_f32x4 cross_point
 {
 	float d;
 
-	d = f32x4_to_struct(axis_x_wall.s).x - f32x4_to_struct(cross_point).x; // -1 <= d < 1
-	d = fabsf(d);
+	d = fabsf(f32x4_to_struct(axis_x_wall.s).x - f32x4_to_struct(cross_point).x); // -1 <= d < 1
 	return ((size_t) floorf(d * (float) img_width));
 }
 
@@ -38,9 +36,7 @@ void	put_point_only_check_y(
 	uint32_t color)
 {
 	if (0 <= y && y < WINDOW_HEIGHT)
-	{
 		mlx_addr[y * WINDOW_WIDTH + x] = color;
-	}
 }
 
 /// 水平に書く
@@ -64,6 +60,7 @@ int draw_vertical_line(
 	return (0);
 }
 
+/// n倍して表示
 uint32_t *get_vertical_arr_n(void *img_arr, size_t index, t_vec_i32x4 size, int out_size)
 {
 	uint32_t *arr;
