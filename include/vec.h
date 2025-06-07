@@ -82,6 +82,8 @@ t_f32x4 cross_point(t_line_segment a, t_line_segment b);
 
 void print_f32x4(char *str, t_f32x4 a);
 
+void print_i32x4(char *str, t_i32x4 a);
+
 bool eq_f32x4(t_f32x4 a, t_f32x4 b);
 
 #endif

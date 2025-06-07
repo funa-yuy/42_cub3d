@@ -17,7 +17,7 @@ int main()
 	t_vec_i32x4 vc;
 
 	a = init_i32x4(1, 2, 3, 4);
-	b = init_i32x4(4, 3 , 2, 1);
+	b = init_i32x4(4, 3, 2, 1);
 	vc = i32x4_to_struct(a);
 
 	assert(

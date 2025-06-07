@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/28 00:17:42 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/07 17:07:51 by tmuranak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,13 +57,13 @@ VEC_SRCS = \
 		src/vec/print_f32x4.c\
 		src/vec/f32x4_to_struct.c\
 		src/vec/cross_point.c \
-		
-		#src/vec/init_i32x4.c\
-		#src/vec/add_i32x4.c\
-		#src/vec/sub_i32x4.c\
-		#src/vec/mul_i32x4.c\
-		#src/vec/i32x4_to_struct.c\
-		#src/vec/i32x4_wxyz.c\
+		src/vec/init_i32x4.c\
+		src/vec/add_i32x4.c\
+		src/vec/sub_i32x4.c\
+		src/vec/mul_i32x4.c\
+		src/vec/i32x4_to_struct.c\
+		src/vec/i32x4_wxyz.c\
+		src/vec/print_i32x4.c\
 
 
 FRAME_SRC = \
@@ -154,6 +154,9 @@ else
 	MINILIBX_TAR_GZ = minilibx-linux.tgz
 	MLX_DIR = minilibx-linux
 	MLX_FLAGS = -lmlx -lXext -lX11
+	# cpu固有の命令
+	CFLAGS += -msse4.1 
+	CFLAGS += -mavx512vl
 endif
 
 MLX = $(MLX_DIR)/libmlx.a
