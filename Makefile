@@ -64,6 +64,7 @@ VEC_SRCS = \
 		src/vec/i32x4_to_struct.c\
 		src/vec/i32x4_wxyz.c\
 		src/vec/print_i32x4.c\
+		src/vec/norm_f32x4.c\
 
 
 FRAME_SRC = \
