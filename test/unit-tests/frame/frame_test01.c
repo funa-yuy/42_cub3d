@@ -41,7 +41,7 @@ int main()
 	target = &(t_data){\
 		NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
-		0x63580a, 0x0a1e0a, /* f_color, c_color */\
+		NULL,0x63580a, 0x0a1e0a, /* f_color, c_color */\
 		14, 33, /* height,width */ \
 		(t_pos){11, 26, DIR_WEST}, map};/*player, map*/
 	show(target);

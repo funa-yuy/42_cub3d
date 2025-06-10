@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 // 
 // resolution 
@@ -69,9 +70,10 @@ uint32_t *get_vertical_arr_n(void *img_arr, size_t index, t_vec_i32x4 size, int 
 
 	arr = (uint32_t *) malloc(sizeof(uint32_t) * out_size);
 	i = 0;
-	d = (float)size.y / out_size;
+	d = (float)size.y / (float)out_size;
 	while (i < out_size)
 	{
+		//debug_dprintf(STDERR_FILENO, "hello world??? %d %d\n", i, size.x * (int)floorf( d * i) + index);
 		arr[i] = ((uint32_t *)img_arr)[size.x * (int)floorf( d * i) + index];
 		i += 1;
 	}

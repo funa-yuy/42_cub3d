@@ -28,11 +28,11 @@ t_wall_type get_wall_type_by_line_segment(t_line_segment a)
 void *get_wall_img_by_wall_type_enum(t_data data, t_wall_type t)
 {
 	if (t == e_wall_type_no_img)
-		return (data.no_img);
+		return (data.no_img_addr);
 	else if (t == e_wall_type_ea_img)
-		return (data.ea_img);
+		return (data.ea_img_addr);
 	else if (t == e_wall_type_so_img)
-		return (data.so_img);
+		return (data.so_img_addr);
 	else 
-		return (data.we_img);
+		return (data.we_img_addr);
 }

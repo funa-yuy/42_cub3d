@@ -4,6 +4,7 @@
 #include "vec.h"
 #include <stdint.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 uint32_t *get_vertical_arr(void *img_arr, size_t index, size_t img_width, size_t img_height)
 {
@@ -78,7 +79,8 @@ int main()
 		uint32_t *arr;
 		int height_size;
 
-		height_size = 128;
+		height_size = 346;
+		debug_dprintf(STDERR_FILENO, "width: %d height %d\n", width, height);
 		arr = get_vertical_arr_n(
 			small_mlx_addr, 
 			i, 

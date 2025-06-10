@@ -52,6 +52,7 @@ VEC_SRCS = \
 		src/vec/sub_f32x4.c\
 		src/vec/mul_f32x4.c\
 		src/vec/div_f32x4.c\
+		src/vec/scalar_f32x4.c\
 		src/vec/f32x4_wxyz.c\
 		src/vec/init_f32x4.c\
 		src/vec/print_f32x4.c\
@@ -65,6 +66,7 @@ VEC_SRCS = \
 		src/vec/i32x4_wxyz.c\
 		src/vec/print_i32x4.c\
 		src/vec/norm_f32x4.c\
+		src/vec/f32x4_has_error.c\
 
 
 FRAME_SRC = \
@@ -73,10 +75,12 @@ FRAME_SRC = \
 		src/frames/get_line_segment_arr.c\
 		src/frames/get_map_type.c\
 		src/frames/print_frame.c\
+		src/frames/get_wall_type.c\
 
 
 RENDER_SRC = \
 		src/render/screen.c\
+		src/render/player.c\
 
 
 DEBUG_SRCS = \
@@ -151,7 +155,7 @@ else
 	DEBUG_FLAGS = -DDEBUG -g
 	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 	# ------- mlx setting ------- #
-	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34595/minilibx-linux.tgz
+	MINILIBX_URL = https://cdn.intra.42.fr/document/document/35303/minilibx-linux.tgz
 	MINILIBX_TAR_GZ = minilibx-linux.tgz
 	MLX_DIR = minilibx-linux
 	MLX_FLAGS = -lmlx -lXext -lX11
@@ -196,7 +200,7 @@ test: $(MLX) $(OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 		-o $(TEST_NAME) \
 		$(TEST_OBJS) $(GNL) $(LIBFT) $(MLX)\
 		$(MLX_FLAGS) -lm -L$(MLX_DIR)
-	$(VALGRIND) ./$(TEST_NAME)
+	./$(TEST_NAME)
 
 test-clean:
 	rm -rf $(TEST_OBJ_DIR)

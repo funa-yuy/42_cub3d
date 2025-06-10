@@ -2,7 +2,10 @@
 #define RENDER_H
 
 #include "vec.h"
+#include "frames.h"
+
 #include <stdint.h>
+#include "cub3d.h"
 
 typedef
 struct s_fence{
@@ -19,4 +22,9 @@ int draw_vertical_line(
 
 uint32_t *get_vertical_arr_n(void *img_arr, size_t index, t_vec_i32x4 size, int out_size);
 
+int render_wall_to_screen(
+	t_data *data,
+       	t_axis_xy_frames axis_xy_frames,
+	t_f32x4 player // t_f32x4(reserved , player_x, player_y, player_angle)
+);
 #endif

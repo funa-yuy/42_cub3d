@@ -56,6 +56,14 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 	if (!data->mlx)
 		error_print_and_exit("mlx_init failed");
 	data->win = mlx_new_window(data->mlx, 4 * IMG_SIZE, IMG_SIZE, "cub3D");
+
+	int bpp;
+	int size_line;
+	int endian;
+
+	data -> mlx_img = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->mlx_addr =  (uint32_t *)mlx_get_data_addr(data->mlx_img, &bpp, &size_line, &endian);
+
 	fill_images(data, tokens);
 	fill_color(data, tokens);
 	fill_player_position(data, tokens->map_lines);

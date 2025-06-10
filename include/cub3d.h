@@ -68,10 +68,16 @@ typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
+	void			*mlx_img;
+	uint32_t		*mlx_addr;
 	void			*no_img;//mlx_put_image_to_windowしたもの
 	void			*so_img;//mlx_put_image_to_windowしたもの
 	void			*we_img;//mlx_put_image_to_windowしたもの
 	void			*ea_img;//mlx_put_image_to_windowしたもの
+	uint32_t			*no_img_addr;//mlx_put_image_to_windowしたもの
+	uint32_t			*so_img_addr;//mlx_put_image_to_windowしたもの
+	uint32_t			*we_img_addr;//mlx_put_image_to_windowしたもの
+	uint32_t			*ea_img_addr;//mlx_put_image_to_windowしたもの
 	uint32_t		f_color;//16進数　に変換したカラー
 	uint32_t		c_color;//16進数　に変換したカラー
 	unsigned int	height;

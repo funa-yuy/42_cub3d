@@ -65,7 +65,8 @@ int	init_test07(void)
 	target = &(t_data){\
 		NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
-		0xDC6400, 0xE11E00, /* f_color, c_color */\
+		NULL, NULL, NULL, NULL, \
+		NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
 		14, 33, /* height,width */ \
 		(t_pos){11, 26, DIR_NORTH}, map};/*player, map*/
 	printf("\x1b[32m ================ ↓正解↓ ================ \x1b[39m\n");

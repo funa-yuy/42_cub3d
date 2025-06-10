@@ -13,7 +13,6 @@
 #include "cub3d.h"
 
 #ifdef DEBUG
-
 void	degub_mlx_data(t_data *data)
 {
 	void	*mlx;
@@ -67,10 +66,15 @@ void	debug_print_data(t_data *data)
 	debug_dprintf(STDOUT_FILENO, "----------- パース後 -------------\n");
 	debug_dprintf(STDOUT_FILENO, "MLX pointer: %p\n", data->mlx);
 	debug_dprintf(STDOUT_FILENO, "WIN pointer: %p\n", data->win);
+	debug_dprintf(STDOUT_FILENO, "MLX addr pointer: %p\n", data->mlx_addr);
 	debug_dprintf(STDOUT_FILENO, "北 texture: %p\n", data->no_img);
 	debug_dprintf(STDOUT_FILENO, "南 texture: %p\n", data->so_img);
 	debug_dprintf(STDOUT_FILENO, "西 texture: %p\n", data->we_img);
 	debug_dprintf(STDOUT_FILENO, "東 texture: %p\n", data->ea_img);
+	debug_dprintf(STDOUT_FILENO, "北 addr: %p\n", data->no_img_addr);
+	debug_dprintf(STDOUT_FILENO, "南 addr: %p\n", data->so_img_addr);
+	debug_dprintf(STDOUT_FILENO, "西 addr: %p\n", data->we_img_addr);
+	debug_dprintf(STDOUT_FILENO, "東 addr: %p\n", data->ea_img_addr);
 	debug_dprintf(STDOUT_FILENO, "床   color: 0x%06X\n", data->f_color);
 	debug_dprintf(STDOUT_FILENO, "天井 color: 0x%06X\n", data->c_color);
 	debug_dprintf(STDOUT_FILENO, "高さ height: %d\n", data->height);
