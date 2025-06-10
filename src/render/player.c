@@ -50,8 +50,6 @@ t_f32x4 get_cross_wall(
 	return (r);
 }
 
-
-
 int
 calc_screen_wall_height(int ratio, int distance, float angle)
 {
@@ -64,9 +62,8 @@ calc_img_index(t_line_segment wall, t_f32x4 xos_point)
 	return ((int)floorf(sqrtf(norm_f32x4_pow(wall.s, xos_point))));
 }
 
-
 /// 書くべき線を返却する
-uint32_t *
+t_fence
 get_line_to_be_drawn(
 	t_data data,
 	t_axis_xy_frames frames,
@@ -76,14 +73,19 @@ get_line_to_be_drawn(
 {
 	t_line_segment seg;
 	t_f32x4 c_p;
+	int height;
 
 	c_p = get_cross_wall(frames, player_ray, &seg);
-	return (get_vertical_arr_n(
-		get_wall_img_by_wall_type_enum(data, get_wall_type_by_line_segment(seg)), // ベクトルの向きから判定される、どの壁か
-		calc_img_index(seg, c_p), // 壁のベクトルからみた交点のx座標
-		(t_vec_i32x4){0, IMG_SIZE, IMG_SIZE, 0}, // 画像の元情報
-		calc_screen_wall_height(100, sqrtf(norm_f32x4_pow(c_p, player_ray.s)), angle)
-	));
+	height = calc_screen_wall_height(100, sqrtf(norm_f32x4_pow(c_p, player_ray.s)), angle);
+	return ((t_fence) {
+			.buf = get_vertical_arr_n(
+				get_wall_img_by_wall_type_enum(data, get_wall_type_by_line_segment(seg)), // ベクトルの向きから判定される、どの壁か
+				calc_img_index(seg, c_p), // 壁のベクトルからみた交点のx座標
+				(t_vec_i32x4){0, IMG_SIZE, IMG_SIZE, 0}, // 画像の元情報
+				height	
+			),
+			.height=height
+		});
 }
 
 /// playerからrayを出す。
@@ -91,10 +93,51 @@ get_line_to_be_drawn(
 int render_wall_to_screen(
 	t_data data,
        	t_axis_xy_frames axis_xy_frames,
-	t_f32x4 player
+	t_f32x4 player // t_f32x4(reserved , player_x, player_y, player_angle)
 )
 {
+	t_vec_f32x4 player_vec;
+	t_line_segment player_ray;
+	float angle;
+	float angle_step;
+	int i;
+
 	// 角視野120度
+	player_vec = f32x4_to_struct(player);
+	angle = player_vec.z - 60.0f;
+	angle_step = 120.0f / 600.0f; // 600.0f: step
+				      // 120.0f: player view angle
+	i = 0;
+	while (i < 600)
+	{
+		t_fence arr;
+
+		player_ray = (t_line_segment) {
+			.s=player,
+			.e=add_f32x4(
+				player,
+				scalar_f32x4(init_f32x4(
+					0,
+					cosf(angle),
+					sinf(angle), 0),
+					3)
+			)
+		};
+		arr = get_line_to_be_drawn(data, axis_xy_frames, player_ray, angle);
+
+		if (draw_vertical_line(
+			data.mlx, 
+			(t_vec_i32x4){0, 100, 0 + i, 0},
+			arr.buf,
+			arr.height
+		))
+		{
+			printf("ERROR!\n");
+		}
+		free(arr.buf);
+		i += 1;
+		angle += angle_step;
+	}
 	return (0);
 }
 

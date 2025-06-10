@@ -4,6 +4,12 @@
 #include "vec.h"
 #include <stdint.h>
 
+typedef
+struct s_fence{
+	uint32_t *buf;
+	int height;
+} t_fence;
+
 int draw_vertical_line(
 	void *mlx_addr, // mut
 	t_vec_i32x4 start, // スクリーン上で始点になるベクトル
