@@ -51,6 +51,7 @@ int draw_vertical_line(
 	size_t i;
 
 	i = 0;
+	debug_dprintf(STDERR_FILENO, "vline_len %ld\n", vline_len);
 	if (!(0 <= start.x && start.x < WINDOW_WIDTH))
 		return (1);
 	while (i < vline_len)
@@ -62,7 +63,7 @@ int draw_vertical_line(
 }
 
 /// n倍して表示
-uint32_t *get_vertical_arr_n(void *img_arr, size_t index, t_vec_i32x4 size, int out_size)
+uint32_t *get_vertical_arr_n(void *img_arr, int index, t_vec_i32x4 size, int out_size)
 {
 	uint32_t *arr;
 	int i;

@@ -35,12 +35,14 @@ t_axis_x_frames *init_axis_x_frames(t_data *data)
 					init_f32x4(0, 0, 0, 0)};
 			else if (pre_map_type == EMPTY && cur_map_type == WALL)
 				f->buf[f->width * y + x] = (t_line_segment) {
-					init_f32x4(0, x - 1, y, 0),
-					init_f32x4(0, x, y, 0)};
+					init_f32x4(0, x, y, 0),
+					init_f32x4(0, x - 1, y, 0)
+				};
 			else if (pre_map_type == WALL && cur_map_type == EMPTY)
 				f->buf[f->width * y + x] = (t_line_segment) {
-					init_f32x4(0, x, y, 0),
-					init_f32x4(0, x - 1, y, 0)};
+					init_f32x4(0, x - 1, y, 0),
+					init_f32x4(0, x, y, 0)
+				};
 			else
 				f->buf[f->width * y + x] = (t_line_segment) {
 					init_f32x4(0, 0, 0, 0),

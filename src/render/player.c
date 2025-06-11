@@ -23,11 +23,14 @@ t_f32x4 get_cross_wall(
 	t = 0;
 	r = init_f32x4(1, 0, 0, 0);
 	// 交点がよりplayer_rayに近ければforgroundを更新する
+	debug_dprintf(STDERR_FILENO, "frames x %ld %ld %ld\n", walls.axis_x_frames->height , walls.axis_x_frames->width, walls.axis_x_frames->height * walls.axis_x_frames->width);
 	while (t < walls.axis_x_frames->height * walls.axis_x_frames->width)
 	{
 		cur_r = cross_point(walls.axis_x_frames->buf[t], player_ray);
 		cur_d = norm_f32x4_pow(cur_r, player_ray.s);
-		if (f32x4_has_error(r) || cur_d < d)
+		if (f32x4_has_error(cur_r))
+		{}
+		else if (f32x4_has_error(r) || cur_d < d)
 		{
 			r = cur_r;
 			d = cur_d;
@@ -36,11 +39,14 @@ t_f32x4 get_cross_wall(
 		t += 1;
 	}
 	t = 0;
+	debug_dprintf(STDERR_FILENO, "frames y %ld %ld %ld\n", walls.axis_y_frames->height , walls.axis_y_frames->width, walls.axis_y_frames->height * walls.axis_y_frames->width);
 	while (t < walls.axis_y_frames->height * walls.axis_y_frames->width)
 	{
 		cur_r = cross_point(walls.axis_y_frames->buf[t], player_ray);
 		cur_d = norm_f32x4_pow(cur_r, player_ray.s);
-		if (f32x4_has_error(r) || cur_d < d)
+		if (f32x4_has_error(cur_r))
+		{}
+		else if (f32x4_has_error(r) || cur_d < d)
 		{
 			r = cur_r;
 			d = cur_d;
@@ -60,7 +66,11 @@ calc_screen_wall_height(int ratio, float distance, float angle)
 int
 calc_img_index(t_line_segment wall, t_f32x4 xos_point)
 {
-	return ((int)floorf(sqrtf(norm_f32x4_pow(wall.s, xos_point))));
+	float a = sqrtf(norm_f32x4_pow(wall.s, xos_point));
+	int r = (int)floorf(IMG_SIZE * a);
+
+	debug_dprintf(STDERR_FILENO, "a sqrtf %f r: %d\n", a, r);
+	return (r);
 }
 
 /// 書くべき線を返却する
@@ -82,28 +92,21 @@ get_line_to_be_drawn(
 	{
 		return ((t_fence) {.buf = NULL, .height=0}); 
 	}
-	height = calc_screen_wall_height(100, sqrtf(norm_f32x4_pow(c_p, player_ray.s)), angle);
+	height = calc_screen_wall_height(200, sqrtf(norm_f32x4_pow(c_p, player_ray.s)), angle);
 
 	wall = get_wall_img_by_wall_type_enum(*data, get_wall_type_by_line_segment(seg)); // ベクトルの向きから判定される、どの壁か
 
-	//for (int i = 0; i < 60; i++)
-	//{
-	//	for (int j = 0;j < 60; j++)
-	//	{
-	//		debug_dprintf(STDERR_FILENO,"(i,j) = %d %d :: %x \n",i,j, data->ea_img_addr[i * 60 + j]);
-	//	}
-	//}
-	debug_dprintf(STDERR_FILENO, "height %d\n", height);
-	debug_dprintf(STDERR_FILENO, "width: %d height %d\n", IMG_SIZE, IMG_SIZE);
-
-	(void) wall;
+	print_f32x4("wall   s |", seg.s);
+	print_f32x4("wall   e |", seg.e);
+	print_f32x4("xos_point|", c_p);
+	int index = calc_img_index(seg, c_p); // 壁のベクトルからみた交点のx座標
 	return ((t_fence) {
-			.buf = get_vertical_arr_n(
-				data->no_img_addr,
-				calc_img_index(seg, c_p), // 壁のベクトルからみた交点のx座標
-				(t_vec_i32x4){0, IMG_SIZE, IMG_SIZE, 0}, // 画像の元情報
-				height
-			),
+		.buf = get_vertical_arr_n(
+			wall,
+			index,
+			(t_vec_i32x4){0, IMG_SIZE, IMG_SIZE, 0}, // 画像の元情報
+			height
+		),
 		.height=height
 	});
 }
@@ -113,7 +116,7 @@ get_line_to_be_drawn(
 int render_wall_to_screen(
 	t_data *data,
        	t_axis_xy_frames axis_xy_frames,
-	t_f32x4 player // t_f32x4(reserved , player_x, player_y, player_angle)
+	t_f32x4 player                   // t_f32x4(reserved , player_x, player_y, player_angle)
 )
 {
 	t_vec_f32x4 player_vec;
@@ -124,9 +127,9 @@ int render_wall_to_screen(
 
 	// 角視野120度
 	player_vec = f32x4_to_struct(player);
-	angle = player_vec.z - (M_PI/3);
+	angle = - (M_PI/3);
 	angle_step = ((M_PI/3) * 2)/ 600.0f; // 600.0f: step
-				           // 120.0f: player view angle
+				             // 120.0f: player view angle
 	i = 0;
 	while (i < 600)
 	{
@@ -138,16 +141,13 @@ int render_wall_to_screen(
 				player,
 				scalar_f32x4(init_f32x4(
 					0,
-					cosf(angle),
-					sinf(angle), 0),
-					3.0f)
-			)
-		};
+					cosf(player_vec.z + angle),
+					sinf(player_vec.z + angle), 0),
+					3.0f))};
 		arr = get_line_to_be_drawn(data, axis_xy_frames, player_ray, angle);
-
 		if (draw_vertical_line(
-			data->mlx,
-			(t_vec_i32x4){0, 100, 0 + i, 0},
+			data->mlx_addr,
+			(t_vec_i32x4){0, 300 - arr.height / 2, 0 + i, 0},
 			arr.buf,
 			arr.height
 		))

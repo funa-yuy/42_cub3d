@@ -3,6 +3,7 @@
 #include "cub3d.h"
 #include "vec.h"
 #include <unistd.h>
+#include <math.h>
 
 bool	check_t_data_structure(t_data *target, t_data *test);
 
@@ -22,25 +23,20 @@ C 225,30,0
 int	init_test00(void)
 {
 	t_data	*data;			// <- 自作データ
-	data = init_cubdata("map/correct/simple.cub");
+	data = init_cubdata("map/correct/room1.cub");
 
-	//data->win = mlx_new_window(data->mlx, 600, 600, "title");
-
-	debug_dprintf(STDERR_FILENO, "%p %p %p\n", &(data->mlx_addr), data->mlx_addr, *data->mlx_addr);
-	debug_dprintf(STDERR_FILENO, "%p\n", data->no_img_addr);
-	debug_dprintf(STDERR_FILENO, "%lx\n", data->mlx_addr);
-	debug_dprintf(STDERR_FILENO, "%lx\n", data->no_img_addr);
-
-	debug_dprintf(STDERR_FILENO, "x y = %d %d\n", data->player.x, data->player.y);
+	// print_f32x4("player", init_f32x4(0, ((float)data->player.x) + 0.5f, ((float)data->player.y) + 0.5f,  -M_PI/2));
 	render_wall_to_screen(
 		data,
 		(t_axis_xy_frames) {
 			.axis_x_frames=init_axis_x_frames(data),
 			.axis_y_frames=init_axis_y_frames(data),
 		},
-		init_f32x4(0, ((float)data->player.x) + 0.5f, ((float)data->player.y) + 0.5f, 0)
+		//init_f32x4(0, ((float)data->player.x) + 0.5f, ((float)data->player.y) + 0.5f,  M_PI/2)
+		init_f32x4(0, ((float)data->player.x) + 0.5f, ((float)data->player.y) + 0.5f,  -M_PI/2)
 	);
 	mlx_put_image_to_window(data->mlx, data->win, data -> mlx_img, 0, 0);
+	mlx_loop(data->mlx);
 	return (0);
 }
 

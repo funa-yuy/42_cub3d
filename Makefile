@@ -146,7 +146,6 @@ ifeq ($(shell uname), Darwin) #macの場合
 	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
 	VALGRIND =
 	# ------- mlx setting ------- #
-	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34596/minilibx_macos_opengl.tgz
 	MINILIBX_TAR_GZ = minilibx_macos_opengl.tgz
 	MLX_DIR = minilibx_opengl_20191021
 	MLX_FLAGS =  -lmlx -framework OpenGL -framework AppKit
@@ -155,7 +154,6 @@ else
 	DEBUG_FLAGS = -DDEBUG -g
 	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 	# ------- mlx setting ------- #
-	MINILIBX_URL = https://cdn.intra.42.fr/document/document/35303/minilibx-linux.tgz
 	MINILIBX_TAR_GZ = minilibx-linux.tgz
 	MLX_DIR = minilibx-linux
 	MLX_FLAGS = -lmlx -lXext -lX11
@@ -226,7 +224,7 @@ $(TEST_OBJ_DIR)/%.o: $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
 # minilibxのダウンロード & 展開 & コンパイル
 # 1. minilibxが存在しない場合のみダウンロード
 $(MINILIBX_TAR_GZ):
-	curl -O $(MINILIBX_URL)
+	echo "minilibx linuxを手動でinstallしてください"
 
 $(MLX_DIR): $(MINILIBX_TAR_GZ)
 	tar xvzf $(MINILIBX_TAR_GZ)

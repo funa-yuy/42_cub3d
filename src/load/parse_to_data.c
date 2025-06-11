@@ -55,7 +55,7 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		error_print_and_exit("mlx_init failed");
-	data->win = mlx_new_window(data->mlx, 4 * IMG_SIZE, IMG_SIZE, "cub3D");
+	data->win = mlx_new_window(data->mlx, 600, 600, "cub3D");
 
 	int bpp;
 	int size_line;

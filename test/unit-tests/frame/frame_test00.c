@@ -32,7 +32,8 @@ int main()
 	target = &(t_data){\
 		NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
-		NULL,0xDC6400, 0xE11E00, /* f_color, c_color */\
+		NULL, NULL, NULL, NULL, \
+		NULL, NULL,0xDC6400, 0xE11E00, /* f_color, c_color */\
 		5, 6, /* height,width */\
 		(t_pos){3, 4, DIR_NORTH}, map};/*player, map*/
 
