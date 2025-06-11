@@ -52,7 +52,7 @@ static bool cross_point_in_of_range(t_f32x4 p, t_line_segment l)
 	y_axis_minmax = minmax_line_segment_y(l);
 	point = f32x4_to_struct(p);
 	return (
-		(x_axis_minmax.w <= point.x && point.x <= x_axis_minmax.z) ||
+		(x_axis_minmax.w <= point.x && point.x <= x_axis_minmax.z) &&
 		(y_axis_minmax.w <= point.y && point.y <= y_axis_minmax.z));
 }
 

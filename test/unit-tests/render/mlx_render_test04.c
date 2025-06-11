@@ -23,7 +23,7 @@ C 225,30,0
 int	init_test00(void)
 {
 	t_data	*data;			// <- 自作データ
-	data = init_cubdata("map/correct/room1.cub");
+	data = init_cubdata("map/correct/simple.cub");
 
 	// print_f32x4("player", init_f32x4(0, ((float)data->player.x) + 0.5f, ((float)data->player.y) + 0.5f,  -M_PI/2));
 	render_wall_to_screen(

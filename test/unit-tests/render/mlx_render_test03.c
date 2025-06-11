@@ -84,7 +84,7 @@ int main()
 		arr = get_vertical_arr_n(
 			small_mlx_addr, 
 			i, 
-			(t_vec_i32x4){0, height, width, 0 },
+			(t_vec_i32x4){0, height, width, 0},
 			height_size
 		);
 		if (draw_vertical_line(

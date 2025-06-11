@@ -60,7 +60,7 @@ t_f32x4 get_cross_wall(
 int
 calc_screen_wall_height(int ratio, float distance, float angle)
 {
-	return (ratio/(distance * cosf(angle)));
+	return (ratio / (distance * cosf(angle)));
 }
 
 int
@@ -69,7 +69,7 @@ calc_img_index(t_line_segment wall, t_f32x4 xos_point)
 	float a = sqrtf(norm_f32x4_pow(wall.s, xos_point));
 	int r = (int)floorf(IMG_SIZE * a);
 
-	debug_dprintf(STDERR_FILENO, "a sqrtf %f r: %d\n", a, r);
+	//debug_dprintf(STDERR_FILENO, "a sqrtf %f r: %d\n", a, r);
 	return (r);
 }
 
@@ -82,24 +82,28 @@ get_line_to_be_drawn(
 	float angle
 )
 {
-	t_line_segment seg;
+	t_line_segment wall_seg;
 	t_f32x4 c_p;
 	int height;
 	uint32_t *wall;
 
-	c_p = get_cross_wall(frames, player_ray, &seg);
+	c_p = get_cross_wall(frames, player_ray, &wall_seg);
 	if (f32x4_has_error(c_p))
 	{
 		return ((t_fence) {.buf = NULL, .height=0}); 
 	}
 	height = calc_screen_wall_height(200, sqrtf(norm_f32x4_pow(c_p, player_ray.s)), angle);
 
-	wall = get_wall_img_by_wall_type_enum(*data, get_wall_type_by_line_segment(seg)); // ベクトルの向きから判定される、どの壁か
+	wall = get_wall_img_by_wall_type_enum(*data, get_wall_type_by_line_segment(wall_seg)); // ベクトルの向きから判定される、どの壁か
 
-	print_f32x4("wall   s |", seg.s);
-	print_f32x4("wall   e |", seg.e);
+	print_f32x4("wall   s |", wall_seg.s);
+	print_f32x4("wall   e |", wall_seg.e);
 	print_f32x4("xos_point|", c_p);
-	int index = calc_img_index(seg, c_p); // 壁のベクトルからみた交点のx座標
+	print_f32x4("player s |", player_ray.s);
+	print_f32x4("player e |", player_ray.e);
+
+	int index = calc_img_index(wall_seg, c_p); // 壁のベクトルからみた交点のx座標
+	debug_dprintf(STDERR_FILENO, "index %d\n", index);
 	return ((t_fence) {
 		.buf = get_vertical_arr_n(
 			wall,
@@ -143,7 +147,7 @@ int render_wall_to_screen(
 					0,
 					cosf(player_vec.z + angle),
 					sinf(player_vec.z + angle), 0),
-					3.0f))};
+					5.0f))};
 		arr = get_line_to_be_drawn(data, axis_xy_frames, player_ray, angle);
 		if (draw_vertical_line(
 			data->mlx_addr,
