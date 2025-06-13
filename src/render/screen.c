@@ -45,13 +45,13 @@ int draw_vertical_line(
 	void *mlx_addr, // mut
 	t_vec_i32x4 start, // スクリーン上で始点になるベクトル
 	uint32_t vline[],
-	size_t vline_len
+	int vline_len
 )
 {
-	size_t i;
+	int i;
 
 	i = 0;
-	debug_dprintf(STDERR_FILENO, "vline_len %ld\n", vline_len);
+	debug_dprintf(STDERR_FILENO, "vline_len %d\n", vline_len);
 	if (!(0 <= start.x && start.x < WINDOW_WIDTH))
 		return (1);
 	while (i < vline_len)

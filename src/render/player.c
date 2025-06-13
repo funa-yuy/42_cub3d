@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include "frames.h"
+#include "line_segment.h"
 #include "vec.h"
 #include "render.h"
 #include <math.h>
@@ -23,9 +24,13 @@ t_f32x4 get_cross_wall(
 	t = 0;
 	r = init_f32x4(1, 0, 0, 0);
 	// 交点がよりplayer_rayに近ければforgroundを更新する
-	debug_dprintf(STDERR_FILENO, "frames x %ld %ld %ld\n", walls.axis_x_frames->height , walls.axis_x_frames->width, walls.axis_x_frames->height * walls.axis_x_frames->width);
 	while (t < walls.axis_x_frames->height * walls.axis_x_frames->width)
 	{
+		if (is_zero_vector(walls.axis_x_frames->buf[t]))
+		{
+			t += 1;
+			continue;
+		}
 		cur_r = cross_point(walls.axis_x_frames->buf[t], player_ray);
 		cur_d = norm_f32x4_pow(cur_r, player_ray.s);
 		if (f32x4_has_error(cur_r))
@@ -39,9 +44,13 @@ t_f32x4 get_cross_wall(
 		t += 1;
 	}
 	t = 0;
-	debug_dprintf(STDERR_FILENO, "frames y %ld %ld %ld\n", walls.axis_y_frames->height , walls.axis_y_frames->width, walls.axis_y_frames->height * walls.axis_y_frames->width);
 	while (t < walls.axis_y_frames->height * walls.axis_y_frames->width)
 	{
+		if (is_zero_vector(walls.axis_y_frames->buf[t]))
+		{
+			t += 1;
+			continue;
+		}
 		cur_r = cross_point(walls.axis_y_frames->buf[t], player_ray);
 		cur_d = norm_f32x4_pow(cur_r, player_ray.s);
 		if (f32x4_has_error(cur_r))
@@ -68,8 +77,6 @@ calc_img_index(t_line_segment wall, t_f32x4 xos_point)
 {
 	float a = sqrtf(norm_f32x4_pow(wall.s, xos_point));
 	int r = (int)floorf(IMG_SIZE * a);
-
-	//debug_dprintf(STDERR_FILENO, "a sqrtf %f r: %d\n", a, r);
 	return (r);
 }
 
@@ -90,6 +97,12 @@ get_line_to_be_drawn(
 	c_p = get_cross_wall(frames, player_ray, &wall_seg);
 	if (f32x4_has_error(c_p))
 	{
+		print_f32x4("\e[31mwall   s |\e[0m", wall_seg.s);
+		print_f32x4("\e[31mwall   e |\e[0m", wall_seg.e);
+		print_f32x4("\e[31mxos_point|\e[0m", c_p);
+		print_f32x4("\e[31mplayer s |\e[0m", player_ray.s);
+		print_f32x4("\e[31mplayer e |\e[0m", player_ray.e);
+		debug_dprintf(STDERR_FILENO, "\e[31mERROR\e[0m\n");
 		return ((t_fence) {.buf = NULL, .height=0}); 
 	}
 	height = calc_screen_wall_height(200, sqrtf(norm_f32x4_pow(c_p, player_ray.s)), angle);
@@ -156,7 +169,7 @@ int render_wall_to_screen(
 			arr.height
 		))
 		{
-			printf("ERROR!\n");
+			printf("\e[31mERROR!\e[0m\n");
 		}
 		free(arr.buf);
 		i += 1;
