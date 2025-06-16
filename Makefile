@@ -6,7 +6,7 @@
 #    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/16 18:52:34 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/06/16 19:34:34 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,13 +176,10 @@ clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GNL_DIR) clean
 
-	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean; fi
-
 fclean: test-clean clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
-	@if [ -d "$(MLX_DIR)" ]; then $(RM) -r $(MLX_DIR); fi
 
 re: fclean all
 
@@ -221,12 +218,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(TEST_OBJ_DIR)/%.o: $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# minilibxのダウンロード & 展開 & コンパイル
-# 1. minilibxが存在しない場合のみダウンロード
-$(MINILIBX_TAR_GZ):
-	echo "minilibx linuxを手動でinstallしてください"
-
-$(MLX_DIR): $(MINILIBX_TAR_GZ)
+# minilibxの存在確認 & 展開 & コンパイル
+# 1. minilibxが存在しない場合、エラーになる
+$(MLX_DIR):
+	@if [ ! -d "$(MLX_DIR)" ] && [ ! -f "$(MINILIBX_TAR_GZ)" ]; then \
+		echo "minilibx linuxを手動でinstallしてください"; \
+		exit 1; \
+	fi
 	tar xvzf $(MINILIBX_TAR_GZ)
 
 $(LIBFT):
