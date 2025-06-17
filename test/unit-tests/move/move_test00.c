@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include "move.h"
 
 /* ================================
  * 描画処理
@@ -183,7 +184,7 @@ void	start_game_loop(t_data *data)
 }
 
 /// ```bash
-/// make test test/unit-tests/player/player_test00.c
+/// make test test/unit-tests/move/move_test00.c
 /// ```
 int main()
 {
