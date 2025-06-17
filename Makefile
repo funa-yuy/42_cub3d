@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
+#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/07 17:07:51 by tmuranak         ###   ########.fr        #
+#    Updated: 2025/06/17 20:55:05 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,14 +60,6 @@ VEC_SRCS = \
 		src/vec/cross_point.c \
 		src/vec/norm_f32x4.c\
 		src/vec/f32x4_has_error.c\
-		#src/vec/add_i32x4.c\
-		#src/vec/sub_i32x4.c\
-		#src/vec/mul_i32x4.c\
-		#src/vec/init_i32x4.c\
-		#src/vec/i32x4_to_struct.c\
-		#src/vec/i32x4_wxyz.c\
-		#src/vec/print_i32x4.c\
-
 
 FRAME_SRC = \
 		src/frames/axis_x_frames.c\
@@ -137,7 +129,7 @@ TEST_OBJ_DIR = $(OBJ_DIR)/unit-tests
 # ここに、mustでコンパイルに含めたいファイルを追加していく
 TEST_MUST_FILE = test/unit-tests/load/check_t_data_structure.c
 
-TEST_SRC = $(SRC_WITHOUT_MAIN) 
+TEST_SRC = $(SRC_WITHOUT_MAIN)
 TEST_OBJS = \
 		$(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 
@@ -159,7 +151,7 @@ else
 	MLX_DIR = minilibx-linux
 	MLX_FLAGS = -lmlx -lXext -lX11
 	# cpu固有の命令
-	CFLAGS += -msse4.1 
+	CFLAGS += -msse4.1
 endif
 
 MLX = $(MLX_DIR)/libmlx.a
@@ -227,7 +219,7 @@ $(MINILIBX_TAR_GZ):
 $(MLX_DIR): $(MINILIBX_TAR_GZ)
 	tar xvzf $(MINILIBX_TAR_GZ)
 
-$(LIBFT): 
+$(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(GNL):
