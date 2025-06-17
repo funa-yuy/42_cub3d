@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   can_move_position.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/17 21:43:47 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/17 21:47:43 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	can_move_position(t_data *data, float x, float y)
 		return (true);
 	index = calc_map_index((size_t)x, (size_t)y, width);
 	map = data->map;
-	if (data->map[index] == WALL || data->map[index] == NOTHING)
+	if (map[index] == WALL || map[index] == NOTHING)
 		return (true);
 	return (false);
 }
