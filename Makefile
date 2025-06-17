@@ -196,7 +196,7 @@ test: $(MLX) $(OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 		-o $(TEST_NAME) \
 		$(TEST_OBJS) $(GNL) $(LIBFT) $(MLX)\
 		$(MLX_FLAGS) -lm -L$(MLX_DIR)
-	./$(TEST_NAME)
+	$(VALGRIND) ./$(TEST_NAME)
 
 test-clean:
 	rm -rf $(TEST_OBJ_DIR)
