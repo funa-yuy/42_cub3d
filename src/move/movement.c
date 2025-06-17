@@ -6,13 +6,11 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/17 18:55:51 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/17 20:16:32 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-#define MOVE_SPEED 0.6f
+#include "move.h"
 
 /* 前進: 方向ベクトルに基づいた移動 */
 void	move_player_w(t_data *data)

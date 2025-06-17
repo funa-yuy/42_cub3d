@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/17 16:18:20 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/17 20:21:11 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,9 +82,10 @@ RENDER_SRC = \
 		src/render/screen.c\
 		src/render/player.c\
 
-PLAYER_SRCS = \
-		src/player/collision.c\
-		src/player/movement.c\
+MOVE_SRCS = \
+		src/move/update_player_pos.c\
+		src/move/movement.c\
+		src/move/can_move_position.c
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
@@ -96,7 +97,7 @@ DEBUG_SRCS = \
 SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)\
-		$(PLAYER_SRCS)\
+		$(MOVE_SRCS)\
 		# $(VEC_SRCS)\
 		# $(LINE_SEGMENT_SRCS)\
 		# $(FRAME_SRC)\

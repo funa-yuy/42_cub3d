@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/17 18:56:34 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/17 20:20:20 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/errno.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
-# include <X11/keysym.h>
-# include <X11/X.h>
+// # include <X11/keysym.h>
+// # include <X11/X.h>
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -36,21 +36,8 @@
 # define IMG_SIZE	64
 
 
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 600
-
-/* キーコード定義（macOS用） */
-# define KEY_ESC	53
-# define KEY_W	 13
-# define KEY_A	 0
-# define KEY_S	 1
-# define KEY_D	 2
-/* キーコード定義（Linux用） */
-// # define KEY_ESC	65307
-// # define KEY_W	 119
-// # define KEY_A	 97
-// # define KEY_S	 115
-// # define KEY_D	 100
+#define WINDOW_WIDTH 600
+#define WINDOW_HEIGHT 600
 
 // ------------------------------------------------
 // struct
@@ -148,15 +135,6 @@ char			*trim_spaces_both_ends(const char *str);
 size_t			get_trimmed_lstsize(const t_strlst *lst);
 char			*strdup_trim_nl(const char *str);
 size_t			calc_map_index(size_t x, size_t y, unsigned int width);
-
-/* player */
-bool			is_wall_pos(t_data *data, float x, float y);
-void			update_player_pos(t_data *data, float new_x, float new_y);
-void			move_player_w(t_data *data);
-void			move_player_a(t_data *data);
-void			move_player_s(t_data *data);
-void			move_player_d(t_data *data);
-void			handle_key_input(int keycode, t_data *data);
 
 /* dedug 最終的には削除する?*/
 void			debug_print_data(t_data *data);
