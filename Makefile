@@ -58,15 +58,15 @@ VEC_SRCS = \
 		src/vec/print_f32x4.c\
 		src/vec/f32x4_to_struct.c\
 		src/vec/cross_point.c \
-		src/vec/init_i32x4.c\
-		src/vec/add_i32x4.c\
-		src/vec/sub_i32x4.c\
-		src/vec/mul_i32x4.c\
-		src/vec/i32x4_to_struct.c\
-		src/vec/i32x4_wxyz.c\
-		src/vec/print_i32x4.c\
 		src/vec/norm_f32x4.c\
 		src/vec/f32x4_has_error.c\
+		#src/vec/add_i32x4.c\
+		#src/vec/sub_i32x4.c\
+		#src/vec/mul_i32x4.c\
+		#src/vec/init_i32x4.c\
+		#src/vec/i32x4_to_struct.c\
+		#src/vec/i32x4_wxyz.c\
+		#src/vec/print_i32x4.c\
 
 
 FRAME_SRC = \
@@ -160,7 +160,6 @@ else
 	MLX_FLAGS = -lmlx -lXext -lX11
 	# cpu固有の命令
 	CFLAGS += -msse4.1 
-	CFLAGS += -mavx512vl
 endif
 
 MLX = $(MLX_DIR)/libmlx.a
@@ -173,19 +172,17 @@ all: $(NAME)
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf $(MINILIBX_TAR_GZ)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GNL_DIR) clean
 
-	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean; fi
-
 fclean: test-clean clean
 	rm -f $(NAME)
+	rm -rf $(MINILIBX_TAR_GZ)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
 	@if [ -d "$(MLX_DIR)" ]; then $(RM) -r $(MLX_DIR); fi
 
-re: fclean all
+re: clean all
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
