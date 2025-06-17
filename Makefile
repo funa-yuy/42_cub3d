@@ -76,6 +76,7 @@ FRAME_SRC = \
 		src/frames/get_map_type.c\
 		src/frames/print_frame.c\
 		src/frames/get_wall_type.c\
+		src/frames/print_line_segment.c\
 
 
 RENDER_SRC = \

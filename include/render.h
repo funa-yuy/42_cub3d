@@ -27,4 +27,10 @@ int render_wall_to_screen(
        	t_axis_xy_frames axis_xy_frames,
 	t_f32x4 player // t_f32x4(reserved , player_x, player_y, player_angle)
 );
+
+t_f32x4 get_cross_wall(
+	t_axis_xy_frames walls,            // 交わる可能性のある壁ベクトルの集合
+	t_line_segment player_ray,         // playerからの視線ベクトル
+	t_line_segment *wall_line_segment  // 交わった壁のベクトルがここに格納される
+);
 #endif
