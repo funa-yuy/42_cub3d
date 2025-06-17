@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
+#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/16 19:34:34 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/06/17 16:18:20 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,9 @@ RENDER_SRC = \
 		src/render/screen.c\
 		src/render/player.c\
 
+PLAYER_SRCS = \
+		src/player/collision.c\
+		src/player/movement.c\
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
@@ -93,10 +96,11 @@ DEBUG_SRCS = \
 SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)\
-		$(VEC_SRCS)\
-		$(LINE_SEGMENT_SRCS)\
-		$(FRAME_SRC)\
-		$(RENDER_SRC)
+		$(PLAYER_SRCS)\
+		# $(VEC_SRCS)\
+		# $(LINE_SEGMENT_SRCS)\
+		# $(FRAME_SRC)\
+		# $(RENDER_SRC)
 
 
 SRC = \
