@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/17 20:20:20 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/17 21:44:03 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/errno.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
-// # include <X11/keysym.h>
-// # include <X11/X.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
 #include <stdint.h>
 #include <stdbool.h>
 
