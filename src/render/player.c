@@ -5,6 +5,7 @@
 #include "render.h"
 #include <math.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -70,6 +71,8 @@ int
 calc_screen_wall_height(int ratio, float distance, float angle)
 {
 	return (ratio / (distance * cosf(angle)));
+	//(void) angle;
+	//return (ratio / (distance));
 }
 
 int
@@ -97,6 +100,7 @@ get_line_to_be_drawn(
 	c_p = get_cross_wall(frames, player_ray, &wall_seg);
 	if (f32x4_has_error(c_p))
 	{
+		debug_dprintf(STDERR_FILENO, "has error\n");
 		print_f32x4("\e[31mwall   s |\e[0m", wall_seg.s);
 		print_f32x4("\e[31mwall   e |\e[0m", wall_seg.e);
 		print_f32x4("\e[31mxos_point|\e[0m", c_p);
@@ -109,14 +113,14 @@ get_line_to_be_drawn(
 
 	wall = get_wall_img_by_wall_type_enum(*data, get_wall_type_by_line_segment(wall_seg)); // ベクトルの向きから判定される、どの壁か
 
-	print_f32x4("wall   s |", wall_seg.s);
-	print_f32x4("wall   e |", wall_seg.e);
-	print_f32x4("xos_point|", c_p);
-	print_f32x4("player s |", player_ray.s);
-	print_f32x4("player e |", player_ray.e);
+	//print_f32x4("wall   s |", wall_seg.s);
+	//print_f32x4("wall   e |", wall_seg.e);
+	//print_f32x4("xos_point|", c_p);
+	//print_f32x4("player s |", player_ray.s);
+	//print_f32x4("player e |", player_ray.e);
 
 	int index = calc_img_index(wall_seg, c_p); // 壁のベクトルからみた交点のx座標
-	debug_dprintf(STDERR_FILENO, "index %d\n", index);
+	//debug_dprintf(STDERR_FILENO, "index %d\n", index);
 	return ((t_fence) {
 		.buf = get_vertical_arr_n(
 			wall,
@@ -144,8 +148,8 @@ int render_wall_to_screen(
 
 	// 角視野120度
 	player_vec = f32x4_to_struct(player);
-	angle = - (M_PI/3);
-	angle_step = ((M_PI/3) * 2)/ 600.0f; // 600.0f: step
+	angle = - (M_PI/4);
+	angle_step = ((M_PI/4) * 2)/ 600.0f; // 600.0f: step
 				             // 120.0f: player view angle
 	i = 0;
 	while (i < 600)
@@ -160,7 +164,7 @@ int render_wall_to_screen(
 					0,
 					cosf(player_vec.z + angle),
 					sinf(player_vec.z + angle), 0),
-					5.0f))};
+					10.0f))};
 		arr = get_line_to_be_drawn(data, axis_xy_frames, player_ray, angle);
 		if (draw_vertical_line(
 			data->mlx_addr,

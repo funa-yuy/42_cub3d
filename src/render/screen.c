@@ -51,7 +51,6 @@ int draw_vertical_line(
 	int i;
 
 	i = 0;
-	debug_dprintf(STDERR_FILENO, "vline_len %d\n", vline_len);
 	if (!(0 <= start.x && start.x < WINDOW_WIDTH))
 		return (1);
 	while (i < vline_len)
@@ -74,7 +73,6 @@ uint32_t *get_vertical_arr_n(void *img_arr, int index, t_vec_i32x4 size, int out
 	d = (float)size.y / (float)out_size;
 	while (i < out_size)
 	{
-		//debug_dprintf(STDERR_FILENO, "hello world??? %d %d\n", i, size.x * (int)floorf( d * i) + index);
 		arr[i] = ((uint32_t *)img_arr)[size.x * (int)floorf( d * i) + index];
 		i += 1;
 	}

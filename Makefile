@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/17 21:58:09 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/19 00:00:23 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,16 +58,8 @@ VEC_SRCS = \
 		src/vec/print_f32x4.c\
 		src/vec/f32x4_to_struct.c\
 		src/vec/cross_point.c \
-		src/vec/init_i32x4.c\
-		src/vec/add_i32x4.c\
-		src/vec/sub_i32x4.c\
-		src/vec/mul_i32x4.c\
-		src/vec/i32x4_to_struct.c\
-		src/vec/i32x4_wxyz.c\
-		src/vec/print_i32x4.c\
 		src/vec/norm_f32x4.c\
 		src/vec/f32x4_has_error.c\
-
 
 FRAME_SRC = \
 		src/frames/axis_x_frames.c\
@@ -76,6 +68,7 @@ FRAME_SRC = \
 		src/frames/get_map_type.c\
 		src/frames/print_frame.c\
 		src/frames/get_wall_type.c\
+		src/frames/print_line_segment.c\
 
 
 RENDER_SRC = \
@@ -174,16 +167,16 @@ all: $(NAME)
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf $(MINILIBX_TAR_GZ)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GNL_DIR) clean
 
 fclean: test-clean clean
 	rm -f $(NAME)
+	rm -rf $(MINILIBX_TAR_GZ)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
 
-re: fclean all
+re: clean all
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
@@ -197,7 +190,7 @@ test: $(MLX) $(OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 		-o $(TEST_NAME) \
 		$(TEST_OBJS) $(GNL) $(LIBFT) $(MLX)\
 		$(MLX_FLAGS) -lm -L$(MLX_DIR)
-	./$(TEST_NAME)
+	$(VALGRIND) ./$(TEST_NAME)
 
 test-clean:
 	rm -rf $(TEST_OBJ_DIR)

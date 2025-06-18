@@ -50,22 +50,6 @@ bool f32x4_has_error(t_f32x4 v);
 
 // ## t_i32x4
 
-t_i32x4 add_i32x4(t_i32x4 a, t_i32x4 b);
-
-t_i32x4 sub_i32x4(t_i32x4 a, t_i32x4 b);;
-
-t_i32x4 mul_i32x4(t_i32x4 a, t_i32x4 b);
-
-// access to each elements of vec
-
-float f32x4_w(t_f32x4 a);
-
-float f32x4_x(t_f32x4 a);
-
-float f32x4_y(t_f32x4 a);
-
-float f32x4_z(t_f32x4 a);
-
 void set_f32x4_to_arr(float arr[4], t_f32x4 a);
 
 void set_i32x4_to_arr(int arr[4], t_i32x4 a);

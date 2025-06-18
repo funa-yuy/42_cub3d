@@ -68,4 +68,8 @@ t_wall_type get_wall_type_by_line_segment(t_line_segment a);
 
 void *get_wall_img_by_wall_type_enum(t_data data, t_wall_type t);
 
+int print_line_segment(char *str, t_line_segment ls);
+
+int print_walls_line_segment_axis_y(t_axis_y_frames *y_frames);
+
 #endif

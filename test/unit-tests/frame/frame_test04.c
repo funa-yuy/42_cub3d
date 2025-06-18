@@ -1,5 +1,5 @@
 #include "frames.h"
-#include <stdlib.h>
+#include <unistd.h>
 
 static 
 int show(t_data	*target)
@@ -10,6 +10,8 @@ int show(t_data	*target)
 	fx = init_axis_x_frames(target);
 	fy = init_axis_y_frames(target);
 	print_framexy(fx, fy);
+
+	print_walls_line_segment_axis_y(fy);
 	return (0);
 }
 
@@ -19,7 +21,7 @@ int show(t_data	*target)
 int main()
 {
 	t_data	*target;
-	target = init_cubdata("map/correct/room1.cub");
+	target = init_cubdata("map/correct/simple.cub");
 
 	show(target);
 	return (0);
