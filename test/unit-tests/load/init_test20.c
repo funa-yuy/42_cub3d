@@ -39,7 +39,7 @@ int	init_test20(void)
 	t_data	*target;		// <- 答え
 	t_data	*data;			// <- 自作データ
 
-	int	map[] = \
+	enum e_map_type	map[] = \
 	{
 		WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, \
 		WALL, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
@@ -54,7 +54,8 @@ int	init_test20(void)
 	target = &(t_data){\
 		NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
-		0xDC6400, 0xE11E00, /* f_color, c_color */\
+		NULL, NULL, NULL, NULL, \
+		NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
 		9, 11, /* height,width */\
 		(t_pos){7, 9, DIR_EAST}, map};/*player{y, x, dir}, map*/
 	printf("\x1b[32m ================ ↓正解↓ ================ \x1b[39m\n");

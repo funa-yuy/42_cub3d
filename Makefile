@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
+#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/05/28 00:17:42 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/17 20:55:05 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ HEADER_DIR = include
 # ========== Source Files =========== #
 MAIN_SRC = \
 		src/main.c
+
 
 LOAD_SRCS = \
 		src/load/init_cubdata.c \
@@ -39,8 +40,9 @@ LOAD_SRCS = \
 		src/load/utils/tokenize_utils.c \
 		src/load/utils/calc_map_index.c
 
+
 LINE_SEGMENT_SRCS = \
-		src/line_segment/has_cross_point.c
+		src/line_segment/is_zero_vector.c\
 
 
 VEC_SRCS = \
@@ -50,11 +52,28 @@ VEC_SRCS = \
 		src/vec/sub_f32x4.c\
 		src/vec/mul_f32x4.c\
 		src/vec/div_f32x4.c\
+		src/vec/scalar_f32x4.c\
 		src/vec/f32x4_wxyz.c\
 		src/vec/init_f32x4.c\
 		src/vec/print_f32x4.c\
 		src/vec/f32x4_to_struct.c\
-		src/vec/cross_point.c
+		src/vec/cross_point.c \
+		src/vec/norm_f32x4.c\
+		src/vec/f32x4_has_error.c\
+
+FRAME_SRC = \
+		src/frames/axis_x_frames.c\
+		src/frames/axis_y_frames.c\
+		src/frames/get_line_segment_arr.c\
+		src/frames/get_map_type.c\
+		src/frames/print_frame.c\
+		src/frames/get_wall_type.c\
+		src/frames/print_line_segment.c\
+
+
+RENDER_SRC = \
+		src/render/screen.c\
+		src/render/player.c\
 
 
 DEBUG_SRCS = \
@@ -68,7 +87,9 @@ SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)\
 		$(VEC_SRCS)\
-		$(LINE_SEGMENT_SRCS)
+		$(LINE_SEGMENT_SRCS)\
+		$(FRAME_SRC)\
+		$(RENDER_SRC)
 
 
 SRC = \
@@ -108,7 +129,7 @@ TEST_OBJ_DIR = $(OBJ_DIR)/unit-tests
 # ここに、mustでコンパイルに含めたいファイルを追加していく
 TEST_MUST_FILE = test/unit-tests/load/check_t_data_structure.c
 
-TEST_SRC = $(SRC_WITHOUT_MAIN) 
+TEST_SRC = $(SRC_WITHOUT_MAIN)
 TEST_OBJS = \
 		$(TEST_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) \
 
@@ -118,7 +139,6 @@ ifeq ($(shell uname), Darwin) #macの場合
 	DEBUG_FLAGS = -DDEBUG -g -fsanitize=address -fsanitize=undefined
 	VALGRIND =
 	# ------- mlx setting ------- #
-	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34596/minilibx_macos_opengl.tgz
 	MINILIBX_TAR_GZ = minilibx_macos_opengl.tgz
 	MLX_DIR = minilibx_opengl_20191021
 	MLX_FLAGS =  -lmlx -framework OpenGL -framework AppKit
@@ -127,10 +147,11 @@ else
 	DEBUG_FLAGS = -DDEBUG -g
 	VALGRIND = valgrind --leak-check=full --show-leak-kinds=all
 	# ------- mlx setting ------- #
-	MINILIBX_URL = https://cdn.intra.42.fr/document/document/34595/minilibx-linux.tgz
 	MINILIBX_TAR_GZ = minilibx-linux.tgz
 	MLX_DIR = minilibx-linux
 	MLX_FLAGS = -lmlx -lXext -lX11
+	# cpu固有の命令
+	CFLAGS += -msse4.1
 endif
 
 MLX = $(MLX_DIR)/libmlx.a
@@ -143,19 +164,17 @@ all: $(NAME)
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf $(MINILIBX_TAR_GZ)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GNL_DIR) clean
 
-	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) -C $(MLX_DIR) clean; fi
-
 fclean: test-clean clean
 	rm -f $(NAME)
+	rm -rf $(MINILIBX_TAR_GZ)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
 	@if [ -d "$(MLX_DIR)" ]; then $(RM) -r $(MLX_DIR); fi
 
-re: fclean all
+re: clean all
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
@@ -168,7 +187,7 @@ test: $(MLX) $(OBJ_DIR) $(TEST_OBJS) $(LIBFT) $(GNL)
 		$(CFLAGS) \
 		-o $(TEST_NAME) \
 		$(TEST_OBJS) $(GNL) $(LIBFT) $(MLX)\
-		$(MLX_FLAGS) -L$(MLX_DIR)
+		$(MLX_FLAGS) -lm -L$(MLX_DIR)
 	$(VALGRIND) ./$(TEST_NAME)
 
 test-clean:
@@ -182,7 +201,7 @@ $(NAME): $(MLX) $(GNL) $(OBJS) $(LIBFT)
 		$(CFLAGS) \
 		-o $(NAME) \
 		$(OBJS) $(GNL) $(LIBFT) $(MLX) \
-		$(MLX_FLAGS) -L$(MLX_DIR)
+		$(MLX_FLAGS) -lm -L$(MLX_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
@@ -195,12 +214,12 @@ $(TEST_OBJ_DIR)/%.o: $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
 # minilibxのダウンロード & 展開 & コンパイル
 # 1. minilibxが存在しない場合のみダウンロード
 $(MINILIBX_TAR_GZ):
-	curl -O $(MINILIBX_URL)
+	echo "minilibx linuxを手動でinstallしてください"
 
 $(MLX_DIR): $(MINILIBX_TAR_GZ)
 	tar xvzf $(MINILIBX_TAR_GZ)
 
-$(LIBFT): 
+$(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(GNL):

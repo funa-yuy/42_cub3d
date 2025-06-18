@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_to_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:45:38 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 15:06:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/17 20:49:02 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,15 @@ t_data	*parse_to_data(const t_tokens_tmp *tokens)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		error_print_and_exit("mlx_init failed");
-	data->win = mlx_new_window(data->mlx, 4 * IMG_SIZE, IMG_SIZE, "cub3D");
+	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+
+	int bpp;
+	int size_line;
+	int endian;
+
+	data -> mlx_img = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->mlx_addr =  (uint32_t *)mlx_get_data_addr(data->mlx_img, &bpp, &size_line, &endian);
+
 	fill_images(data, tokens);
 	fill_color(data, tokens);
 	fill_player_position(data, tokens->map_lines);

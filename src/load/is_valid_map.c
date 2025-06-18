@@ -15,7 +15,7 @@
 bool	is_valid_position(t_data *data, size_t x, size_t y)
 {
 	size_t			index;
-	int				*map;
+	enum e_map_type				*map;
 	unsigned int	width;
 	unsigned int	height;
 
@@ -36,7 +36,7 @@ bool	is_surrounded_walls(t_data *data, size_t x, size_t y, bool *visited)
 {
 	size_t			index;
 	unsigned int	width;
-	int				*map;
+	enum e_map_type				*map;
 
 	map = data->map;
 	width = data->width;
