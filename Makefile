@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/19 22:18:23 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/19 22:49:48 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,8 @@ RENDER_SRC = \
 MOVE_SRCS = \
 		src/move/can_move_position.c \
 		src/move/update_player_pos.c \
-		src/move/movement.c
+		src/move/movement.c \
+		src/move/rotation.c
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \

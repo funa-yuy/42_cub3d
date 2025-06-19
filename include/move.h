@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/19 22:17:07 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/19 23:13:25 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,19 @@
 # define KEY_A	 0
 # define KEY_S	 1
 # define KEY_D	 2
+# define KEY_LEFT	123  // 左矢印キー
+# define KEY_RIGHT	124  // 右矢印キー
 /* キーコード定義（Linux用） */
 // # define KEY_ESC	65307
 // # define KEY_W	 119
 // # define KEY_A	 97
 // # define KEY_S	 115
 // # define KEY_D	 100
+// # define KEY_LEFT	65361  // 左矢印キー
+// # define KEY_RIGHT	65363  // 右矢印キー
 
 # define MOVE_SPEED 0.6f
+# define ROTATION_SPEED 0.3f  // 回転角度（ラジアン）
 
 // ------------------------------------------------
 // function
@@ -51,5 +56,10 @@ void	move_player_a(t_data *data);
 void	move_player_s(t_data *data);
 void	move_player_d(t_data *data);
 void	handle_key_input(int keycode, t_data *data);
+
+/* 回転機能 */
+void	rotate_player_left(t_data *data);
+void	rotate_player_right(t_data *data);
+void	rotate_player(t_data *data, float angle);
 
 #endif

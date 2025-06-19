@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/17 20:16:32 by miyuu            ###   ########.fr       */
+/*   Created: 2025/06/19 22:47:58 by miyuu             #+#    #+#             */
+/*   Updated: 2025/06/19 22:48:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,8 @@ void	handle_key_input(int keycode, t_data *data)
 		move_player_s(data);
 	else if (keycode == KEY_D)
 		move_player_d(data);
+	else if (keycode == KEY_LEFT)
+		rotate_player_left(data);
+	else if (keycode == KEY_RIGHT)
+		rotate_player_right(data);
 }
