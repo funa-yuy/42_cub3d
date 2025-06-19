@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/19 00:00:23 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/19 22:18:23 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,9 @@ RENDER_SRC = \
 		src/render/player.c\
 
 MOVE_SRCS = \
-		src/move/can_move_position.c
+		src/move/can_move_position.c \
+		src/move/update_player_pos.c \
+		src/move/movement.c
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
@@ -89,10 +91,10 @@ SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)\
 		$(MOVE_SRCS)\
-		$(VEC_SRCS)\
-		$(LINE_SEGMENT_SRCS)\
-		$(FRAME_SRC)\
-		$(RENDER_SRC)
+		# $(VEC_SRCS)\
+		# $(LINE_SEGMENT_SRCS)\
+		# $(FRAME_SRC)\
+		# $(RENDER_SRC)
 
 
 SRC = \

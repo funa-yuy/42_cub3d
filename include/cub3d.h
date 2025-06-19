@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/17 21:56:27 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/19 22:41:53 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <sys/errno.h>
 # include <mlx.h>
 /* ---- macの場合、以下2つをコメントアウト ---- */
-# include <X11/keysym.h>
-# include <X11/X.h>
+// # include <X11/keysym.h>
+// # include <X11/X.h>
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -61,9 +61,10 @@ typedef struct s_pos
 {
 	float	y;//縦
 	float	x;//横
+	float			dir_y; // 方向ベクトルY成分
+	float			dir_x; // 方向ベクトルX成分
 	t_player_dir	dir;
 }				t_pos;
-
 typedef struct s_data
 {
 	void			*mlx;
