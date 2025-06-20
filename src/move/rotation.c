@@ -6,12 +6,11 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/20 19:11:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/20 20:37:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "move.h"
-#include <math.h>
 
 /**
  * プレイヤーを指定した角度だけ回転させる
@@ -20,29 +19,20 @@
  */
 void	rotate_player(t_data *data, float angle)
 {
-	float	old_dir_x;
-	float	old_dir_y;
-	float	cos_angle;
-	float	sin_angle;
-
 	if (!data)
 		return ;
 
-	old_dir_x = data->player.dir_x;
-	old_dir_y = data->player.dir_y;
+	data->player.angle += angle;
 
-	cos_angle = cosf(angle);
-	sin_angle = sinf(angle);
-
-	/* 回転行列を適用して新しい方向ベクトルを計算 */
-	/* [cos -sin] [dir_x]   [new_dir_x] */
-	/* [sin  cos] [dir_y] = [new_dir_y] */
-	data->player.dir_x = old_dir_x * cos_angle - old_dir_y * sin_angle;
-	data->player.dir_y = old_dir_x * sin_angle + old_dir_y * cos_angle;
+	/* 角度を 0 〜 2π の範囲に正規化 */
+	while (data->player.angle >= 2.0f * M_PI)
+		data->player.angle -= 2.0f * M_PI;
+	while (data->player.angle < 0.0f)
+		data->player.angle += 2.0f * M_PI;
 
 	/* デバッグ出力 */
-	debug_dprintf(STDOUT_FILENO, "Player rotated by %.3f rad. New direction: (%.3f, %.3f)\n",
-		angle, data->player.dir_x, data->player.dir_y);
+	debug_dprintf(STDOUT_FILENO, "Player rotated by %.3f rad. New angle: %.3f rad. Direction vector: (%.3f, %.3f)\n",
+		angle, data->player.angle, cosf(data->player.angle), sinf(data->player.angle));
 }
 
 /**
@@ -64,7 +54,7 @@ void	rotate_player_right(t_data *data)
 }
 
 /**
- * プレイヤーの初期方向を設定する（回転行列版）
+ * プレイヤーの初期方向を設定する（角度版）
  * @param data プレイヤーデータ
  * @param dir プレイヤーの初期方向
  */
@@ -73,31 +63,15 @@ void	init_player_direction_matrix(t_data *data, t_player_dir dir)
 	if (!data)
 		return ;
 
-	// 各方向の方向ベクトルを直接設定
-	switch (dir)
-	{
-		case DIR_NORTH:  // 北（上）
-			data->player.dir_x = 0.0f;
-			data->player.dir_y = -1.0f;
-			break;
-		case DIR_EAST:   // 東（右）
-			data->player.dir_x = 1.0f;
-			data->player.dir_y = 0.0f;
-			break;
-		case DIR_SOUTH:  // 南（下）
-			data->player.dir_x = 0.0f;
-			data->player.dir_y = 1.0f;
-			break;
-		case DIR_WEST:   // 西（左）
-			data->player.dir_x = -1.0f;
-			data->player.dir_y = 0.0f;
-			break;
-		default:
-			data->player.dir_x = 0.0f;  // デフォルトは北向き
-			data->player.dir_y = -1.0f;
-			break;
-	}
+	if (dir == DIR_NORTH)
+		data->player.angle = 3.0f * M_PI / 2.0f; // 270度
+	else if (dir == DIR_EAST)
+		data->player.angle = 0.0f; // 0度
+	else if (dir == DIR_SOUTH)
+		data->player.angle = M_PI / 2.0f; // 90度
+	else if (dir == DIR_WEST)
+		data->player.angle = M_PI; // 180度
 
-	debug_dprintf(STDOUT_FILENO, "Player initial direction set (matrix). Direction vector: (%.3f, %.3f)\n",
-		data->player.dir_x, data->player.dir_y);
+	debug_dprintf(STDOUT_FILENO, "Player initial direction set (angle). Angle: %.3f rad. Direction vector: (%.3f, %.3f)\n",
+		data->player.angle, cosf(data->player.angle), sinf(data->player.angle));
 }

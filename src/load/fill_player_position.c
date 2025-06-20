@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/19 22:39:00 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/20 20:37:53 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ bool	is_player_dir_char(char c)
 
 void	fill_player_position(t_data *data, char **map_lines)
 {
-	size_t	y;
-	size_t	x;
-	bool	player_found;
+	size_t			y;
+	size_t			x;
+	bool			player_found;
+	t_player_dir	dir;
 
 	y = 0;
 	player_found = false;
@@ -55,8 +56,12 @@ void	fill_player_position(t_data *data, char **map_lines)
 			{
 				if (player_found)
 					error_print_and_exit("There are multiple players.");
-				data->player = \
-						(t_pos){.y = y, .x = x, get_player_dir_enum(map_lines[y][x])};
+				dir = get_player_dir_enum(map_lines[y][x]);
+				data->player = (t_pos){
+					.y = y,
+					.x = x,
+					.dir = dir
+				};
 				player_found = true;
 			}
 			x++;

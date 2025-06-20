@@ -6,49 +6,32 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/20 17:45:49 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/20 20:32:26 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "move.h"
-#include <math.h>
 
 #define ANGLE_ROTATION_SPEED 5.0f  // 回転角度（度数法）
 
 /**
- * 方向ベクトルから角度を計算する（度数法）
- * @param dir_x X方向ベクトル成分
- * @param dir_y Y方向ベクトル成分
- * @return 角度（0-359度）
+ * 角度を度数法からラジアンに変換
+ * @param degrees 度数法の角度
+ * @return ラジアンの角度
  */
-static float	get_angle_from_direction(float dir_x, float dir_y)
+static float	degrees_to_radians(float degrees)
 {
-	float	angle_rad;
-	float	angle_deg;
-
-	angle_rad = atan2f(dir_y, dir_x);
-	angle_deg = angle_rad * 180.0f / M_PI;
-
-	// 0-359度の範囲に正規化
-	if (angle_deg < 0)
-		angle_deg += 360.0f;
-
-	return (angle_deg);
+	return (degrees * M_PI / 180.0f);
 }
 
 /**
- * 角度から方向ベクトルを計算する
- * @param angle 角度（度数法）
- * @param dir_x X方向ベクトル成分への参照
- * @param dir_y Y方向ベクトル成分への参照
+ * 角度をラジアンから度数法に変換
+ * @param radians ラジアンの角度
+ * @return 度数法の角度
  */
-static void	set_direction_from_angle(float angle, float *dir_x, float *dir_y)
+static float	radians_to_degrees(float radians)
 {
-	float	angle_rad;
-
-	angle_rad = angle * M_PI / 180.0f;
-	*dir_x = cosf(angle_rad);
-	*dir_y = sinf(angle_rad);
+	return (radians * 180.0f / M_PI);
 }
 
 /**
@@ -58,30 +41,30 @@ static void	set_direction_from_angle(float angle, float *dir_x, float *dir_y)
  */
 void	rotate_player_angle(t_data *data, float angle_diff)
 {
-	float	current_angle;
-	float	new_angle;
+	float	current_angle_deg;
+	float	new_angle_deg;
 
 	if (!data)
 		return ;
 
-	// 現在の方向ベクトルから角度を取得
-	current_angle = get_angle_from_direction(data->player.dir_x, data->player.dir_y);
+	// 現在の角度を度数法に変換
+	current_angle_deg = radians_to_degrees(data->player.angle);
 
 	// 新しい角度を計算
-	new_angle = current_angle + angle_diff;
+	new_angle_deg = current_angle_deg + angle_diff;
 
 	// 0-359度の範囲に正規化
-	if (new_angle >= 360.0f)
-		new_angle -= 360.0f;
-	else if (new_angle < 0.0f)
-		new_angle += 360.0f;
+	while (new_angle_deg >= 360.0f)
+		new_angle_deg -= 360.0f;
+	while (new_angle_deg < 0.0f)
+		new_angle_deg += 360.0f;
 
-	// 新しい方向ベクトルを設定
-	set_direction_from_angle(new_angle, &data->player.dir_x, &data->player.dir_y);
+	// ラジアンに変換して保存
+	data->player.angle = degrees_to_radians(new_angle_deg);
 
 	/* デバッグ出力 */
 	debug_dprintf(STDOUT_FILENO, "Player rotated by %.1f deg (%.1f -> %.1f). New direction: (%.3f, %.3f)\n",
-		angle_diff, current_angle, new_angle, data->player.dir_x, data->player.dir_y);
+		angle_diff, current_angle_deg, new_angle_deg, cosf(data->player.angle), sinf(data->player.angle));
 }
 
 /**
@@ -138,9 +121,9 @@ void	init_player_direction_angle(t_data *data, t_player_dir dir)
 			break;
 	}
 
-	// 方向ベクトルを設定
-	set_direction_from_angle(initial_angle, &data->player.dir_x, &data->player.dir_y);
+	// 角度をラジアンに変換して設定
+	data->player.angle = degrees_to_radians(initial_angle);
 
 	debug_dprintf(STDOUT_FILENO, "Player initial direction set to %.1f degrees. Direction vector: (%.3f, %.3f)\n",
-		initial_angle, data->player.dir_x, data->player.dir_y);
+		initial_angle, cosf(data->player.angle), sinf(data->player.angle));
 }

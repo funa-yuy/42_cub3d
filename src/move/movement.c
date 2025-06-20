@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 22:47:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/19 22:48:01 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/20 20:32:24 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ void	move_player_w(t_data *data)
 	float	move_x = 0;
 	float	move_y = 0;
 	float	new_x, new_y;
+	float	dir_x, dir_y;
 
-	move_x += data->player.dir_x * MOVE_SPEED;
-	move_y += data->player.dir_y * MOVE_SPEED;
+	dir_x = cosf(data->player.angle);
+	dir_y = sinf(data->player.angle);
+
+	move_x += dir_x * MOVE_SPEED;
+	move_y += dir_y * MOVE_SPEED;
 
 	new_x = data->player.x + move_x;
 	new_y = data->player.y + move_y;
@@ -34,9 +38,13 @@ void	move_player_a(t_data *data)
 	float	move_x = 0;
 	float	move_y = 0;
 	float	new_x, new_y;
+	float	dir_x, dir_y;
 
-	move_x += data->player.dir_y * MOVE_SPEED;
-	move_y += -data->player.dir_x * MOVE_SPEED;
+	dir_x = cosf(data->player.angle);
+	dir_y = sinf(data->player.angle);
+
+	move_x += dir_y * MOVE_SPEED;
+	move_y += -dir_x * MOVE_SPEED;
 
 	new_x = data->player.x + move_x;
 	new_y = data->player.y + move_y;
@@ -50,9 +58,13 @@ void	move_player_s(t_data *data)
 	float	move_x = 0;
 	float	move_y = 0;
 	float	new_x, new_y;
+	float	dir_x, dir_y;
 
-	move_x += -data->player.dir_x * MOVE_SPEED;
-	move_y += -data->player.dir_y * MOVE_SPEED;
+	dir_x = cosf(data->player.angle);
+	dir_y = sinf(data->player.angle);
+
+	move_x += -dir_x * MOVE_SPEED;
+	move_y += -dir_y * MOVE_SPEED;
 
 	new_x = data->player.x + move_x;
 	new_y = data->player.y + move_y;
@@ -66,9 +78,13 @@ void	move_player_d(t_data *data)
 	float	move_x = 0;
 	float	move_y = 0;
 	float	new_x, new_y;
+	float	dir_x, dir_y;
 
-	move_x += -data->player.dir_y * MOVE_SPEED;
-	move_y += data->player.dir_x * MOVE_SPEED;
+	dir_x = cosf(data->player.angle);
+	dir_y = sinf(data->player.angle);
+
+	move_x += -dir_y * MOVE_SPEED;
+	move_y += dir_x * MOVE_SPEED;
 
 	new_x = data->player.x + move_x;
 	new_y = data->player.y + move_y;

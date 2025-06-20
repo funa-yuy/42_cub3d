@@ -89,6 +89,7 @@ void	draw_player_with_direction_line(t_data *data, int cell_size)
 	int	line_end_x;
 	int	line_end_y;
 	int	line_length;
+	float	dir_x, dir_y;
 
 	/* プレイヤーの実際の位置をピクセル座標に変換 */
 	player_pixel_x = (int)(data->player.x * cell_size);
@@ -105,9 +106,13 @@ void	draw_player_with_direction_line(t_data *data, int cell_size)
 	/* プレイヤーを青色の四角で描画 */
 	draw_rectangle(data, offset_x, offset_y, player_size, 0x0000FF);
 
+	/* 角度から方向ベクトルを計算 */
+	dir_x = cosf(data->player.angle);
+	dir_y = sinf(data->player.angle);
+
 	/* 方向を示す線を描画（より太く見えるように3本描画） */
-	line_end_x = player_pixel_x + (int)(data->player.dir_x * line_length);
-	line_end_y = player_pixel_y + (int)(data->player.dir_y * line_length);
+	line_end_x = player_pixel_x + (int)(dir_x * line_length);
+	line_end_y = player_pixel_y + (int)(dir_y * line_length);
 
 	/* 中央の線 */
 	draw_line(data, player_pixel_x, player_pixel_y, line_end_x, line_end_y, 0xFFFF00);
@@ -162,11 +167,15 @@ void	draw_ui_text(t_data *data)
 {
 	char	pos_str[50];
 	char	dir_str[50];
+	float	dir_x, dir_y;
+
+	dir_x = cosf(data->player.angle);
+	dir_y = sinf(data->player.angle);
 
 	snprintf(pos_str, sizeof(pos_str), "Player: (%.2f, %.2f)",
 		data->player.x, data->player.y);
 	snprintf(dir_str, sizeof(dir_str), "Direction: (%.3f, %.3f)",
-		data->player.dir_x, data->player.dir_y);
+		dir_x, dir_y);
 	mlx_string_put(data->mlx, data->win, 10, 220, 0xFFFFFF, pos_str);
 	mlx_string_put(data->mlx, data->win, 10, 240, 0xFFFFFF, dir_str);
 	mlx_string_put(data->mlx, data->win, 10, 260, 0xFFFFFF,
@@ -293,13 +302,13 @@ int main()
 		NULL, NULL, NULL, NULL, \
 		NULL, NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
 		9, 11, /* height,width */\
-		(t_pos){.y = 7.0, .x = 9.0, .dir_y = 0.0f, .dir_x = 0.0f, DIR_NORTH}, map};/*player, map*/
+		(t_pos){.y = 7.0, .x = 9.0, .angle = 0.0f, .dir = DIR_NORTH}, map};/*player, map*/
 
 	/* 角度版での初期方向設定 */
 	// init_player_direction_angle(target, DIR_NORTH);
 
 	/* 回転行列版での初期方向設定（比較用） */
-	init_player_direction_matrix(target, DIR_SOUTH);
+	init_player_direction_matrix(target, target->player.angle);
 
 	start_game_loop(target);
 
