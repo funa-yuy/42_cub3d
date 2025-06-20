@@ -162,6 +162,9 @@ void	render_simple_map(t_data *data)
 //3D ------------------------------------------------------------
 void	render_3d_scene(t_data *data)
 {
+
+	ft_memset(data->mlx_addr, 0, WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(uint32_t));
+
 	// レイキャスティングによる3D壁描画
 	render_wall_to_screen(
 		data,
