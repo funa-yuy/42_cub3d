@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/19 23:02:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/20 19:11:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,43 @@ void	rotate_player_left(t_data *data)
 void	rotate_player_right(t_data *data)
 {
 	rotate_player(data, ROTATION_SPEED); /* 画面座標系では正の角度で右回転 */
+}
+
+/**
+ * プレイヤーの初期方向を設定する（回転行列版）
+ * @param data プレイヤーデータ
+ * @param dir プレイヤーの初期方向
+ */
+void	init_player_direction_matrix(t_data *data, t_player_dir dir)
+{
+	if (!data)
+		return ;
+
+	// 各方向の方向ベクトルを直接設定
+	switch (dir)
+	{
+		case DIR_NORTH:  // 北（上）
+			data->player.dir_x = 0.0f;
+			data->player.dir_y = -1.0f;
+			break;
+		case DIR_EAST:   // 東（右）
+			data->player.dir_x = 1.0f;
+			data->player.dir_y = 0.0f;
+			break;
+		case DIR_SOUTH:  // 南（下）
+			data->player.dir_x = 0.0f;
+			data->player.dir_y = 1.0f;
+			break;
+		case DIR_WEST:   // 西（左）
+			data->player.dir_x = -1.0f;
+			data->player.dir_y = 0.0f;
+			break;
+		default:
+			data->player.dir_x = 0.0f;  // デフォルトは北向き
+			data->player.dir_y = -1.0f;
+			break;
+	}
+
+	debug_dprintf(STDOUT_FILENO, "Player initial direction set (matrix). Direction vector: (%.3f, %.3f)\n",
+		data->player.dir_x, data->player.dir_y);
 }

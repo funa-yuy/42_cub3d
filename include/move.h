@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/19 23:13:25 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/20 19:11:45 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,12 @@ void	handle_key_input(int keycode, t_data *data);
 void	rotate_player_left(t_data *data);
 void	rotate_player_right(t_data *data);
 void	rotate_player(t_data *data, float angle);
+void	init_player_direction_matrix(t_data *data, t_player_dir dir);
+
+/* 角度版回転機能 */
+void	rotate_player_left_angle(t_data *data);
+void	rotate_player_right_angle(t_data *data);
+void	rotate_player_angle(t_data *data, float angle_diff);
+void	init_player_direction_angle(t_data *data, t_player_dir dir);
 
 #endif

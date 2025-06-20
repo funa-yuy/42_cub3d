@@ -208,9 +208,11 @@ int	handle_movement_keys(int keycode, t_data *data)
 	else if (keycode == KEY_D)
 		move_player_d(data);
 	else if (keycode == KEY_LEFT)
-		rotate_player_left(data);
+		// rotate_player_left(data);  /* 回転行列版（コメントアウト） */
+		rotate_player_left_angle(data);  /* 角度版 */
 	else if (keycode == KEY_RIGHT)
-		rotate_player_right(data);
+		// rotate_player_right(data);  /* 回転行列版（コメントアウト） */
+		rotate_player_right_angle(data);  /* 角度版 */
 	else
 		return (0); /* 移動・回転キーではない */
 
@@ -290,7 +292,13 @@ int main()
 		NULL, NULL, NULL, NULL, \
 		NULL, NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
 		9, 11, /* height,width */\
-		(t_pos){.y = 7.0, .x = 9.0, .dir_y = -1.0f, .dir_x = 0.0f, DIR_NORTH}, map};/*player, map*/
+		(t_pos){.y = 7.0, .x = 9.0, .dir_y = 0.0f, .dir_x = 0.0f, DIR_NORTH}, map};/*player, map*/
+
+	/* 角度版での初期方向設定 */
+	// init_player_direction_angle(target, DIR_NORTH);
+
+	/* 回転行列版での初期方向設定（比較用） */
+	init_player_direction_matrix(target, DIR_SOUTH);
 
 	start_game_loop(target);
 
