@@ -6,7 +6,7 @@
 #    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/20 17:44:38 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/20 19:28:53 by miyuu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,10 +93,10 @@ SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)\
 		$(MOVE_SRCS)\
-		# $(VEC_SRCS)\
-		# $(LINE_SEGMENT_SRCS)\
-		# $(FRAME_SRC)\
-		# $(RENDER_SRC)
+		$(VEC_SRCS)\
+		$(LINE_SEGMENT_SRCS)\
+		$(FRAME_SRC)\
+		$(RENDER_SRC)
 
 
 SRC = \

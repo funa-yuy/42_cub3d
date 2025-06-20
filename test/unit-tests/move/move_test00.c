@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include "move.h"
+#include "render.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -148,6 +149,7 @@ void	render_map_grid(t_data *data)
 	}
 }
 
+//2D ------------------------------------------------------------
 void	render_simple_map(t_data *data)
 {
 	/* 1. マップグリッドを描画 */
@@ -155,6 +157,27 @@ void	render_simple_map(t_data *data)
 
 	/* 2. プレイヤーを正確な位置に描画 */
 	draw_player_at_exact_position(data, CELL_SIZE);
+}
+
+//3D ------------------------------------------------------------
+void	render_3d_scene(t_data *data)
+{
+	// レイキャスティングによる3D壁描画
+	render_wall_to_screen(
+		data,
+		(t_axis_xy_frames) {
+			.axis_x_frames = init_axis_x_frames(data),
+			.axis_y_frames = init_axis_y_frames(data),
+		},
+		init_f32x4(0, data->player.x, data->player.y,
+			atan2f(data->player.dir_y, data->player.dir_x))
+	);
+
+	// 描画されたイメージを画面に表示
+	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img, 0, 0);
+
+	debug_dprintf(STDOUT_FILENO, "3D Scene rendered. Player at (%.2f, %.2f)\n",
+		data->player.x, data->player.y);
 }
 
 void	draw_ui_text(t_data *data)
@@ -178,7 +201,8 @@ void	render_scene(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->win);
 	draw_ui_text(data);
-	render_simple_map(data);
+	// render_simple_map(data);
+	render_3d_scene(data);
 
 	debug_dprintf(STDOUT_FILENO, "Scene rendered. Player at (%.2f, %.2f)\n",
 		data->player.x, data->player.y);
