@@ -149,6 +149,7 @@ void	render_map_grid(t_data *data)
 	}
 }
 
+//2D ------------------------------------------------------------
 void	render_simple_map(t_data *data)
 {
 	/* 1. マップグリッドを描画 */
@@ -156,6 +157,27 @@ void	render_simple_map(t_data *data)
 
 	/* 2. プレイヤーを正確な位置に描画 */
 	draw_player_at_exact_position(data, CELL_SIZE);
+}
+
+//3D ------------------------------------------------------------
+void	render_3d_scene(t_data *data)
+{
+	// レイキャスティングによる3D壁描画
+	render_wall_to_screen(
+		data,
+		(t_axis_xy_frames) {
+			.axis_x_frames = init_axis_x_frames(data),
+			.axis_y_frames = init_axis_y_frames(data),
+		},
+		init_f32x4(0, data->player.x, data->player.y,
+			atan2f(data->player.dir_y, data->player.dir_x))
+	);
+
+	// 描画されたイメージを画面に表示
+	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img, 0, 0);
+
+	debug_dprintf(STDOUT_FILENO, "3D Scene rendered. Player at (%.2f, %.2f)\n",
+		data->player.x, data->player.y);
 }
 
 void	draw_ui_text(t_data *data)
@@ -179,7 +201,8 @@ void	render_scene(t_data *data)
 {
 	mlx_clear_window(data->mlx, data->win);
 	draw_ui_text(data);
-	render_simple_map(data);
+	// render_simple_map(data);
+	render_3d_scene(data);
 
 	debug_dprintf(STDOUT_FILENO, "Scene rendered. Player at (%.2f, %.2f)\n",
 		data->player.x, data->player.y);
@@ -256,44 +279,8 @@ void	start_game_loop(t_data *data)
 /// ```
 int main()
 {
-	t_data	*target;
-	void	*mlx;
-	void	*win;
-
-	enum e_map_type	map[] = \
-	{
-		WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, \
-		WALL, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, EMPTY, EMPTY, WALL, WALL, WALL, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, EMPTY, WALL, NOTHING, NOTHING, WALL, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, EMPTY, WALL, NOTHING, NOTHING, WALL, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, EMPTY, WALL, NOTHING, NOTHING, WALL, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, EMPTY, EMPTY, WALL, WALL, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, WALL, \
-		WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, \
-	};
-
-	/* MLXの初期化 */
-	mlx = mlx_init();
-	if (!mlx)
-	{
-		debug_dprintf(STDERR_FILENO, "Failed to initialize MLX\n");
-		return (1);
-	}
-	win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D Player Test");
-	if (!win)
-	{
-		debug_dprintf(STDERR_FILENO, "Failed to create window\n");
-		return (1);
-	}
-
-	target = &(t_data){\
-		mlx, win, \
-		NULL, NULL, NULL, NULL, \
-		NULL, NULL, NULL, NULL, \
-		NULL, NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
-		9, 11, /* height,width */\
-		(t_pos){.y = 7.0, .x = 9.0, .dir_y = 0.0f, .dir_x = 0.0f, DIR_NORTH}, map};/*player, map*/
+	t_data	*target;			// <- 自作データ
+	target = init_cubdata("map/correct/map_04.cub");
 
 	/* 角度版での初期方向設定 */
 	// init_player_direction_angle(target, DIR_NORTH);
