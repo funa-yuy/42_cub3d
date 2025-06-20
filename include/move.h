@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/20 19:11:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/20 20:08:07 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,24 @@
 // ------------------------------------------------
 
 /* キーコード定義（macOS用） */
-# define KEY_ESC	53
-# define KEY_W	 13
-# define KEY_A	 0
-# define KEY_S	 1
-# define KEY_D	 2
-# define KEY_LEFT	123  // 左矢印キー
-# define KEY_RIGHT	124  // 右矢印キー
+// # define KEY_ESC	53
+// # define KEY_W	 13
+// # define KEY_A	 0
+// # define KEY_S	 1
+// # define KEY_D	 2
+// # define KEY_LEFT	123  // 左矢印キー
+// # define KEY_RIGHT	124  // 右矢印キー
 /* キーコード定義（Linux用） */
-// # define KEY_ESC	65307
-// # define KEY_W	 119
-// # define KEY_A	 97
-// # define KEY_S	 115
-// # define KEY_D	 100
-// # define KEY_LEFT	65361  // 左矢印キー
-// # define KEY_RIGHT	65363  // 右矢印キー
+# define KEY_ESC	65307
+# define KEY_W	 119
+# define KEY_A	 97
+# define KEY_S	 115
+# define KEY_D	 100
+# define KEY_LEFT	65361  // 左矢印キー
+# define KEY_RIGHT	65363  // 右矢印キー
 
 # define MOVE_SPEED 0.6f
-# define ROTATION_SPEED 0.3f  // 回転角度（ラジアン）
+# define ROTATION_SPEED 0.8f  // 回転角度（ラジアン）
 
 // ------------------------------------------------
 // function

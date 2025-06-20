@@ -219,7 +219,7 @@ int	close_window(t_data *data)
 {
 	(void)data;
 	//todo: testのため、freeは必要ない
-	// free_data(data);
+	free_data(data);
 	exit(0);
 	return (0);
 }
@@ -283,7 +283,7 @@ void	start_game_loop(t_data *data)
 int main()
 {
 	t_data	*target;			// <- 自作データ
-	target = init_cubdata("map/correct/map_04.cub");
+	target = init_cubdata("map/correct/rhombus.cub");
 
 	/* 角度版での初期方向設定 */
 	// init_player_direction_angle(target, DIR_NORTH);
