@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation_interactive_test.c                        :+:      :+:    :+:   */
+/*   rotation_test00.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 21:29:57 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 21:37:51 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "move.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 void	process_key_input(t_data *data, int keycode)
 {
@@ -31,9 +28,10 @@ void	process_key_input(t_data *data, int keycode)
 		printf("right: ");
 		update_angle_right(data);
 	}
-	printf("angleが %.3f(%.2f°) から %.3f(%.2f°) に変更\n",
+	printf("angleが %.3f(%.2f°) から %.3f(%.2f°) に変更.差分: %.3f\n",
 		old_angle, old_angle * 180.0f / M_PI,
-		data->player.angle, data->player.angle * 180.0f / M_PI);
+		data->player.angle, data->player.angle * 180.0f / M_PI, \
+		old_angle - data->player.angle);
 }
 
 int	handle_key(int keycode, t_data *data)
@@ -51,29 +49,25 @@ int	handle_key(int keycode, t_data *data)
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
+	free_data(data);
 	exit(0);
 	return (0);
 }
 
 /// ```bash
-/// make test test/unit-tests/move/rotation_interactive_test.c
+/// make test test/unit-tests/move/rotation_test00.c
 /// ```
 int	main(void)
 {
 	t_data	*target;
 
 	target = init_cubdata("map/correct/simple.cub");
-
 	printf("視点移動テスト開始\n");
 	printf("操作: 左右の矢印キーで回転、ESCで終了\n");
 	printf("初期角度: %.3f rad (%.2f°)\n",
-		target->player.angle,
-		target->player.angle * 180.0f / M_PI);
-
-	mlx_key_hook(target->win, handle_key, &target);
-	mlx_hook(target->win, 17, 0, close_window, &target);
+		target->player.angle, target->player.angle * 180.0f / M_PI);
+	mlx_key_hook(target->win, handle_key, target);
+	mlx_hook(target->win, 17, 0, close_window, target);
 	mlx_loop(target->mlx);
-
-	free_data(target);
 	return (0);
 }
