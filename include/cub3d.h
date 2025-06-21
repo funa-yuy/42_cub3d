@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/20 20:34:37 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 19:50:20 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,11 @@ typedef enum e_map_type
 	NOTHING,//空白
 }	t_map_type;
 
-typedef enum e_player_dir
-{
-	DIR_NORTH,//N
-	DIR_SOUTH,//S
-	DIR_EAST,//E
-	DIR_WEST,//W
-}	t_player_dir;
-
 typedef struct s_pos
 {
 	float	y;//縦
 	float	x;//横
-	float			angle; // 方向角度（ラジアン）
-	t_player_dir	dir;
+	float	angle; // 方向角度（ラジアン）
 }				t_pos;
 typedef struct s_data
 {
