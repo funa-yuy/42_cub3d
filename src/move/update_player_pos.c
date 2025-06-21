@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/22 01:47:00 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/22 02:05:26 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	update_player_pos(t_data *data, float new_x, float new_y)
 {
 	if (can_move_position(data, new_x, new_y))
 	{
-		debug_dprintf(STDERR_FILENO, "Player collision detected at (%f, %f)\n", \
+		debug_dprintf(STDERR_FILENO, "Playerが壁にぶつかりました: (%f, %f)\n", \
 						new_x, new_y);
 		return ;
 	}
