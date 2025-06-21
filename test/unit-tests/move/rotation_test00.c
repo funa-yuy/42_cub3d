@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation_test00.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 21:59:03 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 22:03:05 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	close_window(t_data *data)
 /// ```bash
 /// make test test/unit-tests/move/rotation_test00.c
 /// ```
+// 回転する角度を変更したい場合は、move.hに定義されているROTATION_SPEEDの値を変更して下さい
 int	main(void)
 {
 	t_data	*target;
@@ -77,8 +78,10 @@ int	main(void)
 	target = init_cubdata("map/correct/simple.cub");
 	printf("視点移動テスト開始\n");
 	printf("操作: 左右の矢印キーで回転、ESCで終了\n");
-	printf("初期角度: %.3f rad (%.2f°)\n",
-		target->player.angle, target->player.angle * 180.0f / M_PI);
+	printf("初期角度: %.3f rad (%.2f°), 回転角度: %.3f\n",
+		target->player.angle, \
+		target->player.angle * 180.0f / M_PI, \
+		ROTATION_SPEED);
 	mlx_key_hook(target->win, handle_key, target);
 	mlx_hook(target->win, 17, 0, close_window, target);
 	mlx_loop(target->mlx);
