@@ -24,6 +24,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
+      - name: Download minilibx-linux
+        run: |
+          curl -o minilibx-linux.tgz https://cdn.intra.42.fr/document/document/35303/minilibx-linux.tgz
+
       # Compile the project using the make command
       - name: build
         run: make all
