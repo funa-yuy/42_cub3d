@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/22 01:36:10 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/22 01:39:42 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	render_scene(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img, 0, 0);
 }
 
+int	close_window(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	free_data(data);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
 int	key_press(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
@@ -37,14 +45,6 @@ int	key_press(int keycode, t_data *data)
 	else
 		handle_key_input(keycode, data);
 	render_scene(data);
-	return (0);
-}
-
-int	close_window(t_data *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	free_data(data);
-	exit(EXIT_SUCCESS);
 	return (0);
 }
 
