@@ -3,15 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   rotation_test00.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 21:37:51 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/21 21:59:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "move.h"
+
+// 差分を -π から π の範囲に正規化
+float	calcu_angle_diff(float old_angle, float new_angle)
+{
+	float	diff;
+
+	diff = new_angle - old_angle;
+	while (diff > M_PI)
+		diff -= 2.0f * M_PI;
+	while (diff < -M_PI)
+		diff += 2.0f * M_PI;
+	return (diff);
+}
 
 void	process_key_input(t_data *data, int keycode)
 {
@@ -31,7 +44,7 @@ void	process_key_input(t_data *data, int keycode)
 	printf("angleが %.3f(%.2f°) から %.3f(%.2f°) に変更.差分: %.3f\n",
 		old_angle, old_angle * 180.0f / M_PI,
 		data->player.angle, data->player.angle * 180.0f / M_PI, \
-		old_angle - data->player.angle);
+		calcu_angle_diff(old_angle, data->player.angle));
 }
 
 int	handle_key(int keycode, t_data *data)
