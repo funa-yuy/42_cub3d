@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   update_angle_test00.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 22:17:00 by miyuu            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "cub3d.h"
 #include "move.h"
@@ -47,23 +36,20 @@ void	process_key_input(t_data *data, int keycode)
 		calcu_angle_diff(old_angle, data->player.angle));
 }
 
-int	handle_key(int keycode, t_data *data)
-{
-	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
-	}
-	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		process_key_input(data, keycode);
-	return (0);
-}
-
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	free_data(data);
 	exit(0);
+	return (0);
+}
+
+int	handle_key(int keycode, t_data *data)
+{
+	if (keycode == KEY_ESC)
+		close_window(data);
+	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
+		process_key_input(data, keycode);
 	return (0);
 }
 
