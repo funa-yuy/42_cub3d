@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 15:48:22 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 14:07:01 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,19 @@ void	degub_mlx_data(t_data *data)
 	mlx_loop(mlx);
 }
 
-char	*get_player_dir_str(t_player_dir dir)
+char	*get_player_angle_str(float angle)
 {
-	if (DIR_NORTH == dir)
-		return ("DIR_NORTH");
-	if (DIR_SOUTH == dir)
-		return ("DIR_SOUTH");
-	if (DIR_EAST == dir)
-		return ("DIR_EAST");
-	if (DIR_WEST == dir)
-		return ("DIR_WEST");
-	return (NULL);
+	const float	epsilon = 1e-6;
+
+	if (fabs(angle - 3.0f * M_PI / 2.0f) < epsilon)
+		return ("北");
+	else if (fabs(angle - 0.0f) < epsilon)
+		return ("東");
+	else if (fabs(angle - M_PI / 2.0f) < epsilon)
+		return ("南");
+	else if (fabs(angle - M_PI) < epsilon)
+		return ("西");
+	return ("東西南北に当てはまりません");
 }
 
 void	print_map_data(t_data *data)
@@ -79,8 +81,10 @@ void	debug_print_data(t_data *data)
 	debug_dprintf(STDOUT_FILENO, "天井 color: 0x%06X\n", data->c_color);
 	debug_dprintf(STDOUT_FILENO, "高さ height: %d\n", data->height);
 	debug_dprintf(STDOUT_FILENO, "幅    width: %d\n", data->width);
-	debug_dprintf(STDOUT_FILENO, "Player position: x = %u, y = %u, dir = %s\n", \
-	data->player.x, data->player.y, get_player_dir_str(data->player.dir));
+	debug_dprintf(STDOUT_FILENO, "Player position: x = %f, y = %f, ", \
+								data->player.x, data->player.y);
+	debug_dprintf(STDOUT_FILENO, "dir = %f(%s)\n", \
+				data->player.angle, get_player_angle_str(data->player.angle));
 	debug_dprintf(STDOUT_FILENO, "以下、mapデータ: \n");
 	if (!data->map)
 		debug_dprintf(STDOUT_FILENO, "なし(null)\n");
