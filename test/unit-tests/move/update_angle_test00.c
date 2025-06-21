@@ -36,18 +36,6 @@ void	process_key_input(t_data *data, int keycode)
 		calcu_angle_diff(old_angle, data->player.angle));
 }
 
-int	handle_key(int keycode, t_data *data)
-{
-	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
-	}
-	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
-		process_key_input(data, keycode);
-	return (0);
-}
-
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
@@ -56,8 +44,17 @@ int	close_window(t_data *data)
 	return (0);
 }
 
+int	handle_key(int keycode, t_data *data)
+{
+	if (keycode == KEY_ESC)
+		close_window(data);
+	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
+		process_key_input(data, keycode);
+	return (0);
+}
+
 /// ```bash
-/// make test test/unit-tests/move/rotation_test00.c
+/// make test test/unit-tests/move/update_angle_test00.c
 /// ```
 // 回転する角度を変更したい場合は、move.hに定義されているROTATION_SPEEDの値を変更して下さい
 int	main(void)
