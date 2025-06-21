@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/22 01:12:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/22 01:16:02 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
 
+# define MOVE_SPEED 0.6f
 # define ROTATION_SPEED 0.8f
 
 // ------------------------------------------------
@@ -52,6 +53,7 @@ bool	can_move_position(t_data *data, float x, float y);
 
 int		key_press(int keycode, t_data *data);
 
+/* update_player_pos.c */
 void	update_player_pos(t_data *data, float new_x, float new_y);
 void	update_position_front(t_data *data);
 void	update_position_left(t_data *data);
