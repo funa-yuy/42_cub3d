@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 19:32:52 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 19:54:28 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ void	handle_key_input(int keycode, t_data *data);
 void	update_angle_left(t_data *data);
 void	update_angle_right(t_data *data);
 void	rotate_player(t_data *data, float angle);
-void	init_player_direction_matrix(t_data *data, t_player_dir dir);
 
 #endif

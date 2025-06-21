@@ -279,10 +279,7 @@ int main()
 		NULL, NULL, NULL, NULL, \
 		NULL, NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
 		9, 11, /* height,width */\
-		(t_pos){.y = 7.0, .x = 9.0, .angle = 0.0f, .dir = DIR_NORTH}, map};/*player, map*/
-
-	/* 回転行列版での初期方向設定（比較用） */
-	init_player_direction_matrix(target, target->player.angle);
+		(t_pos){.y = 7.0, .x = 9.0, .angle = 0.0f}, map};/*player, map*/
 
 	start_game_loop(target);
 

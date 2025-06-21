@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 19:23:13 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 19:52:30 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,4 @@ void	update_angle_left(t_data *data)
 void	update_angle_right(t_data *data)
 {
 	rotate_player(data, ROTATION_SPEED); /* 画面座標系では正の角度で右回転 */
-}
-
-/**
- * プレイヤーの初期方向を設定する（角度版）
- * @param data プレイヤーデータ
- * @param dir プレイヤーの初期方向
- */
-void	init_player_direction_matrix(t_data *data, t_player_dir dir)
-{
-	if (!data)
-		return ;
-
-	if (dir == DIR_NORTH)
-		data->player.angle = 3.0f * M_PI / 2.0f; // 270度
-	else if (dir == DIR_EAST)
-		data->player.angle = 0.0f; // 0度
-	else if (dir == DIR_SOUTH)
-		data->player.angle = M_PI / 2.0f; // 90度
-	else if (dir == DIR_WEST)
-		data->player.angle = M_PI; // 180度
-
-	debug_dprintf(STDOUT_FILENO, "Player initial direction set (angle). Angle: %.3f rad. Direction vector: (%.3f, %.3f)\n",
-		data->player.angle, cosf(data->player.angle), sinf(data->player.angle));
 }

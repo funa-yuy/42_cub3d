@@ -271,9 +271,6 @@ int main()
 	t_data	*target;			// <- 自作データ
 	target = init_cubdata("map/correct/rhombus.cub");
 
-	/* 回転行列版での初期方向設定（比較用） */
-	init_player_direction_matrix(target, DIR_SOUTH);
-
 	start_game_loop(target);
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 19:50:41 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/21 19:51:40 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	fill_player_position(t_data *data, char **map_lines)
 	size_t			y;
 	size_t			x;
 	bool			player_found;
-	t_player_dir	dir;
 
 	y = 0;
 	player_found = false;
