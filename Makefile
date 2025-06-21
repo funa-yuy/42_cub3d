@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+         #
+#    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/21 19:33:08 by miyuu            ###   ########.fr        #
+#    Updated: 2025/06/21 20:10:24 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ MOVE_SRCS = \
 		src/move/can_move_position.c \
 		src/move/update_player_pos.c \
 		src/move/movement.c \
-		src/move/rotation.c \
+		src/move/update_angle.c \
 		src/move/key_press.c
 
 DEBUG_SRCS = \
