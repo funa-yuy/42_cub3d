@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 22:47:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 19:23:13 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 19:41:23 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,4 @@ void	update_position_right(t_data *data)
 	new_y = data->player.y + move_y;
 
 	update_player_pos(data, new_x, new_y);
-}
-
-void	handle_key_input(int keycode, t_data *data)
-{
-	if (keycode == KEY_W)
-		update_position_front(data);
-	else if (keycode == KEY_A)
-		update_position_left(data);
-	else if (keycode == KEY_S)
-		update_position_back(data);
-	else if (keycode == KEY_D)
-		update_position_right(data);
-	else if (keycode == KEY_LEFT)
-		update_angle_left(data);
-	else if (keycode == KEY_RIGHT)
-		update_angle_right(data);
 }
