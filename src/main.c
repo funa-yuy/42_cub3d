@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/22 01:30:47 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/22 01:36:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	key_press(int keycode, t_data *data)
 	return (0);
 }
 
-void	close_window(t_data *data)
+int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	free_data(data);
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 void	render_loop(t_data *data)
