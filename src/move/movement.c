@@ -6,14 +6,14 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 22:47:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/20 20:32:24 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 19:23:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "move.h"
 
 /* 前進: 方向ベクトルに基づいた移動 */
-void	move_player_w(t_data *data)
+void	update_position_front(t_data *data)
 {
 	float	move_x = 0;
 	float	move_y = 0;
@@ -33,7 +33,7 @@ void	move_player_w(t_data *data)
 }
 
 /* 左移動: 方向ベクトルに垂直な方向への移動 */
-void	move_player_a(t_data *data)
+void	update_position_left(t_data *data)
 {
 	float	move_x = 0;
 	float	move_y = 0;
@@ -53,7 +53,7 @@ void	move_player_a(t_data *data)
 }
 
 /* 後退: 方向ベクトルの逆方向への移動 */
-void	move_player_s(t_data *data)
+void	update_position_back(t_data *data)
 {
 	float	move_x = 0;
 	float	move_y = 0;
@@ -73,7 +73,7 @@ void	move_player_s(t_data *data)
 }
 
 /* 右移動: 方向ベクトルに垂直な方向への移動 */
-void	move_player_d(t_data *data)
+void	update_position_right(t_data *data)
 {
 	float	move_x = 0;
 	float	move_y = 0;
@@ -95,15 +95,15 @@ void	move_player_d(t_data *data)
 void	handle_key_input(int keycode, t_data *data)
 {
 	if (keycode == KEY_W)
-		move_player_w(data);
+		update_position_front(data);
 	else if (keycode == KEY_A)
-		move_player_a(data);
+		update_position_left(data);
 	else if (keycode == KEY_S)
-		move_player_s(data);
+		update_position_back(data);
 	else if (keycode == KEY_D)
-		move_player_d(data);
+		update_position_right(data);
 	else if (keycode == KEY_LEFT)
-		rotate_player_left(data);
+		update_angle_left(data);
 	else if (keycode == KEY_RIGHT)
-		rotate_player_right(data);
+		update_angle_right(data);
 }

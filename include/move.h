@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/20 20:32:17 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 19:32:52 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,20 @@
 
 bool	can_move_position(t_data *data, float x, float y);
 
+int		key_press(int keycode, t_data *data);
+
+
 void	update_player_pos(t_data *data, float new_x, float new_y);
-void	move_player_w(t_data *data);
-void	move_player_a(t_data *data);
-void	move_player_s(t_data *data);
-void	move_player_d(t_data *data);
+void	update_position_front(t_data *data);
+void	update_position_left(t_data *data);
+void	update_position_back(t_data *data);
+void	update_position_right(t_data *data);
 void	handle_key_input(int keycode, t_data *data);
 
 /* 回転機能 */
-void	rotate_player_left(t_data *data);
-void	rotate_player_right(t_data *data);
+void	update_angle_left(t_data *data);
+void	update_angle_right(t_data *data);
 void	rotate_player(t_data *data, float angle);
 void	init_player_direction_matrix(t_data *data, t_player_dir dir);
-
-/* 角度版回転機能 */
-void	rotate_player_left_angle(t_data *data);
-void	rotate_player_right_angle(t_data *data);
-void	rotate_player_angle(t_data *data, float angle_diff);
-void	init_player_direction_angle(t_data *data, t_player_dir dir);
 
 #endif

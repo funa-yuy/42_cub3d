@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/05/18 14:04:00 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 18:45:37 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int	main(int argc, char *argv[])
 	}
 	data = init_cubdata(argv[1]);
 	//描写
+	//todo: 初期状態を3D描画
+	//todo: mlx_hook(data->win, 17, 0, close_window, data);
+	//todo: mlx_key_hook(data->win, key_press, data);
+	//todo: mlx_loop(data->mlx);
 	free_data(data);
 	return (0);
 }

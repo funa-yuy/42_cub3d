@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 00:00:00 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/20 20:37:35 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 19:23:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	rotate_player(t_data *data, float angle)
  * プレイヤーを左に回転させる（画面上で左向きに回転）
  * @param data プレイヤーデータ
  */
-void	rotate_player_left(t_data *data)
+void	update_angle_left(t_data *data)
 {
 	rotate_player(data, -ROTATION_SPEED); /* 画面座標系では負の角度で左回転 */
 }
@@ -48,7 +48,7 @@ void	rotate_player_left(t_data *data)
  * プレイヤーを右に回転させる（画面上で右向きに回転）
  * @param data プレイヤーデータ
  */
-void	rotate_player_right(t_data *data)
+void	update_angle_right(t_data *data)
 {
 	rotate_player(data, ROTATION_SPEED); /* 画面座標系では正の角度で右回転 */
 }

@@ -207,37 +207,14 @@ int	close_window(t_data *data)
 	return (0);
 }
 
-int	handle_movement_keys(int keycode, t_data *data)
-{
-	if (keycode == KEY_W)
-		move_player_w(data);
-	else if (keycode == KEY_A)
-		move_player_a(data);
-	else if (keycode == KEY_S)
-		move_player_s(data);
-	else if (keycode == KEY_D)
-		move_player_d(data);
-	else if (keycode == KEY_LEFT)
-		// rotate_player_left(data);  /* 回転行列版（コメントアウト） */
-		rotate_player_left_angle(data);  /* 角度版 */
-	else if (keycode == KEY_RIGHT)
-		// rotate_player_right(data);  /* 回転行列版（コメントアウト） */
-		rotate_player_right_angle(data);  /* 角度版 */
-	else
-		return (0); /* 移動・回転キーではない */
-
-	render_scene(data);
-	return (1); /* 移動・回転キーが押された */
-}
-
 int	key_press(int keycode, t_data *data)
 {
 	debug_dprintf(STDOUT_FILENO, "Key pressed: %d\n", keycode);
-
 	if (keycode == KEY_ESC)
 		close_window(data);
 	else
-		handle_movement_keys(keycode, data);
+		handle_key_input(keycode, data);
+	render_scene(data);
 	return (0);
 }
 
@@ -303,9 +280,6 @@ int main()
 		NULL, NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
 		9, 11, /* height,width */\
 		(t_pos){.y = 7.0, .x = 9.0, .angle = 0.0f, .dir = DIR_NORTH}, map};/*player, map*/
-
-	/* 角度版での初期方向設定 */
-	// init_player_direction_angle(target, DIR_NORTH);
 
 	/* 回転行列版での初期方向設定（比較用） */
 	init_player_direction_matrix(target, target->player.angle);
