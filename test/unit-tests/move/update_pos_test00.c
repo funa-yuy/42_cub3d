@@ -2,14 +2,6 @@
 #include "cub3d.h"
 #include "move.h"
 
-int	close_window(t_data *data)
-{
-	mlx_destroy_window(data->mlx, data->win);
-	free_data(data);
-	exit(0);
-	return (0);
-}
-
 // 2点間の距離を計算
 float	calc_distance(float x1, float y1, float x2, float y2)
 {
@@ -56,6 +48,13 @@ void	process_movement_input(t_data *data, int keycode)
 	distance = calc_distance(old_x, old_y, data->player.x, data->player.y);
 	printf("座標が (%.3f, %.3f) から (%.3f, %.3f) に移動. 移動距離: %.3f\n",
 		old_x, old_y, data->player.x, data->player.y, distance);
+}
+
+int	close_window(t_data *data)
+{
+	free_data(data);
+	exit(0);
+	return (0);
 }
 
 int	handle_key(int keycode, t_data *data)

@@ -38,7 +38,6 @@ void	process_key_input(t_data *data, int keycode)
 
 int	close_window(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
 	free_data(data);
 	exit(0);
 	return (0);

@@ -226,8 +226,6 @@ void	render_scene(t_data *data)
 
 int	close_window(t_data *data)
 {
-	(void)data;
-	//todo: testのため、freeは必要ない
 	free_data(data);
 	exit(0);
 	return (0);

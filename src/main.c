@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/22 01:39:42 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/22 01:52:47 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	render_scene(t_data *data)
 
 int	close_window(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
 	free_data(data);
 	exit(EXIT_SUCCESS);
 	return (0);
