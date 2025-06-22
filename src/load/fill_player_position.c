@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/22 11:36:45 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/22 12:55:16 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	fill_player_position(t_data *data, char **map_lines)
 			{
 				if (player_found)
 					error_print_and_exit("There are multiple players.");
-				data->player = (t_pos){.y = y, .x = x, \
+				//todo: プレイヤーの位置をセルの中心にするため、0.5f足す?
+				data->player = (t_pos){.y = y + 0.5f, .x = x + 0.5f, \
 								.angle = get_player_angle(map_lines[y][x])};
 				player_found = true;
 			}
