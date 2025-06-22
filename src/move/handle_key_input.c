@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_press.c                                        :+:      :+:    :+:   */
+/*   handle_key_input.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 18:52:09 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 19:30:11 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/22 11:35:38 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,3 @@ void	handle_key_input(int keycode, t_data *data)
 	else if (keycode == KEY_RIGHT)
 		update_angle_right(data);
 }
-
-// int	key_press(int keycode, t_data *data)
-// {
-// 	debug_dprintf(STDOUT_FILENO, "Key pressed: %d\n", keycode);
-// 	if (keycode == KEY_ESC)
-// 		close_window(data);
-// 	else
-// 		handle_key_input(keycode, data);
-// 	render_scene(data);
-// 	return (0);
-// }

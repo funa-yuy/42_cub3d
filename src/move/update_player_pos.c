@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player_pos.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/22 02:05:26 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/22 11:49:47 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	update_player_pos(t_data *data, float new_x, float new_y)
 						new_x, new_y);
 		return ;
 	}
+	debug_dprintf(STDERR_FILENO, "(%f, %f)から(%f, %f)に移動\n", \
+				data->player.x, data->player.y, new_x, new_y);
 	data->player.x = new_x;
 	data->player.y = new_y;
 }
