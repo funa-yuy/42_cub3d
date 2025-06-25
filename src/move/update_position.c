@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_position.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 18:41:53 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/25 19:41:08 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/25 19:49:58 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	update_position_front(t_data *data)
 /* 右: +90度方向に移動 */
 void	update_position_left(t_data *data)
 {
-	move_player_pos(data, data->player.angle + M_PI_2);
+	move_player_pos(data, data->player.angle - M_PI_2);
 }
 
 /* 後: +180度方向に移動 */
@@ -55,5 +55,5 @@ void	update_position_back(t_data *data)
 /* 左: -90度方向に移動 */
 void	update_position_right(t_data *data)
 {
-	move_player_pos(data, data->player.angle - M_PI_2);
+	move_player_pos(data, data->player.angle + M_PI_2);
 }
