@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/25 18:44:46 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:43:39 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		key_press(int keycode, t_data *data);
 void	handle_key_input(int keycode, t_data *data);
 
 /* update_position.c */
-void	move_player_pos(t_data *data, float new_x, float new_y);
+void	move_player_pos(t_data *data, float target_angle);
 void	update_position_front(t_data *data);
 void	update_position_left(t_data *data);
 void	update_position_back(t_data *data);
