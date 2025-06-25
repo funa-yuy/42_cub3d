@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:39:22 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/25 14:58:52 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/25 14:39:23 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 void	update_player_pos(t_data *data, float new_x, float new_y)
 {
-	float	old_x;
-	float	old_y;
-
-	old_x = data->player.x;
-	old_y = data->player.y;
-	if (can_move_position(data, new_x, old_y))
-		debug_dprintf(STDERR_FILENO, "x: 壁にぶつかりました: (%f, %f)\n", new_x, old_y);
-	else
-		data->player.x = new_x;
-	if (can_move_position(data, old_x, new_y))
-		debug_dprintf(STDERR_FILENO, "y: 壁にぶつかりました: (%f, %f)\n", old_x, new_y);
-	else
-		data->player.y = new_y;
+	if (can_move_position(data, new_x, new_y))
+	{
+		debug_dprintf(STDERR_FILENO, "Playerが壁にぶつかりました: (%f, %f)\n", \
+						new_x, new_y);
+		return ;
+	}
+	debug_dprintf(STDERR_FILENO, "(%f, %f)から(%f, %f)に移動\n", \
+				data->player.x, data->player.y, new_x, new_y);
+	data->player.x = new_x;
+	data->player.y = new_y;
 }
 
 /* 前進: 方向ベクトルに基づいた移動 */
