@@ -3,17 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   update_position.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 18:41:53 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/25 18:41:55 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:41:08 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "move.h"
 
-void	move_player_pos(t_data *data, float new_x, float new_y)
+/* 指定した角度(target_angle)に移動する */
+void	move_player_pos(t_data *data, float target_angle)
 {
+	float	move_x;
+	float	move_y;
+	float	new_x;
+	float	new_y;
+
+	move_x = cosf(target_angle) * MOVE_SPEED;
+	move_y = sinf(target_angle) * MOVE_SPEED;
+	new_x = data->player.x + move_x;
+	new_y = data->player.y + move_y;
 	if (can_move_position(data, new_x, new_y))
 	{
 		debug_dprintf(STDERR_FILENO, "Playerが壁にぶつかりました: (%f, %f)\n", \
@@ -24,70 +34,26 @@ void	move_player_pos(t_data *data, float new_x, float new_y)
 	data->player.y = new_y;
 }
 
-/* 前進: 方向ベクトルに基づいた移動 */
+/* 前: 0度方向に移動 */
 void	update_position_front(t_data *data)
 {
-	float	move_x;
-	float	move_y;
-	float	new_x;
-	float	new_y;
-
-	move_x = 0;
-	move_y = 0;
-	move_x += cosf(data->player.angle) * MOVE_SPEED;
-	move_y += sinf(data->player.angle) * MOVE_SPEED;
-	new_x = data->player.x + move_x;
-	new_y = data->player.y + move_y;
-	move_player_pos(data, new_x, new_y);
+	move_player_pos(data, data->player.angle + 0);
 }
 
-/* 左移動: 方向ベクトルに垂直な方向への移動 */
+/* 右: +90度方向に移動 */
 void	update_position_left(t_data *data)
 {
-	float	move_x;
-	float	move_y;
-	float	new_x;
-	float	new_y;
-
-	move_x = 0;
-	move_y = 0;
-	move_x += sinf(data->player.angle) * MOVE_SPEED;
-	move_y += -cosf(data->player.angle) * MOVE_SPEED;
-	new_x = data->player.x + move_x;
-	new_y = data->player.y + move_y;
-	move_player_pos(data, new_x, new_y);
+	move_player_pos(data, data->player.angle + M_PI_2);
 }
 
-/* 後退: 方向ベクトルの逆方向への移動 */
+/* 後: +180度方向に移動 */
 void	update_position_back(t_data *data)
 {
-	float	move_x;
-	float	move_y;
-	float	new_x;
-	float	new_y;
-
-	move_x = 0;
-	move_y = 0;
-	move_x += -cosf(data->player.angle) * MOVE_SPEED;
-	move_y += -sinf(data->player.angle) * MOVE_SPEED;
-	new_x = data->player.x + move_x;
-	new_y = data->player.y + move_y;
-	move_player_pos(data, new_x, new_y);
+	move_player_pos(data, data->player.angle + M_PI);
 }
 
-/* 右移動: 方向ベクトルに垂直な方向への移動 */
+/* 左: -90度方向に移動 */
 void	update_position_right(t_data *data)
 {
-	float	move_x;
-	float	move_y;
-	float	new_x;
-	float	new_y;
-
-	move_x = 0;
-	move_y = 0;
-	move_x += -sinf(data->player.angle) * MOVE_SPEED;
-	move_y += cosf(data->player.angle) * MOVE_SPEED;
-	new_x = data->player.x + move_x;
-	new_y = data->player.y + move_y;
-	move_player_pos(data, new_x, new_y);
+	move_player_pos(data, data->player.angle - M_PI_2);
 }
