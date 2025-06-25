@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/25 18:46:40 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:46:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	update_angle_right(t_data *data);
 void	rotate_player(t_data *data, float angle);
 
 /* update_player_pos.c */
-void	move_player_pos(t_data *data, float new_x, float new_y);
+void	move_player_pos(t_data *data, float target_angle);
 void	update_position_front(t_data *data);
 void	update_position_left(t_data *data);
 void	update_position_back(t_data *data);
