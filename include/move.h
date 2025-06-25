@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 22:16:29 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/25 14:41:17 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define KEY_RIGHT	65363
 
 # define ROTATION_SPEED 0.8f
+# define MOVE_SPEED 0.6f
 
 // ------------------------------------------------
 // function
@@ -53,5 +54,12 @@ bool	can_move_position(t_data *data, float x, float y);
 void	update_angle_left(t_data *data);
 void	update_angle_right(t_data *data);
 void	rotate_player(t_data *data, float angle);
+
+/* update_player_pos.c */
+void	update_player_pos(t_data *data, float new_x, float new_y);
+void	update_position_front(t_data *data);
+void	update_position_left(t_data *data);
+void	update_position_back(t_data *data);
+void	update_position_right(t_data *data);
 
 #endif
