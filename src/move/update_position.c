@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_position.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:39:22 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/25 18:47:29 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/25 19:24:43 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	move_player_pos(t_data *data, float new_x, float new_y)
 	data->player.y = new_y;
 }
 
-/* 前進: 方向ベクトルに基づいた移動 */
 void	update_position_front(t_data *data)
 {
 	float	move_x;
@@ -41,7 +40,6 @@ void	update_position_front(t_data *data)
 	move_player_pos(data, new_x, new_y);
 }
 
-/* 左移動: 方向ベクトルに垂直な方向への移動 */
 void	update_position_left(t_data *data)
 {
 	float	move_x;
@@ -58,7 +56,6 @@ void	update_position_left(t_data *data)
 	move_player_pos(data, new_x, new_y);
 }
 
-/* 後退: 方向ベクトルの逆方向への移動 */
 void	update_position_back(t_data *data)
 {
 	float	move_x;
@@ -75,7 +72,6 @@ void	update_position_back(t_data *data)
 	move_player_pos(data, new_x, new_y);
 }
 
-/* 右移動: 方向ベクトルに垂直な方向への移動 */
 void	update_position_right(t_data *data)
 {
 	float	move_x;
