@@ -64,6 +64,7 @@ VEC_SRCS = \
 FRAME_SRC = \
 		src/frames/axis_x_frames.c\
 		src/frames/axis_y_frames.c\
+		src/frames/clear_frames.c\
 		src/frames/get_line_segment_arr.c\
 		src/frames/get_map_type.c\
 		src/frames/print_frame.c\

@@ -8,10 +8,10 @@ int show(t_data	*target)
 	t_axis_y_frames *fy;
 
 	fx = init_axis_x_frames(target);
-	//print_framex(fx);
 	fy = init_axis_y_frames(target);
-	//print_framey(fy);
 	print_framexy(fx, fy);
+	clear_axis_x_frames(fx);
+	clear_axis_y_frames(fy);
 	return (0);
 }
 
@@ -45,7 +45,7 @@ int main()
 		NULL, NULL, NULL, NULL, \
 		NULL, NULL,0x63580a, 0x0a1e0a, /* f_color, c_color */\
 		14, 33, /* height,width */ \
-		(t_pos){11, 26, DIR_WEST}, map};/*player, map*/
+		(t_pos){11, 26, 0}, map};/*player, map*/
 	show(target);
 	return (0);
 }

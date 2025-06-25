@@ -72,4 +72,8 @@ int print_line_segment(char *str, t_line_segment ls);
 
 int print_walls_line_segment_axis_y(t_axis_y_frames *y_frames);
 
+int clear_axis_x_frames(t_axis_x_frames *frame_x);
+
+int clear_axis_y_frames(t_axis_y_frames *frame_y);
+
 #endif
