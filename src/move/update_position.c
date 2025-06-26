@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:39:22 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/25 19:46:23 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/26 11:14:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	update_position_front(t_data *data)
 	move_player_pos(data, data->player.angle + 0);
 }
 
-/* 右: +90度方向に移動 */
+/* 左: -90度方向に移動 */
 void	update_position_left(t_data *data)
 {
-	move_player_pos(data, data->player.angle + M_PI_2);
+	move_player_pos(data, data->player.angle - M_PI_2);
 }
 
 /* 後: +180度方向に移動 */
@@ -51,8 +51,8 @@ void	update_position_back(t_data *data)
 	move_player_pos(data, data->player.angle + M_PI);
 }
 
-/* 左: -90度方向に移動 */
+/* 右: +90度方向に移動 */
 void	update_position_right(t_data *data)
 {
-	move_player_pos(data, data->player.angle - M_PI_2);
+	move_player_pos(data, data->player.angle + M_PI_2);
 }
