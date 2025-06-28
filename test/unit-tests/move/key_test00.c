@@ -56,6 +56,22 @@ int	close_window(t_data *data)
 	return (0);
 }
 
+void	what_key(int keycode)
+{
+	if (keycode == KEY_W)
+		printf("-- 前 Wキー --\n");
+	else if (keycode == KEY_A)
+		printf("-- 左 Aキー --\n");
+	else if (keycode == KEY_S)
+		printf("-- 後 Sキー --\n");
+	else if (keycode == KEY_D)
+		printf("-- 右 Dキー --\n");
+	else if (keycode == KEY_LEFT)
+		printf("-- 左 LEFTキー --\n");
+	else if (keycode == KEY_RIGHT)
+		printf("-- 右 RIGHTキー --\n");
+}
+
 int	handle_key(int keycode, t_data *data)
 {
 	float	old_x;
@@ -69,6 +85,7 @@ int	handle_key(int keycode, t_data *data)
 		close_window(data);
 	else
 		handle_key_input(keycode, data);
+	what_key(keycode);
 	debug_move_diff(data, old_x, old_y, old_angle);
 	return (0);
 }
