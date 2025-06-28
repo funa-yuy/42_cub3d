@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/28 16:12:22 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/28 16:16:51 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	key_press(int keycode, t_data *data)
 	debug_dprintf(STDERR_FILENO, "キー入力: %d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_window(data);
-	else
+	// else
 		//todo: 移動のキー操作 handle_key_input(keycode, data);
 	// todo: 移動後の描画: render_scene(data);
 	return (0);
