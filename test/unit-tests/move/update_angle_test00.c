@@ -2,6 +2,12 @@
 #include "cub3d.h"
 #include "move.h"
 
+/* キーコード定義（macOS用） */
+// #define KEY_ESC	53
+
+/* キーコード定義（Linux用） */
+#define KEY_ESC	65307
+
 // 差分を -π から π の範囲に正規化
 float	calcu_angle_diff(float old_angle, float new_angle)
 {

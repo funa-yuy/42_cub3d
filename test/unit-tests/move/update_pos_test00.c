@@ -2,6 +2,12 @@
 #include "cub3d.h"
 #include "move.h"
 
+/* キーコード定義（macOS用） */
+// #define KEY_ESC	53
+
+/* キーコード定義（Linux用） */
+#define KEY_ESC	65307
+
 // (x1,y1)と(x2,y2)の距離を計算
 float	calc_distance(float x1, float y1, float x2, float y2)
 {
