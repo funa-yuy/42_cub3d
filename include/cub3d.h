@@ -6,7 +6,7 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:13:57 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/28 16:16:36 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/06/28 16:21:07 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # include <string.h>
 # include <sys/errno.h>
 # include <mlx.h>
-/* ---- macの場合、以下2つをコメントアウト ---- */
-# include <X11/keysym.h>
-# include <X11/X.h>
 #include <stdint.h>
 #include <stdbool.h>
 
