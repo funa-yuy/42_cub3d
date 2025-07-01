@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/28 16:47:27 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:55:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	close_window(t_data *data)
 {
-	free_data(data);
-	exit(EXIT_SUCCESS);
+	mlx_loop_end(data->mlx);
 	return (0);
 }
 
@@ -49,5 +48,6 @@ int	main(int argc, char *argv[])
 	}
 	data = init_cubdata(argv[1]);
 	cub3d_loop(data);
+	free_data(data);
 	return (0);
 }
