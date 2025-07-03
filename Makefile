@@ -75,6 +75,7 @@ FRAME_SRC = \
 RENDER_SRC = \
 		src/render/screen.c\
 		src/render/player.c\
+		src/render/get_cross_wall.c\
 
 MOVE_SRCS = \
 		src/move/can_move_position.c \
