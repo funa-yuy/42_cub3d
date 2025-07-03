@@ -46,6 +46,19 @@ typedef enum e_wall_type
 	e_wall_type_ea_img
 }	t_wall_type;
 
+/**
+ * @brief Structure that stores the intersection detection results.
+ * @param point Coordinates of the nearest intersection.
+ * @param dist_sq Square of the distance from the player's viewpoint to the intersection.
+ * @param wall_segment Pointer to the destination that stores the intersecting wall segment.
+ */
+typedef struct s_intersection_params
+{
+	t_f32x4		point;
+	float		dist_sq;
+	t_line_segment	*wall_segment_out;
+}	t_intersection_params;
+
 t_axis_x_frames *init_axis_x_frames(t_data *data);
 
 t_axis_y_frames *init_axis_y_frames(t_data *data);
@@ -75,5 +88,11 @@ int print_walls_line_segment_axis_y(t_axis_y_frames *y_frames);
 int clear_axis_x_frames(t_axis_x_frames *frame_x);
 
 int clear_axis_y_frames(t_axis_y_frames *frame_y);
+
+t_f32x4 get_cross_wall(
+	t_axis_xy_frames walls,
+	t_line_segment player_ray,
+	t_line_segment *wall_line_segment
+);
 
 #endif

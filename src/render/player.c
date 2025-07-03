@@ -37,7 +37,6 @@ t_fence get_line_to_be_drawn(
 	if (f32x4_has_error(c_p))
 		return ((t_fence) {.buf = NULL, .height=0}); 
 	height = calc_screen_wall_height(200, sqrtf(norm_f32x4_pow(c_p, player_ray.s)), angle);
-
 	wall = get_wall_img_by_wall_type_enum(*data, get_wall_type_by_line_segment(wall_seg));
 	int index = calc_img_index(wall_seg, c_p);
 	return ((t_fence) {

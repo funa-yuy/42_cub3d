@@ -8,19 +8,6 @@
 #include <unistd.h>
 
 /**
- * @brief Structure that stores the intersection detection results.
- * @param point Coordinates of the nearest intersection.
- * @param dist_sq Square of the distance from the player's viewpoint to the intersection.
- * @param wall_segment Pointer to the destination that stores the intersecting wall segment.
- */
-typedef struct s_intersection_params
-{
-	t_f32x4		point;
-	float		dist_sq;
-	t_line_segment	*wall_segment_out;
-}	t_intersection_params;
-
-/**
  * @brief Search for the closest intersection point with the ray from the wall line array.
  * @param wall_buf Wall line array to be searched.
  * @param wall_count Number of elements in the array.
