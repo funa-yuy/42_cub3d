@@ -33,4 +33,5 @@ t_f32x4 get_cross_wall(
 	t_line_segment player_ray,         // playerからの視線ベクトル
 	t_line_segment *wall_line_segment  // 交わった壁のベクトルがここに格納される
 );
+
 #endif
