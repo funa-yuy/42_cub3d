@@ -53,20 +53,16 @@ t_fence get_line_to_be_drawn(
 int render_wall_to_screen(
 	t_data *data,
        	t_axis_xy_frames axis_xy_frames,
-	t_f32x4 player                   // t_f32x4(reserved , player_x, player_y, player_angle)
+	t_f32x4 player 
 )
 {
 	t_vec_f32x4 player_vec;
 	t_line_segment player_ray;
 	float angle;
-	float angle_step;
 	int i;
 
-	// 角視野120度
 	player_vec = f32x4_to_struct(player);
 	angle = - (M_PI/4);
-	angle_step = ((M_PI/4) * 2)/ 600.0f; // 600.0f: step
-				             // 120.0f: player view angle
 	i = 0;
 	while (i < 600)
 	{
@@ -88,12 +84,10 @@ int render_wall_to_screen(
 			arr.buf,
 			arr.height
 		))
-		{
-			printf("\e[31mERROR!\e[0m\n");
-		}
+			debug_dprintf(STDERR_FILENO, "\e[31mERROR!\e[0m\n");
 		free(arr.buf);
 		i += 1;
-		angle += angle_step;
+		angle += ((M_PI/4) * 2)/ 600.0f; 
 	}
 	return (0);
 }
