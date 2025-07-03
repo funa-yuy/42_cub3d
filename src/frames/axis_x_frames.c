@@ -4,53 +4,53 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/// 範囲外にアクセスした場合には
-/// wallを返却します
-/// 
-t_axis_x_frames *init_axis_x_frames(t_data *data)
+static t_line_segment	get_x_axis_segment(
+	enum e_map_type pre_type,
+	enum e_map_type cur_type,
+	size_t x,
+	size_t y)
 {
-	t_axis_x_frames *f;
+	if (pre_type == EMPTY && cur_type == WALL)
+		return ((t_line_segment){
+			.s = init_f32x4(0, x + 1, y, 0),
+			.e = init_f32x4(0, x, y, 0)
+		});
+	if (pre_type == WALL && cur_type == EMPTY)
+		return ((t_line_segment){
+			.s = init_f32x4(0, x, y, 0),
+			.e = init_f32x4(0, x + 1, y, 0)
+		});
+	return ((t_line_segment){
+		.s = init_f32x4(0, 0, 0, 0),
+		.e = init_f32x4(0, 0, 0, 0)
+	});
+}
 
-	f = malloc(sizeof(t_axis_y_frames));
+t_axis_x_frames	*init_axis_x_frames(t_data *data)
+{
+	t_axis_x_frames	*f;
+	size_t			x;
+	size_t			y;
+	enum e_map_type	pre_map_type;
+	enum e_map_type	cur_map_type;
+
+	f = malloc(sizeof(t_axis_x_frames));
 	f->width = data->width;
 	f->height = data->height + 1;
 	f->buf = get_line_segment_arr(f->width, f->height);
-	size_t x;
-	size_t y;
-
-	enum e_map_type pre_map_type;
-	enum e_map_type cur_map_type;
-
 	y = 0;
 	while (y < f->height)
 	{
 		x = 0;
 		while (x < f->width)
 		{
-			cur_map_type = get_map_type(data, x, y);
 			pre_map_type = get_map_type(data, x, y - 1);
-			if (pre_map_type == EMPTY && cur_map_type == EMPTY)
-				f->buf[f->width * y + x] = (t_line_segment) {
-					init_f32x4(0, 0, 0, 0),
-					init_f32x4(0, 0, 0, 0)};
-			else if (pre_map_type == EMPTY && cur_map_type == WALL)
-				f->buf[f->width * y + x] = (t_line_segment) {
-					init_f32x4(0, x + 1, y, 0),
-					init_f32x4(0, x, y, 0)
-				};
-			else if (pre_map_type == WALL && cur_map_type == EMPTY)
-				f->buf[f->width * y + x] = (t_line_segment) {
-					init_f32x4(0, x, y, 0),
-					init_f32x4(0, x + 1, y, 0)
-				};
-			else
-				f->buf[f->width * y + x] = (t_line_segment) {
-					init_f32x4(0, 0, 0, 0),
-					init_f32x4(0, 0, 0, 0)};
+			cur_map_type = get_map_type(data, x, y);
+			f->buf[f->width * y + x] = \
+				get_x_axis_segment(pre_map_type, cur_map_type, x, y);
 			x += 1;
 		}
 		y += 1;
 	}
-	//debug_dprintf(STDERR_FILENO, "pointer %p\n", buf);
 	return (f);
 }

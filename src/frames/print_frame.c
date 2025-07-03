@@ -5,7 +5,6 @@
 
 #include <stdbool.h>
 
-/// 上向きのときtrue
 bool check_vec_up_or_down(t_line_segment l)
 {
 	t_vec_f32x4 a;
@@ -16,7 +15,6 @@ bool check_vec_up_or_down(t_line_segment l)
 	return (0 < a.y);
 }
 
-/// 右向きのときtrue
 bool check_vec_right_or_left(t_line_segment l)
 {
 	t_vec_f32x4 a;
@@ -93,9 +91,6 @@ int print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
 		{
 			while (x < fy->width)
 			{
-				//debug_dprintf(STDERR_FILENO, "\n");
-				//print_f32x4("s:", fy->buf[(y / 2) * fy->width + x].s);
-				//print_f32x4("e:", fy->buf[(y / 2) * fy->width + x].e);
 				if (is_zero_vector(fy->buf[(y / 2) * fy->width + x]))
 					debug_dprintf(STDERR_FILENO, "  ");
 				else if (check_vec_up_or_down(fy->buf[(y / 2) * fy->width + x]))
@@ -110,9 +105,6 @@ int print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
 			debug_dprintf(STDERR_FILENO, " ");
 			while (x < fx->width)
 			{
-				//debug_dprintf(STDERR_FILENO, "\n");
-				//print_f32x4("s:", fx->buf[(y / 2) * fx->width + x].s);
-				//print_f32x4("e:", fx->buf[(y / 2) * fx->width + x].e);
 				if (is_zero_vector(fx->buf[(y / 2) * fx->width + x]))
 					debug_dprintf(STDERR_FILENO, "  ");
 				else if (check_vec_right_or_left(fx->buf[(y / 2) * fx->width + x]))
