@@ -1,34 +1,29 @@
 #include "cub3d.h"
 #include "frames.h"
 #include "vec.h"
+#include <stdbool.h>
 #include <unistd.h>
 
-#include <stdbool.h>
-
-bool check_vec_up_or_down(t_line_segment l)
+bool	check_vec_up_or_down(t_line_segment l)
 {
-	t_vec_f32x4 a;
+	t_vec_f32x4	a;
 
-	a = f32x4_to_struct(
-		sub_f32x4(l.s, l.e)
-	);
+	a = f32x4_to_struct(sub_f32x4(l.s, l.e));
 	return (0 < a.y);
 }
 
-bool check_vec_right_or_left(t_line_segment l)
+bool	check_vec_right_or_left(t_line_segment l)
 {
-	t_vec_f32x4 a;
+	t_vec_f32x4	a;
 
-	a = f32x4_to_struct(
-		sub_f32x4(l.s, l.e)
-	);
+	a = f32x4_to_struct(sub_f32x4(l.s, l.e));
 	return (0 < a.x);
 }
 
-int print_framex(t_axis_x_frames *f)
+int	print_framex(t_axis_x_frames *f)
 {
-	size_t x;
-	size_t y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	y = 0;
@@ -41,7 +36,7 @@ int print_framex(t_axis_x_frames *f)
 				debug_dprintf(STDERR_FILENO, "__");
 			else if (check_vec_right_or_left(f->buf[y * f->width + x]))
 				debug_dprintf(STDERR_FILENO, "->");
-			else 
+			else
 				debug_dprintf(STDERR_FILENO, "<-");
 			x += 1;
 		}
@@ -51,10 +46,10 @@ int print_framex(t_axis_x_frames *f)
 	return (0);
 }
 
-int print_framey(t_axis_y_frames *f)
+int	print_framey(t_axis_y_frames *f)
 {
-	size_t x;
-	size_t y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	y = 0;
@@ -67,7 +62,7 @@ int print_framey(t_axis_y_frames *f)
 				debug_dprintf(STDERR_FILENO, "__");
 			else if (check_vec_up_or_down(f->buf[y * f->width + x]))
 				debug_dprintf(STDERR_FILENO, "^_");
-			else 
+			else
 				debug_dprintf(STDERR_FILENO, "_v");
 			x += 1;
 		}
@@ -77,10 +72,10 @@ int print_framey(t_axis_y_frames *f)
 	return (0);
 }
 
-int print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
+int	print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
 {
-	size_t x;
-	size_t y;
+	size_t	x;
+	size_t	y;
 
 	x = 0;
 	y = 0;
@@ -95,7 +90,7 @@ int print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
 					debug_dprintf(STDERR_FILENO, "  ");
 				else if (check_vec_up_or_down(fy->buf[(y / 2) * fy->width + x]))
 					debug_dprintf(STDERR_FILENO, "^ ");
-				else 
+				else
 					debug_dprintf(STDERR_FILENO, " v");
 				x += 1;
 			}
@@ -107,9 +102,10 @@ int print_framexy(t_axis_x_frames *fx, t_axis_y_frames *fy)
 			{
 				if (is_zero_vector(fx->buf[(y / 2) * fx->width + x]))
 					debug_dprintf(STDERR_FILENO, "  ");
-				else if (check_vec_right_or_left(fx->buf[(y / 2) * fx->width + x]))
+				else if (check_vec_right_or_left(fx->buf[(y / 2) * fx->width
+						+ x]))
 					debug_dprintf(STDERR_FILENO, "<-");
-				else 
+				else
 					debug_dprintf(STDERR_FILENO, "->");
 				x += 1;
 			}

@@ -2,10 +2,10 @@
 #include "frames.h"
 #include "vec.h"
 
-t_wall_type get_wall_type_by_line_segment(t_line_segment a)
+t_wall_type	get_wall_type_by_line_segment(t_line_segment a)
 {
-	t_vec_f32x4 s_v;
-	t_vec_f32x4 e_v;
+	t_vec_f32x4	s_v;
+	t_vec_f32x4	e_v;
 
 	s_v = f32x4_to_struct(a.s);
 	e_v = f32x4_to_struct(a.e);
@@ -25,7 +25,7 @@ t_wall_type get_wall_type_by_line_segment(t_line_segment a)
 	}
 }
 
-void *get_wall_img_by_wall_type_enum(t_data data, t_wall_type t)
+void	*get_wall_img_by_wall_type_enum(t_data data, t_wall_type t)
 {
 	if (t == e_wall_type_no_img)
 		return (data.no_img_addr);
@@ -33,6 +33,6 @@ void *get_wall_img_by_wall_type_enum(t_data data, t_wall_type t)
 		return (data.ea_img_addr);
 	else if (t == e_wall_type_so_img)
 		return (data.so_img_addr);
-	else 
+	else
 		return (data.we_img_addr);
 }
