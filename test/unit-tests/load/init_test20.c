@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 17:15:30 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/28 00:55:55 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 15:05:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	init_test20(void)
 		NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
 		NULL, NULL, NULL, NULL, \
-		NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
+		NULL, NULL, 0xDC6400, 0xE11E00, /* f_color, c_color */\
 		9, 11, /* height,width */\
-		(t_pos){7, 9, DIR_EAST}, map};/*player{y, x, dir}, map*/
+		{.y = 7, .x = 9, .angle = M_PI / 2.0f}, map};/*player{y, x, dir}, map*/
 	printf("\x1b[32m ================ ↓正解↓ ================ \x1b[39m\n");
 	debug_print_data((t_data *)target);
 

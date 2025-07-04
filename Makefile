@@ -6,7 +6,7 @@
 #    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/17 20:55:05 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/06/21 22:19:08 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ VEC_SRCS = \
 FRAME_SRC = \
 		src/frames/axis_x_frames.c\
 		src/frames/axis_y_frames.c\
+		src/frames/clear_frames.c\
 		src/frames/get_line_segment_arr.c\
 		src/frames/get_map_type.c\
 		src/frames/print_frame.c\
@@ -75,6 +76,9 @@ RENDER_SRC = \
 		src/render/screen.c\
 		src/render/player.c\
 
+MOVE_SRCS = \
+		src/move/can_move_position.c \
+		src/move/update_angle.c
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
@@ -86,6 +90,7 @@ DEBUG_SRCS = \
 SRC_WITHOUT_MAIN = \
 		$(LOAD_SRCS) \
 		$(DEBUG_SRCS)\
+		$(MOVE_SRCS)\
 		$(VEC_SRCS)\
 		$(LINE_SEGMENT_SRCS)\
 		$(FRAME_SRC)\
@@ -172,7 +177,6 @@ fclean: test-clean clean
 	rm -rf $(MINILIBX_TAR_GZ)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GNL_DIR) fclean
-	@if [ -d "$(MLX_DIR)" ]; then $(RM) -r $(MLX_DIR); fi
 
 re: clean all
 
@@ -211,12 +215,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(TEST_OBJ_DIR)/%.o: $(TEST_OBJ_DIR) $(TEST_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# minilibxのダウンロード & 展開 & コンパイル
-# 1. minilibxが存在しない場合のみダウンロード
-$(MINILIBX_TAR_GZ):
-	echo "minilibx linuxを手動でinstallしてください"
-
-$(MLX_DIR): $(MINILIBX_TAR_GZ)
+# minilibxの存在確認 & 展開 & コンパイル
+# 1. minilibxが存在しない場合、エラーになる
+$(MLX_DIR):
+	@if [ ! -d "$(MLX_DIR)" ] && [ ! -f "$(MINILIBX_TAR_GZ)" ]; then \
+		echo "minilibx linuxを手動でinstallしてください"; \
+		exit 1; \
+	fi
 	tar xvzf $(MINILIBX_TAR_GZ)
 
 $(LIBFT):

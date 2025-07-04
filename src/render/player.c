@@ -24,7 +24,6 @@ t_f32x4 get_cross_wall(
 
 	t = 0;
 	r = init_f32x4(1, 0, 0, 0);
-	// 交点がよりplayer_rayに近ければforgroundを更新する
 	while (t < walls.axis_x_frames->height * walls.axis_x_frames->width)
 	{
 		if (is_zero_vector(walls.axis_x_frames->buf[t]))
@@ -113,14 +112,7 @@ get_line_to_be_drawn(
 
 	wall = get_wall_img_by_wall_type_enum(*data, get_wall_type_by_line_segment(wall_seg)); // ベクトルの向きから判定される、どの壁か
 
-	//print_f32x4("wall   s |", wall_seg.s);
-	//print_f32x4("wall   e |", wall_seg.e);
-	//print_f32x4("xos_point|", c_p);
-	//print_f32x4("player s |", player_ray.s);
-	//print_f32x4("player e |", player_ray.e);
-
 	int index = calc_img_index(wall_seg, c_p); // 壁のベクトルからみた交点のx座標
-	//debug_dprintf(STDERR_FILENO, "index %d\n", index);
 	return ((t_fence) {
 		.buf = get_vertical_arr_n(
 			wall,

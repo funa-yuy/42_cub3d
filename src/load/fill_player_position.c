@@ -6,24 +6,11 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:01:28 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/18 18:43:45 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/06/21 14:01:35 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-t_player_dir	get_player_dir_enum(char dir)
-{
-	if ('N' == dir)
-		return (DIR_NORTH);
-	if ('S' == dir)
-		return (DIR_SOUTH);
-	if ('E' == dir)
-		return (DIR_EAST);
-	if ('W' == dir)
-		return (DIR_WEST);
-	return (-1);
-}
 
 bool	is_player_dir_char(char c)
 {
@@ -36,6 +23,19 @@ bool	is_player_dir_char(char c)
 	if (c == 'W')
 		return (true);
 	return (false);
+}
+
+float	get_player_angle(char c)
+{
+	if (c == 'N')
+		return (3.0f * M_PI / 2.0f); // 270度
+	else if (c == 'S')
+		return (0.0f); // 0度
+	else if (c == 'E')
+		return (M_PI / 2.0f); // 90度
+	else if (c == 'W')
+		return (M_PI); // 180度
+	return (0.0f);
 }
 
 void	fill_player_position(t_data *data, char **map_lines)
@@ -55,8 +55,8 @@ void	fill_player_position(t_data *data, char **map_lines)
 			{
 				if (player_found)
 					error_print_and_exit("There are multiple players.");
-				data->player = \
-						(t_pos){y, x, get_player_dir_enum(map_lines[y][x])};
+				data->player = (t_pos){.y = y, .x = x, \
+								.angle = get_player_angle(map_lines[y][x])};
 				player_found = true;
 			}
 			x++;
