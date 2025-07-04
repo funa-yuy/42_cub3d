@@ -6,7 +6,7 @@
 #    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/21 22:19:08 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/06/28 16:37:59 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,9 @@ RENDER_SRC = \
 
 MOVE_SRCS = \
 		src/move/can_move_position.c \
-		src/move/update_angle.c
+		src/move/update_angle.c \
+		src/move/update_position.c \
+		src/move/handle_key_input.c
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
