@@ -5,8 +5,8 @@
 #include <immintrin.h>
 #include <stdbool.h>
 
-typedef __m128 t_f32x4; // t_f32x4(f32, f32, f32, f32)
-typedef __m128i t_i32x4; // t_i32x4(i32, i32, i32, i32)
+typedef __m128 t_f32x4; 
+typedef __m128i t_i32x4;
 
 typedef struct s_vec_f32x4 t_vec_f32x4;
 struct s_vec_f32x4 {
