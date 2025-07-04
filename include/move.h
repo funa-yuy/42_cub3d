@@ -3,10 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   move.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/28 16:27:10 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +18,6 @@
 
 # include "cub3d.h"
 # include <stdbool.h>
-# include <math.h>
 
 // ------------------------------------------------
 // macro
@@ -51,6 +49,16 @@ bool	can_move_position(t_data *data, float x, float y);
 
 /* handle_key_input.c */
 void	handle_key_input(int keycode, t_data *data);
+int		key_press(int keycode, t_data *data);
+
+void	handle_key_input(int keycode, t_data *data);
+
+/* update_position.c */
+void	move_player_pos(t_data *data, float target_angle);
+void	update_position_front(t_data *data);
+void	update_position_left(t_data *data);
+void	update_position_back(t_data *data);
+void	update_position_right(t_data *data);
 
 /* updata_angle.c */
 void	update_angle_left(t_data *data);

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "move.h"
+#include <math.h>
 
 void	rotate_player(t_data *data, float angle)
 {

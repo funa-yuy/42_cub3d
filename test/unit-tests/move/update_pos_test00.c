@@ -1,12 +1,7 @@
 
 #include "cub3d.h"
 #include "move.h"
-
-/* キーコード定義（macOS用） */
-// #define KEY_ESC	53
-
-/* キーコード定義（Linux用） */
-#define KEY_ESC	65307
+#include <math.h>
 
 // (x1,y1)と(x2,y2)の距離を計算
 float	calc_distance(float x1, float y1, float x2, float y2)
@@ -29,22 +24,22 @@ void	process_movement_input(t_data *data, int keycode)
 	if (keycode == KEY_W)
 	{
 		printf("前: ");
-		update_position_front(data);//ここで移動関数を呼び出す
+		update_position_front(data);//ここで呼び出す
 	}
 	else if (keycode == KEY_S)
 	{
 		printf("後: ");
-		update_position_back(data);//ここで移動関数を呼び出す
+		update_position_back(data);//ここで呼び出す
 	}
 	else if (keycode == KEY_A)
 	{
 		printf("左: ");
-		update_position_left(data);//ここで移動関数を呼び出す
+		update_position_left(data);//ここで呼び出す
 	}
 	else if (keycode == KEY_D)
 	{
 		printf("右: ");
-		update_position_right(data);//ここで移動関数を呼び出す
+		update_position_right(data);//ここで呼び出す
 	}
 	distance = calc_distance(old_x, old_y, data->player.x, data->player.y);
 	printf("座標が (%.3f, %.3f) から (%.3f, %.3f) に移動. 移動距離: %.3f\n",

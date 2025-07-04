@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 14:39:22 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/26 11:14:00 by miyuu            ###   ########.fr       */
+/*   Created: 2025/06/25 18:41:53 by mfunakos          #+#    #+#             */
+/*   Updated: 2025/06/26 12:37:13 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "move.h"
+#include <math.h>
 
 /* 指定した角度(target_angle)に移動する */
 void	move_player_pos(t_data *data, float target_angle)
@@ -26,7 +27,8 @@ void	move_player_pos(t_data *data, float target_angle)
 	new_y = data->player.y + move_y;
 	if (can_move_position(data, new_x, new_y))
 	{
-		debug_dprintf(STDERR_FILENO, "壁にぶつかりました: (%f, %f)\n", new_x, new_y);
+		debug_dprintf(STDERR_FILENO, "Playerが壁にぶつかりました: (%f, %f)\n", \
+						new_x, new_y);
 		return ;
 	}
 	data->player.x = new_x;

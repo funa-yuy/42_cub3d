@@ -1,6 +1,7 @@
 
 #include "cub3d.h"
 #include "move.h"
+#include <math.h>
 
 /* キーコード定義（macOS用） */
 // #define KEY_ESC	53
