@@ -5,7 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 20:14:19 by miyuu             #+#    #+#             */
+/*   Created: 2025/07/05 12:46:50 by mfunakos          #+#    #+#             */
+/*   Updated: 2025/07/05 12:49:18 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +19,7 @@
 
 # include "cub3d.h"
 # include <stdbool.h>
+# include <math.h>
 
 // ------------------------------------------------
 // macro
@@ -48,9 +50,6 @@
 bool	can_move_position(t_data *data, float x, float y);
 
 /* handle_key_input.c */
-void	handle_key_input(int keycode, t_data *data);
-int		key_press(int keycode, t_data *data);
-
 void	handle_key_input(int keycode, t_data *data);
 
 /* update_position.c */
