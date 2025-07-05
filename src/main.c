@@ -6,12 +6,11 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 19:44:56 by mfunakos          #+#    #+#             */
-/*   Updated: 2025/06/22 11:52:32 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/07/05 12:42:09 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 #include "move.h"
 #include "render.h"
 
@@ -32,8 +31,7 @@ void	render_scene(t_data *data)
 
 int	close_window(t_data *data)
 {
-	free_data(data);
-	exit(EXIT_SUCCESS);
+	mlx_loop_end(data->mlx);
 	return (0);
 }
 
@@ -68,5 +66,6 @@ int	main(int argc, char *argv[])
 	}
 	data = init_cubdata(argv[1]);
 	render_loop(data);
+	free_data(data);
 	return (0);
 }
