@@ -23,6 +23,7 @@ void	free_data(t_data *d)
 	mlx_destroy_image(d->mlx, d->ea_img);
 	mlx_destroy_window(d->mlx, d->win);
 
+	mlx_destroy_image(d->mlx, d->mlx_img);
 	//mlx_destroy_display(d->no_img_addr);
 	//mlx_destroy_display(d->so_img_addr);
 	//mlx_destroy_display(d->we_img_addr);
