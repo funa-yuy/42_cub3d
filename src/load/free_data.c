@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 14:30:32 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/22 11:37:00 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:54:03 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,7 @@ void	free_data(t_data *d)
 	mlx_destroy_image(d->mlx, d->we_img);
 	mlx_destroy_image(d->mlx, d->ea_img);
 	mlx_destroy_window(d->mlx, d->win);
-
 	mlx_destroy_image(d->mlx, d->mlx_img);
-	//mlx_destroy_display(d->no_img_addr);
-	//mlx_destroy_display(d->so_img_addr);
-	//mlx_destroy_display(d->we_img_addr);
-	//mlx_destroy_display(d->ea_img_addr);
-	//free(d->no_img_addr);
-	//free(d->so_img_addr);
-	//free(d->we_img_addr);
-	//free(d->ea_img_addr);
-	/* ---- macの場合、以下をコメントアウト ---- */
 	mlx_destroy_display(d->mlx);
 	free(d->mlx);
 	free(d);

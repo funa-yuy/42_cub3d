@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 20:59:24 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/15 12:06:25 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/07/07 20:53:50 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include <stdint.h>
 #include <unistd.h>
 
-static uint32_t *get_image_addr(
+static uint32_t	*get_image_addr(
 	uint32_t *mlx_img
 )
 {
-	int bpp;
-	int size_line;
-	int endian;
-	uint32_t *mlx_addr;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	uint32_t	*mlx_addr;
 
 	mlx_addr = \
 		(uint32_t *)mlx_get_data_addr(
-			mlx_img, 
+			mlx_img,
 			&bpp,
 			&size_line,
 			&endian);
@@ -38,13 +38,12 @@ static void	set_img_addr(t_data *data)
 	data->no_img_addr = get_image_addr(data->no_img);
 	data->so_img_addr = get_image_addr(data->so_img);
 	data->we_img_addr = get_image_addr(data->we_img);
-
-	debug_dprintf(STDERR_FILENO, "%lx %lx %lx %lx\n", 
-		data->ea_img_addr,
-		data->no_img_addr,
-		data->so_img_addr,
-		data->we_img_addr
-	);
+	debug_dprintf(STDERR_FILENO, "%lx %lx %lx %lx\n", \
+					data->ea_img_addr, \
+					data->no_img_addr, \
+					data->so_img_addr, \
+					data->we_img_addr \
+				);
 }
 
 void	*read_img_with_mlx(t_data *data, char *filename)
@@ -64,10 +63,8 @@ void	*read_img_with_mlx(t_data *data, char *filename)
 	return (img);
 }
 
-// TODO: parseの中で、パースではない処理が行われてしまっている
 void	fill_images(t_data *data, const t_tokens_tmp *tokens)
 {
-	//todo: 本来は、tokenizeでpathがNULLな場合のエラー処理するので、ここでは必要ない
 	if (!(tokens->no_path && tokens->so_path && \
 			tokens->we_path && tokens->ea_path))
 		error_print_and_exit("Invalid path_to_texture value.");
@@ -81,4 +78,3 @@ void	fill_images(t_data *data, const t_tokens_tmp *tokens)
 		data->ea_img = read_img_with_mlx(data, tokens->ea_path);
 	set_img_addr(data);
 }
-

@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:48:34 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 00:09:28 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/07/07 20:51:22 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_strlst	*normalize_cubdata(char *file)
 	t_strlst	*lines_list;
 	int			fd;
 
-	//todo: fileの拡張子が.cubで終わるかをみる
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error_perror_and_exit(file);

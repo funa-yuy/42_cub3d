@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 13:11:58 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/25 17:32:56 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/07/07 20:51:00 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,11 @@ t_data	*init_cubdata(char *file)
 
 	if (!valid_cub_extension(file))
 		error_print_and_exit("Invalid file extension.");
-	/* 正規化：strlst に格納 */
 	lines_list = NULL;
 	lines_list = normalize_cubdata(file);
-	/* トーカナイズ：中間構造体への格納(parse_temp)に格納 */
 	tokens = NULL;
 	tokens = tokenize_lines(lines_list);
 	free_strlst((t_strlst *)lines_list);
-	/* パース：構造体に格納 */
 	data = parse_to_data(tokens);
 	free_tokens_tmp((t_tokens_tmp *)tokens);
 	debug_print_data(data);

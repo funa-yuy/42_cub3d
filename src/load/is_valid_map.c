@@ -6,7 +6,7 @@
 /*   By: miyuu <miyuu@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 00:15:40 by miyuu             #+#    #+#             */
-/*   Updated: 2025/05/28 01:37:31 by miyuu            ###   ########.fr       */
+/*   Updated: 2025/07/07 20:54:25 by miyuu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,15 @@
 bool	is_valid_position(t_data *data, size_t x, size_t y)
 {
 	size_t			index;
-	enum e_map_type				*map;
+	enum e_map_type	*map;
 	unsigned int	width;
 	unsigned int	height;
 
 	map = data->map;
 	width = data->width;
 	height = data->height;
-	/* マップの端にいたらout */
 	if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
 		return (false);
-	/* 現在地が"NOTHING"だったらout */
 	index = calc_map_index(x, y, width);
 	if (map[index] == NOTHING)
 		return (false);
@@ -36,7 +34,7 @@ bool	is_surrounded_walls(t_data *data, size_t x, size_t y, bool *visited)
 {
 	size_t			index;
 	unsigned int	width;
-	enum e_map_type				*map;
+	enum e_map_type	*map;
 
 	map = data->map;
 	width = data->width;
