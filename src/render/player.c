@@ -55,7 +55,7 @@ int	render_wall_to_screen(t_data *data, t_axis_xy_frames axis_xy_frames,
 	t_fence			arr;
 
 	player_vec = f32x4_to_struct(player);
-	angle = -(M_PI / 4);
+	angle = -(M_PI / 6);
 	i = 0;
 	while (i < 600)
 	{
@@ -68,7 +68,7 @@ int	render_wall_to_screen(t_data *data, t_axis_xy_frames axis_xy_frames,
 			debug_dprintf(STDERR_FILENO, "\e[31mERROR!\e[0m\n");
 		free(arr.buf);
 		i += 1;
-		angle += ((M_PI / 4) * 2) / 600.0f;
+		angle += ((M_PI / 6) * 2) / 600.0f;
 	}
 	return (0);
 }

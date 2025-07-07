@@ -61,6 +61,7 @@ VEC_SRCS = \
 		src/vec/norm_f32x4.c\
 		src/vec/f32x4_has_error.c\
 
+
 FRAME_SRC = \
 		src/frames/axis_x_frames.c\
 		src/frames/axis_y_frames.c\
@@ -84,6 +85,7 @@ MOVE_SRCS = \
 		src/move/update_angle.c \
 		src/move/update_position.c \
 		src/move/handle_key_input.c
+
 
 DEBUG_SRCS = \
 		src/debug/debug_print_data.c \
@@ -120,11 +122,11 @@ GNL = $(GNL_DIR)/get_next_line.o
 
 CC = cc
 CFLAGS = \
-	-Wall -Wextra -Werror \
+	-Wall -Wextra -Werror -g\
 	-I$(HEADER_DIR) \
 	-I$(MLX_DIR) \
 	-I$(GNL_DIR) \
-	-I$(LIBFT_DIR)
+	-I$(LIBFT_DIR) \
 
 
 OBJS = \

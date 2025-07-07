@@ -11,22 +11,28 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "frames.h"
 #include "move.h"
 #include "render.h"
 
 void	render_scene(t_data *data)
 {
+	t_axis_xy_frames xy_frame;
+
+	xy_frame = (t_axis_xy_frames){
+		.axis_x_frames = init_axis_x_frames(data),
+		.axis_y_frames = init_axis_y_frames(data)
+	};
 	ft_memset(data->mlx_addr, 0, \
 			WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(uint32_t));
 	render_wall_to_screen(\
 		data, \
-		(t_axis_xy_frames){\
-			.axis_x_frames = init_axis_x_frames(data), \
-			.axis_y_frames = init_axis_y_frames(data), \
-		},
+		xy_frame,
 		init_f32x4(0, data->player.x, data->player.y, \
 					data->player.angle));
 	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img, 0, 0);
+	clear_axis_x_frames(xy_frame.axis_x_frames);
+	clear_axis_y_frames(xy_frame.axis_y_frames);
 }
 
 int	close_window(t_data *data)

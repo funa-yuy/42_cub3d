@@ -17,21 +17,22 @@ void	free_data(t_data *d)
 	if (!d)
 		return ;
 	free(d->map);
-	if (d->no_img)
-		mlx_destroy_image(d->mlx, d->no_img);
-	if (d->so_img)
-		mlx_destroy_image(d->mlx, d->so_img);
-	if (d->we_img)
-		mlx_destroy_image(d->mlx, d->we_img);
-	if (d->ea_img)
-		mlx_destroy_image(d->mlx, d->ea_img);
-	if (d->win)
-		mlx_destroy_window(d->mlx, d->win);
-	if (d->mlx)
-	{
-		/* ---- macの場合、以下をコメントアウト ---- */
-		mlx_destroy_display(d->mlx);
-		free(d->mlx);
-	}
+	mlx_destroy_image(d->mlx, d->no_img);
+	mlx_destroy_image(d->mlx, d->so_img);
+	mlx_destroy_image(d->mlx, d->we_img);
+	mlx_destroy_image(d->mlx, d->ea_img);
+	mlx_destroy_window(d->mlx, d->win);
+
+	//mlx_destroy_display(d->no_img_addr);
+	//mlx_destroy_display(d->so_img_addr);
+	//mlx_destroy_display(d->we_img_addr);
+	//mlx_destroy_display(d->ea_img_addr);
+	//free(d->no_img_addr);
+	//free(d->so_img_addr);
+	//free(d->we_img_addr);
+	//free(d->ea_img_addr);
+	/* ---- macの場合、以下をコメントアウト ---- */
+	mlx_destroy_display(d->mlx);
+	free(d->mlx);
 	free(d);
 }
