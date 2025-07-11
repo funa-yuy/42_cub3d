@@ -1,8 +1,5 @@
-#include "cub3d.h"
-#include "frames.h"
 #include "line_segment.h"
 #include "vec.h"
-#include <math.h>
 #include <stdbool.h>
 #include <unistd.h>
 
@@ -41,16 +38,6 @@ static t_f32x4	get_linear_equation_from_line_segment(t_line_segment a)
 	a_end = f32x4_to_struct(a.e);
 	return (init_f32x4(0, a_end.y - a_start.y, a_start.x - a_end.x, a_start.x
 			* a_end.y - a_end.x * a_start.y));
-}
-
-bool	float_equal(float a, float b, float epsilon)
-{
-	return (fabsf(a - b) < epsilon);
-}
-
-bool	float_less_equal(float a, float b, float epsilon)
-{
-	return ((a < b) || float_equal(a, b, epsilon));
 }
 
 static bool	cross_point_in_of_range(t_f32x4 p, t_line_segment l)
