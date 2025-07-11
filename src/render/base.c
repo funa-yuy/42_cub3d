@@ -7,10 +7,10 @@ static void	put_point_no_check(uint32_t *mlx_addr, int32_t index,
 	mlx_addr[index] = color;
 }
 
-int set_backcolor(void *mlx_addr, uint32_t ceil_color, uint32_t floor_color)
+int	set_backcolor(void *mlx_addr, uint32_t ceil_color, uint32_t floor_color)
 {
-	size_t i;
-	size_t max;
+	size_t	i;
+	size_t	max;
 
 	i = 0;
 	max = WINDOW_WIDTH * WINDOW_HEIGHT / 2;
@@ -19,7 +19,7 @@ int set_backcolor(void *mlx_addr, uint32_t ceil_color, uint32_t floor_color)
 		put_point_no_check(mlx_addr, i, ceil_color);
 		i += 1;
 	}
-	while(i - max < max)
+	while (i - max < max)
 	{
 		put_point_no_check(mlx_addr, i, floor_color);
 		i += 1;
