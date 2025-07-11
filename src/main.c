@@ -25,6 +25,7 @@ void	render_scene(t_data *data)
 	};
 	ft_memset(data->mlx_addr, 0, \
 			WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(uint32_t));
+set_backcolor(data->mlx_addr, data->c_color, data->f_color);
 	render_wall_to_screen(\
 		data, \
 		xy_frame,
