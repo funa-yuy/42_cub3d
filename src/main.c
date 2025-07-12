@@ -17,20 +17,15 @@
 
 void	render_scene(t_data *data)
 {
-	t_axis_xy_frames xy_frame;
+	t_axis_xy_frames	xy_frame;
 
-	xy_frame = (t_axis_xy_frames){
-		.axis_x_frames = init_axis_x_frames(data),
-		.axis_y_frames = init_axis_y_frames(data)
-	};
-	ft_memset(data->mlx_addr, 0, \
-			WINDOW_WIDTH * WINDOW_HEIGHT * sizeof(uint32_t));
-set_backcolor(data->mlx_addr, data->c_color, data->f_color);
-	render_wall_to_screen(\
-		data, \
-		xy_frame,
-		init_f32x4(0, data->player.x, data->player.y, \
-					data->player.angle));
+	xy_frame = (t_axis_xy_frames){.axis_x_frames = init_axis_x_frames(data),
+		.axis_y_frames = init_axis_y_frames(data)};
+	ft_memset(data->mlx_addr, 0, WINDOW_WIDTH * WINDOW_HEIGHT
+		* sizeof(uint32_t));
+	set_backcolor(data->mlx_addr, data->c_color, data->f_color);
+	render_wall_to_screen(data, xy_frame, init_f32x4(0, data->player.x,
+			data->player.y, data->player.angle));
 	mlx_put_image_to_window(data->mlx, data->win, data->mlx_img, 0, 0);
 	clear_axis_x_frames(xy_frame.axis_x_frames);
 	clear_axis_y_frames(xy_frame.axis_y_frames);
@@ -67,7 +62,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		write(STDERR_FILENO, "Invalid number of arguments.\n", \
+		write(STDERR_FILENO, "Invalid number of arguments.\n",
 			ft_strlen("Invalid number of arguments.\n"));
 		return (1);
 	}

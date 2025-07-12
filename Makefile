@@ -69,7 +69,6 @@ FRAME_SRC = \
 		src/frames/clear_frames.c\
 		src/frames/get_line_segment_arr.c\
 		src/frames/get_map_type.c\
-		src/frames/print_frame.c\
 		src/frames/get_wall_type.c\
 		src/frames/print_line_segment.c\
 

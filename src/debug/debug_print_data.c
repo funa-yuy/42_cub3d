@@ -89,8 +89,6 @@ void	debug_print_data(t_data *data)
 	else
 		print_map_data(data);
 	debug_dprintf(STDOUT_FILENO, "---------------------------------\n\n");
-	//mlxで描写して確認する。run_cub_map.sh使いたい場合はコメントアウトする
-	// degub_mlx_data(data);
 }
 
 #else
