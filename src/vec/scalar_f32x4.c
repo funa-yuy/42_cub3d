@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuranak <tmuranak@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-07-07 09:53:23 by tmuranak          #+#    #+#             */
-/*   Updated: 2025-07-07 09:53:23 by tmuranak         ###   ########.fr       */
+/*   Created: 2025-07-12 08:09:56 by tmuranak          #+#    #+#             */
+/*   Updated: 2025-07-12 08:09:56 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec.h"
 #include <immintrin.h>
 
-// 4つのf32を含むベクトルにスカラー値を掛ける
+//
 t_f32x4	scalar_f32x4(t_f32x4 vec, float scalar)
 {
 	return (_mm_mul_ps(vec, _mm_set1_ps(scalar)));

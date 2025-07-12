@@ -79,5 +79,8 @@ void print_i32x4(char *str, t_i32x4 a);
 
 bool eq_f32x4(t_f32x4 a, t_f32x4 b);
 
+bool	float_equal(float a, float b, float epsilon);
+
+bool	float_less_equal(float a, float b, float epsilon);
 #endif
 

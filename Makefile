@@ -60,6 +60,7 @@ VEC_SRCS = \
 		src/vec/cross_point.c \
 		src/vec/norm_f32x4.c\
 		src/vec/f32x4_has_error.c\
+		src/vec/float_eq.c\
 
 
 FRAME_SRC = \
@@ -74,6 +75,7 @@ FRAME_SRC = \
 
 
 RENDER_SRC = \
+		src/render/base.c\
 		src/render/screen.c\
 		src/render/player.c\
 		src/render/get_cross_wall.c\

@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuranak <tmuranak@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-07-07 09:52:54 by tmuranak          #+#    #+#             */
-/*   Updated: 2025-07-07 09:52:54 by tmuranak         ###   ########.fr       */
+/*   Created: 2025-07-12 08:09:23 by tmuranak          #+#    #+#             */
+/*   Updated: 2025-07-12 08:09:23 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "line_segment.h"
 #include "vec.h"

@@ -4,6 +4,7 @@
 #include "vec.h"
 #include <unistd.h>
 #include <math.h>
+#include "mlx.h"
 
 bool	check_t_data_structure(t_data *target, t_data *test);
 

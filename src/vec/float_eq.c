@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_f32x4.c                                        :+:      :+:    :+:   */
+/*   float_eq.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuranak <tmuranak@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-07-12 08:07:38 by tmuranak          #+#    #+#             */
-/*   Updated: 2025-07-12 08:07:38 by tmuranak         ###   ########.fr       */
+/*   Created: 2025-07-12 08:08:36 by tmuranak          #+#    #+#             */
+/*   Updated: 2025-07-12 08:08:36 by tmuranak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec.h"
-#include <immintrin.h>
+#include <stdbool.h>
+#include <math.h>
 
-t_f32x4	add_f32x4(t_f32x4 a, t_f32x4 b)
+bool	float_equal(float a, float b, float epsilon)
 {
-	return (_mm_add_ps(a, b));
+	return (fabsf(a - b) < epsilon);
+}
+
+bool	float_less_equal(float a, float b, float epsilon)
+{
+	return ((a < b) || float_equal(a, b, epsilon));
 }
