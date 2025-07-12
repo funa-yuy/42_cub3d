@@ -25,5 +25,6 @@ t_f32x4			get_cross_wall(t_axis_xy_frames walls,
 					t_line_segment player_ray,
 					t_line_segment *wall_line_segment);
 
-int set_backcolor(void *mlx_addr, uint32_t ceil_color, uint32_t floor_color);
+int				set_backcolor(void *mlx_addr, uint32_t ceil_color,
+					uint32_t floor_color);
 #endif

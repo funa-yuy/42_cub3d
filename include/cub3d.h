@@ -23,17 +23,16 @@
 # include <stdio.h>
 # include <sys/errno.h>
 # include <mlx.h>
-#include <stdint.h>
-#include <stdbool.h>
+# include <stdint.h>
+# include <stdbool.h>
 
 // ------------------------------------------------
 // macro
 // ------------------------------------------------
 # define IMG_SIZE	64
 
-
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 600
 
 /* キーコード定義 (LinuxOS用) */
 # define KEY_ESC 65307
@@ -66,16 +65,16 @@ typedef struct s_data
 	void			*so_img;//mlx_put_image_to_windowしたもの
 	void			*we_img;//mlx_put_image_to_windowしたもの
 	void			*ea_img;//mlx_put_image_to_windowしたもの
-	uint32_t			*no_img_addr;//mlx_put_image_to_windowしたもの
-	uint32_t			*so_img_addr;//mlx_put_image_to_windowしたもの
-	uint32_t			*we_img_addr;//mlx_put_image_to_windowしたもの
-	uint32_t			*ea_img_addr;//mlx_put_image_to_windowしたもの
+	uint32_t		*no_img_addr;//mlx_put_image_to_windowしたもの
+	uint32_t		*so_img_addr;//mlx_put_image_to_windowしたもの
+	uint32_t		*we_img_addr;//mlx_put_image_to_windowしたもの
+	uint32_t		*ea_img_addr;//mlx_put_image_to_windowしたもの
 	uint32_t		f_color;//16進数　に変換したカラー
 	uint32_t		c_color;//16進数　に変換したカラー
 	unsigned int	height;
 	unsigned int	width;
 	t_pos			player;//プレイヤーの初期位置&向き
-	enum e_map_type		*map;
+	enum e_map_type	*map;
 }				t_data;
 
 typedef struct s_strlst
