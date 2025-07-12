@@ -6,7 +6,7 @@
 #    By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 01:21:55 by miyuu             #+#    #+#              #
-#    Updated: 2025/06/25 18:41:25 by mfunakos         ###   ########.fr        #
+#    Updated: 2025/07/12 19:23:41 by mfunakos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,7 +176,7 @@ MLX = $(MLX_DIR)/libmlx.a
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GNL_DIR) clean
 

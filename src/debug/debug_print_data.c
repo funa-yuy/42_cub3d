@@ -6,11 +6,12 @@
 /*   By: mfunakos <mfunakos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:31:41 by miyuu             #+#    #+#             */
-/*   Updated: 2025/06/21 15:49:24 by mfunakos         ###   ########.fr       */
+/*   Updated: 2025/07/12 19:22:29 by mfunakos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <math.h>
 
 #ifdef DEBUG
 
