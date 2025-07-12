@@ -61,10 +61,10 @@ static bool	cross_point_in_of_range(t_f32x4 p, t_line_segment l)
 	x_axis_minmax = minmax_line_segment_x(l);
 	y_axis_minmax = minmax_line_segment_y(l);
 	point = f32x4_to_struct(p);
-	return (float_less_equal(x_axis_minmax.w, point.x, 1e-6f)
-		&& float_less_equal(point.x, x_axis_minmax.z, 1e-6f)
-		&& float_less_equal(y_axis_minmax.w, point.y, 1e-6f)
-		&& float_less_equal(point.y, y_axis_minmax.z, 1e-6f));
+	return (float_less_equal(x_axis_minmax.w, point.x, 1e-5f)
+		&& float_less_equal(point.x, x_axis_minmax.z, 1e-5f)
+		&& float_less_equal(y_axis_minmax.w, point.y, 1e-5f)
+		&& float_less_equal(point.y, y_axis_minmax.z, 1e-5f));
 }
 
 t_f32x4	cross_point(t_line_segment a, t_line_segment b)
