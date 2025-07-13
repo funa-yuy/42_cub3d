@@ -15,27 +15,19 @@
 
 bool	is_player_dir_char(char c)
 {
-	if (c == 'N')
-		return (true);
-	if (c == 'S')
-		return (true);
-	if (c == 'E')
-		return (true);
-	if (c == 'W')
-		return (true);
-	return (false);
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 float	get_player_angle(char c)
 {
-	if (c == 'N')
-		return (3.0f * M_PI / 2.0f);
-	else if (c == 'S')
-		return (0.0f);
-	else if (c == 'E')
-		return (M_PI / 2.0f);
-	else if (c == 'W')
+	if (c == 'W')
 		return (M_PI);
+	else if (c == 'E')
+		return (0.0f);
+	else if (c == 'S')
+		return (M_PI / 2.0f);
+	else if (c == 'N')
+		return (3 * M_PI / 2.0f);
 	return (0.0f);
 }
 
